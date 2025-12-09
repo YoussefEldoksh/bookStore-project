@@ -1,0 +1,65 @@
+@import  url("https://api.fontshare.com/css?f%5B%5D=satoshi@400,700&serif=swap");
+
+nav{
+    background-color: rgb(255, 239, 217);   
+    overflow: hidden;
+    outline: 2px solid #000000;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+    gap: 10%;
+    padding: 0 16px;
+    width: fit-content;
+}
+
+#nav-icons{
+    display: flex;
+    align-items: center;
+    flex-direction: column  ;
+    margin-top: 50%;
+    font-size: 18px;
+    gap: 40px;
+    list-style-type: none;
+
+}
+
+#nav-links{
+    display: flex;
+    align-items: center;
+    flex-direction: column  ;
+    font-size: 18px;
+    gap: 20px;
+    list-style-type: none;
+}
+
+li{
+    cursor: pointer;
+    margin: 5%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 5px;
+    
+}
+a{
+    text-decoration: none;
+    color: #271a0fff;
+    font-weight: bold;
+}
+
+p{
+    font-size: 10px;
+    text-align: center;
+    font-family: "Courier New", monospace;
+}
+
+i{
+    color: #271a0fff;
+}
+
+i:hover{
+    color: rgb(237, 155, 2);
+
+}

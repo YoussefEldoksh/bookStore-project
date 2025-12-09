@@ -1,0 +1,201 @@
+
+@import  url("https://api.fontshare.com/css?f%5B%5D=bonny@400,700&serif=swap");
+
+.input {
+  width: 100%;
+  max-width: 400px;
+  height: 40px;
+  padding: 12px;
+  margin: 1%;
+
+  font-size: 18px;
+  font-family: "Courier New", monospace;
+  color: #000;
+  background-color: rgb(255, 239, 217);
+  border: 2px solid #000;
+  border-radius: 0;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.input::placeholder {
+  color: #888;
+}
+
+.input:hover {
+  transform: translate(-4px, -4px);
+  box-shadow: 4px 4px 0 #000;
+}
+
+
+
+
+.input-container{
+    background-color: rgb(255, 221, 0);
+    padding-left: 4%;
+    height: 10%;
+    width: 100%;
+    margin: 0.7%;
+    outline: 2px solid #000000;
+}
+
+
+i{
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+}
+
+i:hover{
+  transform: scale(1.08);
+}
+
+.home-page{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 92.5%;
+}
+.Category-section{
+    display: flex;
+    flex-direction: column;
+    height: 15%;
+    margin: 1%;
+    width: 99%;
+    font-size: 20px;
+    font-family: "Courier New", monospace;
+    font-weight: bold;
+}
+
+.Category-title{
+    margin: 0.5px;
+    font-size: 18px;
+      text-align: left;
+}
+
+.categories-list{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 10px;
+    overflow-x: auto;
+    padding: 1%;
+    width: 100%;
+    height: fit-content;
+    overflow: hidden;
+    gap: 2%;
+}
+
+.category-btn{
+    background-color: transparent;
+    padding: 3px 5px;
+    border: 2px solid #000000;
+    cursor: pointer;
+    font-family: "Courier New", monospace;
+    font-size: 13px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    font-weight: bolder;
+}
+
+.category-btn:hover{
+    background-color: #ca731c;
+    color: rgb(0, 0, 0);
+    transform: translate(-4px, -4px);
+    box-shadow: 4px 4px 0 #000;
+}
+
+.books-title{
+    font-size: 20px;
+    font-family: "Courier New", monospace;
+    font-weight: bold;
+    text-align: left;
+    margin-left: 1%;
+    margin-bottom: 0.5%;
+}
+
+.books-list{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    padding: 5px 2%;
+    width: 100%;
+    gap: 4%;
+    height: 400px;
+    overflow-y: auto;
+
+}
+
+.books-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.book-section{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 40%;
+    margin: 5%;
+    width: 99%;
+    
+}
+
+.book-items{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    overflow-x: hidden;
+    gap: 5px;
+    padding: 1%;
+    width: 100%;
+    gap: 2%;
+}
+
+
+
+.book-item{
+    width: 110px;
+    cursor: pointer;
+}
+
+.book-image{
+    width: 99px;  /* Fixed width; height auto-scales to maintain aspect ratio */
+    height: auto;  /* Or set a fixed height like '200px' if you want to force it */
+    object-fit: contain;  /* Maintains aspect ratio */
+    display: block;   /* Optional: Removes any inline spacing issues */
+    border: 2px solid #ffffff;
+    outline: 3px solid #000000;
+    margin: 2%;
+    transition: all 0.3s ease ;
+}
+
+.book-image:hover{
+    transform: translate(-4px, -4px);
+    box-shadow: 4px 4px 0 #0f117d;
+}
+
+.book-title{
+    font-size: 14px;
+    font-family: "Courier New", monospace;
+    font-weight: bolder;
+    text-align: left;
+    word-wrap: break-word;
+    margin-top: 2%;
+    width: 99%;
+    font-family: bonny;
+}
+
+
+.book-author{
+    font-size: 10px;
+    font-family: "Courier New", monospace;
+    text-align: left;
+}
+
