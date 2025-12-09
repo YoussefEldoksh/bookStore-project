@@ -4,30 +4,30 @@ function createSearchBar() {
     let nav_bar = `
 <div class="home-page">
     <div class="input-container">
-        <i class="fa-solid fa-magnifying-glass"></i>
+        <a href = "./index.html"><i class="fa-solid fa-magnifying-glass"></i></a>
           <input
             class="input"
             name="text"
             type="text"
             placeholder="Title, author, host, or topic..."/>
-        <br>
+
         </div>
 
             <div class="Category-section" >
                  <p class="Category-title">Categories:</p>
                     <div class="categories-list">
-                        <button class="category-btn">Science Fiction</button>
-                        <button class="category-btn">Romance</button>
-                        <button class="category-btn">Mystery</button>
-                        <button class="category-btn">Fantasy</button>
-                        <button class="category-btn">Non-Fiction</button>
-                        <button class="category-btn">Historical</button>
-                        <button class="category-btn">Thriller</button>
-                        <button class="category-btn">Young Adult</button>
-                        <button class="category-btn">Horror</button>
-                        <button class="category-btn">Biography</button>
-                        <button class="category-btn">Self-Help</button>
-                        <button class="category-btn">Graphic Novels</button>
+                        <a class="category-btn">Science Fiction</a>
+                        <a class="category-btn">Romance</a>
+                        <a class="category-btn">Mystery</a>
+                        <a class="category-btn">Fantasy</a>
+                        <a class="category-btn">Non-Fiction</a>
+                        <a class="category-btn">Historical</a>
+                        <a class="category-btn">Thriller</a>
+                        <a class="category-btn">Young Adult</a>
+                        <a class="category-btn">Horror</a>
+                        <a class="category-btn">Biography</a>
+                        <a class="category-btn">Self-Help</a>
+                        <a class="category-btn">Graphic Novels</a>
                     
                         
                     </div>
@@ -47,18 +47,21 @@ function createSearchBar() {
 function printBooks() {
 
 
+
     let booksHTML = "";
     for (let i = 1; i <= 50; i++) {
         booksHTML += `
                     <div class="book-item">
+                        <a href="/book-details-view/book-details.html">
                         <img src="assets/The-great-gatsby.jpg" alt="Book ${i}" class="book-image"/>
+                        </a>
                         <p class="book-title">The great gatsby</p>
                         <p class="book-author">F. Scott Fitzberg</p>
                         <div class="book-rating" style="display: flex; align-items: center; gap: 20%;">
                             <div class="rating-stars" style="display: flex; gap: 2px;">
-                            <i id="rating" class="fa-regular fa-star" style="font-size:11px"></i>
-                            <i id="rating" class="fa-regular fa-star" style="font-size:11px"></i>
-                            <i id="rating" class="fa-regular fa-star" style="font-size:11px"></i>
+                            <i id="rating" class="fa-solid fa-star" style="font-size:11px"></i>
+                            <i id="rating" class="fa-solid fa-star" style="font-size:11px"></i>
+                            <i id="rating" class="fa-solid fa-star" style="font-size:11px"></i>
                             <i id="rating" class="fa-regular fa-star" style="font-size:11px"></i>   
                             <i id="rating" class="fa-regular fa-star" style="font-size:11px"></i>
                             </div>

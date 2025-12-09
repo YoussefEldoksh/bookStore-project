@@ -50,9 +50,10 @@ a{
 }
 
 p{
-    font-size: 10px;
+    font-size: 11px;
     text-align: center;
     font-family: "Courier New", monospace;
+    font-weight: 900;
 }
 
 i{
@@ -60,6 +61,5 @@ i{
 }
 
 i:hover{
-    color: rgb(237, 155, 2);
-
+    color: #ca731c;
 }
