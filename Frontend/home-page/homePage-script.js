@@ -12,6 +12,34 @@ function createSearchBar() {
             placeholder="Title, author, host, or topic..."/>
 
         </div>
+    <div class="home-container">
+        <div class="home-header">
+            <div class="welcome-text">
+                <p class="heading-text" >DESIGN</p>
+                <p class="heading-text" style="color: #0f117d" >BRUTAL</p>
+                <p class="heading-text" >WEBSITES</p>
+                <div class="statement-container">
+                <p class="statement" >WE CREATE BOLD, UNAPOLOGETIC DIGITAL EXPERIENCES THAT DEMAND ATTENTION AND DRIVE RESULTS.</p>
+                </div>
+                <button class="explore-btn"> EXPLORE NOW </button>
+                <button class="books-btn"> VIEW WORKS </button>
+
+                </div>
+
+            <div class="home-image-container">
+    <div class="badge-container">
+        <div class="badge-outer">
+            <div class="badge-inner">
+                <p class="badge-text-large">100%</p>
+                <p class="badge-text-small">SATISFACTION GUARANTEED</p>
+            </div>
+        </div>
+        <div class="star-badge">
+            <div class="star">★</div>
+        </div>
+    </div>
+            </div>
+        </div>
 
             <div class="Category-section" >
                  <p class="Category-title">Categories:</p>
@@ -39,6 +67,7 @@ function createSearchBar() {
                         ${printBooks()}
                 </div>
             </div>
+    </div>
 </div>
     `;  
     return nav_bar;

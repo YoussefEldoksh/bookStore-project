@@ -25,5 +25,8 @@ body{
     height: 95vh;
     width: 98%;
     display: flex;
+    box-shadow: 8px 5px 0 #000;
+    border-radius: 8px;
+
     
 }

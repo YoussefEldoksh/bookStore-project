@@ -17,9 +17,7 @@ function createNavBar() {
         
         <ul id="nav-links">
             <li><a href="./index.html"><i class="fa-solid fa-user"></i></a><p>Account</p></li>
-            <li><a href="./contact.html"><i class="fa-solid fa-handshake"></i></a><p>Contact Us</p></li>
-            <li><a href="./contact.html"><i class="fa-solid fa-gear"></i></a><p>Settings</p></li>
-            <li><a href="./contact.html"><i class="fa-solid fa-door-open"></i></a><p>Logout</p></li>
+            <li><a href="./contact.html"><i class="fa-solid fa-handshake"></i></a><p>Contact Us</p></li>            <li><a href="./contact.html"><i class="fa-solid fa-door-open"></i></a><p>Logout</p></li>
 
         </ul>   
     </nav>

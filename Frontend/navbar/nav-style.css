@@ -4,6 +4,7 @@ nav{
     background-color: rgb(255, 239, 217);   
     overflow: hidden;
     outline: 2px solid #000000;
+    border-radius: 8px 0px 0px 8px;
     height: 100%;
     display: flex;
     align-items: center;

@@ -11,7 +11,7 @@
   font-size: 18px;
   font-family: "Courier New", monospace;
   color: #000;
-  background-color: rgb(255, 239, 217);
+  background-color: rgb(255, 239, 2 17);
   border: 2px solid #000;
   border-radius: 0;
   outline: none;
@@ -56,22 +56,23 @@ i:hover{
     flex-direction: column;
     height: 100%;
     width: 92.5%;
+    
 }
 .Category-section{
     display: flex;
     flex-direction: column;
-    height: 15%;
+    height: 20%;
     margin: 1%;
-    width: 99%;
+    width: 100%;
     font-size: 20px;
     font-family: "Courier New", monospace;
     font-weight: bold;
 }
 
 .Category-title{
-    margin: 0.5px;
+    margin: 2px;
     font-size: 18px;
-      text-align: left;
+    text-align: left;
 }
 
 .categories-list{
@@ -100,6 +101,7 @@ i:hover{
     align-items: center;
     justify-content: center;
     width: fit-content;
+    margin-top: 1%;
     font-weight: bolder;
 }
 
@@ -127,9 +129,7 @@ i:hover{
     padding: 5px 2%;
     width: 100%;
     gap: 4%;
-    height: 400px;
-    overflow-y: auto;
-
+    height: 100%;
 }
 
 .books-list::-webkit-scrollbar {
@@ -141,21 +141,18 @@ i:hover{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 40%;
+    height: 100%;
     margin: 5%;
-    width: 99%;
-    
+    width: 100%;
 }
 
 .book-items{
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    overflow-x: hidden;
-    gap: 5px;
     padding: 1%;
     width: 100%;
-    gap: 2%;
+
 }
 
 
@@ -163,6 +160,7 @@ i:hover{
 .book-item{
     width: 110px;
     cursor: pointer;
+    margin: 1%;
 }
 
 .book-image{
@@ -199,3 +197,168 @@ i:hover{
     text-align: left;
 }
 
+.welcome-text{
+    font-family: "Courier New", monospace;
+    text-align: left;
+    margin: 0% 3%;
+    width: 62%;
+}
+
+.home-header{
+    display: flex;
+    height: 100%;
+    width: 100%;
+    margin: 1%;
+    padding: 1%;
+    margin-top: 0%;
+    padding-top: 0%;
+    align-items: center;
+    /* background-color: #0f117d; */
+}
+
+
+.heading-text{
+    font-size: 68px;
+    font-weight: 1500;
+    font-family: 'Archivo Black', sans-serif;   
+    text-align: left;
+}
+
+.home-container{
+    height: 100%;
+    width: fit-content;
+    overflow-y: auto;  
+    overflow-x: hidden; 
+    
+}
+
+.statement{
+    font-size: 22px;
+    font-weight: bold;
+    margin-top: 2%;
+    color: rgb(255, 255, 255);  
+    text-align: left;
+    color: #000000;
+}
+
+.statement-container{
+    width: 90%;
+    /* background-color: #ca731c;   */
+
+}
+
+.explore-btn{
+    margin-top: 1%;
+    padding: 10px 15px;
+    font-size: 22px;
+    font-family: "Courier New", monospace;
+    font-weight: bold;
+    cursor: pointer;
+    border: 2px solid #000;
+    background-color: rgb(121, 207, 130);
+    transition: all 0.3s ease;
+}
+
+.explore-btn:hover{
+    background-color: rgb(63, 189, 76);
+    color: rgb(0, 0, 0);
+    transform: translate(-4px, -4px);
+    box-shadow: 4px 4px 0 #000;
+}
+
+.books-btn{
+    margin-top: 1%;
+    padding: 10px 15px;
+    font-size: 22px;
+    font-family: "Courier New", monospace;
+    font-weight: bold;
+    cursor: pointer;
+    border: 2px solid #000;
+    background-color: rgb(189, 115, 50);
+    transition: all 0.3s ease;
+}
+
+.books-btn:hover{
+    background-color: rgb(234, 162, 99);
+    color: rgb(0, 0, 0);
+    transform: translate(-4px, -4px);
+    box-shadow: 4px 4px 0 #000;
+}
+
+.home-image-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: 80%;
+    margin-right: 5%;
+}
+
+.badge-container {
+    position: relative;
+    width: 500px;
+    height: 220px;
+    transform: rotate(8deg);        
+}
+
+
+.badge-outer {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: #00bcd4;
+            border: 8px solid #000;
+            border-right: 16px solid #000;
+            border-bottom: 16px solid #000;
+            box-shadow: 12px 12px 0 rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .badge-inner {
+            width: 90%;
+            height: 85%;
+            background-color: #fff;
+            border: 6px solid #000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 20px 30px;
+            box-sizing: border-box;
+        }
+
+        .badge-text-large {
+            font-size: 72px;
+            font-weight: 900;
+            margin: 0;
+            line-height: 1;
+            letter-spacing: -2px;
+        }
+
+        .badge-text-small {
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            margin: 8px 0 0 0;
+        }
+
+        .star-badge {
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            width: 120px;
+            height: 120px;
+            background-color: #ffd700;
+            border: 6px solid #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform: rotate(15deg);
+            box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .star {
+            font-size: 80px;
+            color: #000;
+        }
