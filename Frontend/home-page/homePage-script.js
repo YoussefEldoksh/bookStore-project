@@ -15,14 +15,14 @@ function createSearchBar() {
     <div class="home-container">
         <div class="home-header">
             <div class="welcome-text">
-                <p class="heading-text" >DESIGN</p>
-                <p class="heading-text" style="color: #0f117d" >BRUTAL</p>
-                <p class="heading-text" >WEBSITES</p>
+                <p class="heading-text" >READ</p>
+                <p class="heading-text" style="color: #0f117d" >WITH</p>
+                <p class="heading-text" >INTENT.</p>
                 <div class="statement-container">
-                <p class="statement" >WE CREATE BOLD, UNAPOLOGETIC DIGITAL EXPERIENCES THAT DEMAND ATTENTION AND DRIVE RESULTS.</p>
+                <p class="statement" >A curated collection of fiction and non-fiction for curious minds. From timeless classics to modern thought, this shop exists to connect readers with ideas that last.</p>
                 </div>
-                <button class="explore-btn"> EXPLORE NOW </button>
-                <button class="books-btn"> VIEW WORKS </button>
+                <button class="explore-btn"> Browse Library </button>
+                <button class="books-btn"> VIEW CATEGORIES → </button>
 
                 </div>
 
@@ -94,7 +94,10 @@ function printBooks() {
                             <i id="rating" class="fa-regular fa-star" style="font-size:11px"></i>   
                             <i id="rating" class="fa-regular fa-star" style="font-size:11px"></i>
                             </div>
-                            <div class="rating-value" ><i class="fa-regular fa-bookmark" style="font-size:13px;"></i></div>
+                            <div class="cart-btns">
+                            <button class="add-item-btn">ADD TO CART</button>
+                            <button class="add-to-fav"><i class="fa-solid fa-bookmark" style="font-size:10px; color: #000"></i></button>
+                            </div>
                         </div>
                     </div>
                     `;

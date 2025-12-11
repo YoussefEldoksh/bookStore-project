@@ -1,5 +1,5 @@
-
-@import  url("https://api.fontshare.com/css?f%5B%5D=bonny@400,700&serif=swap");
+@import url("https://api.fontshare.com/css?f%5B%5D=bonny@400,700&serif=swap");
+@import url("https://api.fontshare.com/css?f%5B%5D=hind@400,700&serif=swap");
 
 .input {
   width: 100%;
@@ -27,338 +27,394 @@
   box-shadow: 4px 4px 0 #000;
 }
 
-
-
-
-.input-container{
-    background-color: rgb(255, 221, 0);
-    padding-left: 4%;
-    height: 10%;
-    width: 100%;
-    margin: 0.7%;
-    outline: 2px solid #000000;
+.input-container {
+  background-color: rgb(255, 221, 0);
+  padding-left: 4%;
+  height: 10%;
+  width: 100%;
+  margin: 0.7%;
+  outline: 2px solid #000000;
 }
 
-
-i{
-    font-size: 20px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-
+i {
+  font-size: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
-i:hover{
+i:hover {
   transform: scale(1.08);
 }
 
-.home-page{
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    width: 92.5%;
-    
+.home-page {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 92.5%;
 }
-.Category-section{
-    display: flex;
-    flex-direction: column;
-    height: 20%;
-    margin: 1%;
-    width: 100%;
-    font-size: 20px;
-    font-family: "Courier New", monospace;
-    font-weight: bold;
-}
-
-.Category-title{
-    margin: 2px;
-    font-size: 18px;
-    text-align: left;
+.Category-section {
+  display: flex;
+  flex-direction: column;
+  height: 20%;
+  margin: 1%;
+  width: 70%;
+  font-size: 20px;
+  font-family: "Courier New", monospace;
+  font-weight: bold;
 }
 
-.categories-list{
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    gap: 10px;
-    overflow-x: auto;
-    padding: 1%;
-    width: 100%;
-    height: fit-content;
-    overflow: hidden;
-    gap: 2%;
+.Category-title {
+  margin: 2px;
+  font-size: 18px;
+  text-align: left;
 }
 
-.category-btn{
-    background-color: transparent;
-    padding: 3px 5px;
-    border: 2px solid #000000;
-    cursor: pointer;
-    font-family: "Courier New", monospace;
-    font-size: 13px;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: fit-content;
-    margin-top: 1%;
-    font-weight: bolder;
+.categories-list {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 10px;
+  overflow-x: auto;
+  padding: 1%;
+  width: 100%;
+  height: fit-content;
+  overflow: hidden;
+  gap: 2%;
 }
 
-.category-btn:hover{
-    background-color: #ca731c;
-    color: rgb(0, 0, 0);
-    transform: translate(-4px, -4px);
-    box-shadow: 4px 4px 0 #000;
+.category-btn {
+  background-color: transparent;
+  padding: 3px 5px;
+  border: 2px solid #000000;
+  cursor: pointer;
+  font-family: "Courier New", monospace;
+  font-size: 13px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  margin-top: 1%;
+  font-weight: bolder;
 }
 
-.books-title{
-    font-size: 20px;
-    font-family: "Courier New", monospace;
-    font-weight: bold;
-    text-align: left;
-    margin-left: 1%;
-    margin-bottom: 0.5%;
+.category-btn:hover {
+  background-color: #ca731c;
+  color: rgb(0, 0, 0);
+  transform: translate(-4px, -4px);
+  box-shadow: 4px 4px 0 #000;
 }
 
-.books-list{
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    padding: 5px 2%;
-    width: 100%;
-    gap: 4%;
-    height: 100%;
+.books-title {
+  font-size: 20px;
+  font-family: "Courier New", monospace;
+  font-weight: bold;
+  text-align: left;
+  margin-left: 1%;
+  margin-bottom: 0.5%;
+}
+
+.book-rating {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  margin-top: 4%;
+}
+
+.add-item-btn {
+  width: 80%;
+  height: fit-content;
+  margin-top: 1%;
+  padding: 8px 0px;
+  font-size: 12px;
+  font-family: "Courier New", monospace;
+  font-weight: bold;
+  cursor: pointer;
+  border: 2px solid #000;
+  background-color: rgb(227, 103, 103);
+  transition: all 0.3s ease;
+  margin-top: 5%;
+}
+
+.add-item-btn:hover {
+  background-color: rgb(229, 47, 47);
+  color: rgb(0, 0, 0);
+  transform: translate(-4px, -4px);
+  box-shadow: 4px 4px 0 #000;
+}
+
+.books-list {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  gap: 4%;
+  height: 100%;
 }
 
 .books-list::-webkit-scrollbar {
-    width: 8px;
+  width: 8px;
 }
 
-.book-section{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    margin: 5%;
+.book-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  margin: 5%;
+  width: 100%;
+}
+
+.book-items {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 1%;
+  width: 100%;
+}
+
+.book-item {
+  width: 16%;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2%;
+  margin: 1%;
+  border: 2px solid #000;
+  border-radius: 6px;
+  background-color: rgb(121, 207, 130);
+  box-shadow: 4px 4px 0 #000;
+  transition: all 0.3s ease;
+}
+
+.book-item:hover {
+  background-color: rgb(108, 238, 121);
+  color: rgb(0, 0, 0);
+  transform: translate(-4px, -4px);
+  box-shadow: 4px 4px 0 #000;
+}
+
+.book-image {
+  width: 99px; /* Fixed width; height auto-scales to maintain aspect ratio */
+  height: auto; /* Or set a fixed height like '200px' if you want to force it */
+  object-fit: contain; /* Maintains aspect ratio */
+  display: block; /* Optional: Removes any inline spacing issues */
+  border: 2px solid #ffffff;
+  outline: 3px solid #000000;
+  margin: 2%;
+  transition: all 0.3s ease;
+}
+
+
+.book-title {
+  font-size: 16px;
+  font-family: "Courier New", monospace;
+  font-weight: bolder;
+  word-wrap: break-word;
+  margin-top: 2%;
+  width: 99%;
+}
+
+.cart-btns{
     width: 100%;
-}
-
-.book-items{
     display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    padding: 1%;
-    width: 100%;
-
-}
-
-
-
-.book-item{
-    width: 110px;
-    cursor: pointer;
-    margin: 1%;
-}
-
-.book-image{
-    width: 99px;  /* Fixed width; height auto-scales to maintain aspect ratio */
-    height: auto;  /* Or set a fixed height like '200px' if you want to force it */
-    object-fit: contain;  /* Maintains aspect ratio */
-    display: block;   /* Optional: Removes any inline spacing issues */
-    border: 2px solid #ffffff;
-    outline: 3px solid #000000;
-    margin: 2%;
-    transition: all 0.3s ease ;
-}
-
-.book-image:hover{
-    transform: translate(-4px, -4px);
-    box-shadow: 4px 4px 0 #0f117d;
-}
-
-.book-title{
-    font-size: 14px;
-    font-family: "Courier New", monospace;
-    font-weight: bolder;
-    text-align: left;
-    word-wrap: break-word;
-    margin-top: 2%;
-    width: 99%;
-    font-family: bonny;
-}
-
-
-.book-author{
-    font-size: 10px;
-    font-family: "Courier New", monospace;
-    text-align: left;
-}
-
-.welcome-text{
-    font-family: "Courier New", monospace;
-    text-align: left;
-    margin: 0% 3%;
-    width: 62%;
-}
-
-.home-header{
-    display: flex;
-    height: 100%;
-    width: 100%;
-    margin: 1%;
-    padding: 1%;
-    margin-top: 0%;
-    padding-top: 0%;
-    align-items: center;
-    /* background-color: #0f117d; */
-}
-
-
-.heading-text{
-    font-size: 68px;
-    font-weight: 1500;
-    font-family: 'Archivo Black', sans-serif;   
-    text-align: left;
-}
-
-.home-container{
-    height: 100%;
-    width: fit-content;
-    overflow-y: auto;  
-    overflow-x: hidden; 
     
 }
 
-.statement{
-    font-size: 22px;
-    font-weight: bold;
-    margin-top: 2%;
-    color: rgb(255, 255, 255);  
-    text-align: left;
-    color: #000000;
+.add-to-fav{
+  width: 20%;
+  height: 10%;
+  padding: 8px 0px;
+  font-size: 12px;
+  font-family: "Courier New", monospace;
+  font-weight: bold;
+  cursor: pointer;
+  border: 2px solid #000;
+  background-color: rgb(237, 179, 129);
+  transition: all 0.3s ease;
+  margin-top: 5%;
 }
 
-.statement-container{
-    width: 90%;
-    /* background-color: #ca731c;   */
-
+.add-to-fav:hover{  
+  background-color: rgb(240, 143, 59);
+  color: rgb(0, 0, 0);
+  transform: translate(-4px, -4px);
+  box-shadow: 4px 4px 0 #000;
 }
 
-.explore-btn{
-    margin-top: 1%;
-    padding: 10px 15px;
-    font-size: 22px;
-    font-family: "Courier New", monospace;
-    font-weight: bold;
-    cursor: pointer;
-    border: 2px solid #000;
-    background-color: rgb(121, 207, 130);
-    transition: all 0.3s ease;
+.book-author {
+  font-size: 10px;
+  font-family: "Courier New", monospace;
+  text-align: left;
 }
 
-.explore-btn:hover{
-    background-color: rgb(63, 189, 76);
-    color: rgb(0, 0, 0);
-    transform: translate(-4px, -4px);
-    box-shadow: 4px 4px 0 #000;
+.welcome-text {
+  font-family: "Courier New", monospace;
+  text-align: left;
+  margin: 0% 3%;
+  width: 62%;
 }
 
-.books-btn{
-    margin-top: 1%;
-    padding: 10px 15px;
-    font-size: 22px;
-    font-family: "Courier New", monospace;
-    font-weight: bold;
-    cursor: pointer;
-    border: 2px solid #000;
-    background-color: rgb(189, 115, 50);
-    transition: all 0.3s ease;
+.home-header {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  margin: 1%;
+  padding: 1%;
+  margin-top: 0%;
+  padding-top: 0%;
+  align-items: center;
 }
 
-.books-btn:hover{
-    background-color: rgb(234, 162, 99);
-    color: rgb(0, 0, 0);
-    transform: translate(-4px, -4px);
-    box-shadow: 4px 4px 0 #000;
+.heading-text {
+  font-size: 68px;
+  font-weight: 1500;
+  font-family: "Archivo Black", sans-serif;
+  text-align: left;
+  margin: 0;
+  line-height: 1;
 }
 
-.home-image-container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 50%;
-    height: 80%;
-    margin-right: 5%;
+.home-container {
+  height: 100%;
+  width: fit-content;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.statement {
+  font-size: 22px;
+  font-weight: bold;
+  margin-top: 3%;
+  margin-bottom: 4%;
+  color: rgb(255, 255, 255);
+  text-align: left;
+  color: #000000;
+  text-transform: uppercase;
+}
+
+.statement-container {
+  width: 90%;
+  /* background-color: #ca731c;   */
+}
+
+.explore-btn {
+  margin-top: 1%;
+  padding: 10px 15px;
+  font-size: 22px;
+  font-family: "Courier New", monospace;
+  font-weight: bold;
+  cursor: pointer;
+  border: 2px solid #000;
+  background-color: rgb(121, 207, 130);
+  transition: all 0.3s ease;
+}
+
+.explore-btn:hover {
+  background-color: rgb(63, 189, 76);
+  color: rgb(0, 0, 0);
+  transform: translate(-4px, -4px);
+  box-shadow: 4px 4px 0 #000;
+}
+
+.books-btn {
+  margin-top: 1%;
+  padding: 10px 15px;
+  font-size: 22px;
+  font-family: "Courier New", monospace;
+  font-weight: bold;
+  cursor: pointer;
+  border: 2px solid #000;
+  background-color: rgb(189, 115, 50);
+  transition: all 0.3s ease;
+}
+
+.books-btn:hover {
+  background-color: rgb(234, 162, 99);
+  color: rgb(0, 0, 0);
+  transform: translate(-4px, -4px);
+  box-shadow: 4px 4px 0 #000;
+}
+
+.home-image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: 80%;
+  margin-right: 5%;
 }
 
 .badge-container {
-    position: relative;
-    width: 500px;
-    height: 220px;
-    transform: rotate(8deg);        
+  position: relative;
+  width: 500px;
+  height: 220px;
+  transform: rotate(8deg);
 }
 
-
 .badge-outer {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background-color: #00bcd4;
-            border: 8px solid #000;
-            border-right: 16px solid #000;
-            border-bottom: 16px solid #000;
-            box-shadow: 12px 12px 0 rgba(0, 0, 0, 0.3);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #00bcd4;
+  border: 8px solid #000;
+  border-right: 16px solid #000;
+  border-bottom: 16px solid #000;
+  box-shadow: 12px 12px 0 rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-        .badge-inner {
-            width: 90%;
-            height: 85%;
-            background-color: #fff;
-            border: 6px solid #000;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 20px 30px;
-            box-sizing: border-box;
-        }
+.badge-inner {
+  width: 90%;
+  height: 85%;
+  background-color: #fff;
+  border: 6px solid #000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px 30px;
+  box-sizing: border-box;
+}
 
-        .badge-text-large {
-            font-size: 72px;
-            font-weight: 900;
-            margin: 0;
-            line-height: 1;
-            letter-spacing: -2px;
-        }
+.badge-text-large {
+  font-size: 72px;
+  font-weight: 900;
+  margin: 0;
+  line-height: 1;
+  letter-spacing: -2px;
+}
 
-        .badge-text-small {
-            font-size: 20px;
-            font-weight: 700;
-            letter-spacing: 3px;
-            margin: 8px 0 0 0;
-        }
+.badge-text-small {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  margin: 8px 0 0 0;
+}
 
-        .star-badge {
-            position: absolute;
-            top: -20px;
-            right: -20px;
-            width: 120px;
-            height: 120px;
-            background-color: #ffd700;
-            border: 6px solid #000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transform: rotate(15deg);
-            box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.2);
-        }
+.star-badge {
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  width: 120px;
+  height: 120px;
+  background-color: #ffd700;
+  border: 6px solid #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(15deg);
+  box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.2);
+}
 
-        .star {
-            font-size: 80px;
-            color: #000;
-        }
+.star {
+  font-size: 80px;
+  color: #000;
+}

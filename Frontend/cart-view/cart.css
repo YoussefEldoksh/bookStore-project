@@ -1,0 +1,298 @@
+@import url("https://api.fontshare.com/css?f%5B%5D=hind@400,700&serif=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background-color: rgb(255, 239, 217);
+  outline: 1px solid #000000;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+#root {
+  background-color: rgb(255, 239, 217);
+  outline: 2px solid #000000;
+  height: 95vh;
+  width: 98%;
+  border-radius: 8px;
+  display: flex;
+  box-shadow: 8px 5px 0 #000;
+
+  /* --color1: rgb(37, 225, 210);
+  --color2: rgb(250, 255, 178);
+  background-color: var(--color1);
+  background-image: linear-gradient(45deg, var(--color2) 25%, transparent 25%, transparent 75%, var(--color2) 75%, var(--color2)), 
+                    linear-gradient(45deg, var(--color2) 25%, var(--color1) 25%, var(--color1) 75%, var(--color2) 75%, var(--color2));
+  background-size: 60px 60px;
+  background-position: 0 0, 30px 30px; */
+}
+
+.input {
+  width: 100%;
+  max-width: 400px;
+  height: 40px;
+  padding: 12px;
+  margin: 1%;
+
+  font-size: 18px;
+  font-family: "Courier New", monospace;
+  color: #000;
+  background-color: rgb(255, 239, 217);
+  border: 2px solid #000;
+  border-radius: 0;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.input::placeholder {
+  color: #888;
+}
+
+.input:hover {
+  transform: translate(-4px, -4px);
+  box-shadow: 4px 4px 0 #000;
+}
+
+.input-container {
+  background-color: rgb(255, 221, 0);
+  padding-left: 4%;
+  height: 10%;
+  width: 98%;
+  margin: 0.7%;
+  outline: 2px solid #000000;
+}
+
+i {
+  font-size: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+i:hover {
+  transform: scale(1.08);
+}
+
+.cart-page {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cart-page-inner {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.payment-container {
+  background-color: rgb(131, 148, 239);
+  width: 75%;
+  height: 70%;
+  margin: 4%;
+  margin-top: 2%;
+  box-shadow: 12px 6px #000;
+  border-radius: 20px;
+  outline: 4px solid #000;
+  padding: 4px;
+}
+
+.items-added {
+  background-color: #e6e6e7;
+  width: 50%;
+  height: 70%;
+  margin: 4%;
+  margin-top: 2%;
+  box-shadow: 12px 6px #000;
+  border-radius: 20px;
+  outline: 4px solid #000;
+  padding: 4px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.items-added::-webkit-scrollbar{
+    width: 8px;
+}
+
+.item-cart {
+  width: 95%;
+  height: 25%;
+  outline: 3px solid #000;
+  border-radius: 15px;
+  margin-top: 2%;
+  display: flex;
+}
+
+.cart-title-div {
+  margin: 4%;
+  padding: auto;
+}
+
+.cart-title {
+  font-size: 24px;
+}
+
+.book-image {
+  width: 80%; /* Fixed width; height auto-scales to maintain aspect ratio */
+  height: auto; /* Or set a fixed height like '200px' if you want to force it */
+  object-fit: contain; /* Maintains aspect ratio */
+  display: block; /* Optional: Removes any inline spacing issues */
+  outline: 3px solid #000000;
+  box-shadow: 7px 5px #000000;
+  margin: 10%;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.card {
+  background: white;
+  border: 1.5px solid #333;
+  border-radius: 12px;
+  outline: 2px solid #000000;
+  padding: 16px;
+  display: flex;
+  gap: 16px;
+  width: 95%;
+  height: 32%;
+  margin-bottom: 5%;
+}
+
+.card-image {
+  width: 95px;
+  height: 100px;
+  border-radius: 6px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 8px;
+  font-size: 11px;
+  text-align: center;
+  margin-top: 2%;
+}
+
+.card-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  width: 80%;
+  gap: 8px;
+  margin-bottom: 10%;
+}
+
+.card-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #000;
+  line-height: 1.3;
+  font-family: hind;
+}
+
+.delete-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #999;
+  font-size: 16px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+}
+
+.delete-btn:hover {
+  color: #333;
+}
+
+.card-author {
+  font-size: 12px;
+  color: #666;
+  margin-top: 4px;
+}
+
+.card-footer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.qty-btn {
+  background: white;
+  outline: 1.7px solid #000;
+  width: 24px;
+  height: 24px;
+  border-radius: 2px;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.qty-btn:hover {
+  background-color: rgb(63, 189, 76);
+  color: rgb(0, 0, 0);
+  transform: translate(-4px, -4px);
+  box-shadow: 4px 4px 0 #000;
+}
+
+.qty-input {
+  width: 28px;
+  height: 24px;
+  border-radius: 4px;
+  text-align: center;
+  font-size: 14px;
+  border-color: transparent;
+  outline: 1.8px solid #000;
+  font-weight: 600;
+  padding: 0;
+}
+
+.qty-btn.add {
+  background: #89b5f8;
+  color: rgb(0, 0, 0);
+  border-color: #000000;
+}
+
+.qty-btn.add:hover {
+  background: #0052cc;
+  border-color: #0052cc;
+}
+
+.card-price {
+  font-size: 14px;
+  font-weight: 600;
+  color: #000;
+  white-space: nowrap;
+  margin-left: 33%;
+}

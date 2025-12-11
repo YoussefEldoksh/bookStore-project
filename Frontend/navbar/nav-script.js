@@ -9,8 +9,8 @@ function createNavBar() {
             <li><a href="./index.html"> <i class="fa-solid fa-house" ></i></a>
             <p>Home</p>
             </li>
-            <li><a href="./about.html"><i class="fa-solid fa-layer-group"></i></a><p>Categories</p></li>
-            <li><a href="./books.html"><i class="fa-solid fa-book"></i></a><p>Library</p></li>
+            <li><a href="..//about.html"><i class="fa-solid fa-layer-group"></i></a><p>Categories</p></li>
+            <li><a href="../cart-view/cart.html"><i class="fa-solid fa-cart-shopping"></i></a><p>CART</p></li>
             <li><a href="./about.html"><i class="fa-solid fa-bookmark"></i></a><p>Saved</p></li>
 
         </ul> 
