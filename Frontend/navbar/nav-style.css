@@ -58,9 +58,7 @@ p{
 }
 
 i{
-    color: #271a0fff;
+    color: rgb(0, 0, 0);
 }
 
-i:hover{
-    color: #ca731c;
-}
+

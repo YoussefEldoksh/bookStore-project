@@ -6,10 +6,10 @@ function createCartPage(){
     let cart = `
         <nav>
         <ul id="nav-icons">
-            <li><a href="../index.html"> <i class="fa-solid fa-house" ></i></a>
+            <li><a href="../home-page/index.html"> <i class="fa-solid fa-house" ></i></a>
             <p>Home</p>
             </li>
-            <li><a href="..//about.html"><i class="fa-solid fa-layer-group"></i></a><p>Categories</p></li>
+            <li><a href="../about.html"><i class="fa-solid fa-layer-group"></i></a><p>Categories</p></li>
             <li><a href="../cart-view/cart.html"><i class="fa-solid fa-cart-shopping"></i></a><p>CART</p></li>
             <li><a href="./about.html"><i class="fa-solid fa-bookmark"></i></a><p>Saved</p></li>
 
@@ -33,6 +33,27 @@ function createCartPage(){
 
             <div class="cart-page-inner">
                 <div class="payment-container">
+                    <div class="receipt-title">
+                        <h1>MY ORDER</h1>
+                    </div>
+
+                    <div class="order-num">
+                         <h3>ORDER #48247</h3>
+                    </div>
+                    <div class="receipt-content">
+                        <div class="book-in-receipt"><p class="book-name">Storytelling in design</p> <p class="book-price">$154</p></div>
+                        <div class="book-in-receipt"><p class="book-name">Storytelling in design</p> <p class="book-price">$154</p></div>
+                        <div class="book-in-receipt"><p class="book-name">Storytelling in design</p> <p class="book-price">$154</p></div>
+                        <div class="book-in-receipt"><p class="book-name">Storytelling in design</p> <p class="book-price">$154</p></div>
+
+                        <div class="receipt-footer">
+
+
+                            <button class="pay-btn">CONFIRM PAYEMENT</button>
+                        </div>
+                    </div>
+
+
                 </div>
 
                 <div class="items-added">
@@ -70,18 +91,21 @@ function createCards(){
                             <div class="card-title">${item.title}</div>
                             <div class="card-author">By ${item.author}</div>
                         </div>
+                    <div style="display:flex; width: 50%%; justify-content: center; align-items: center; gap 20%">
+                    <div class="card-price">$ ${item.price.toFixed(2)}</div>        
                         <button class="delete-btn" onclick="removeItem(${item.id})">
                             <i class="fa-solid fa-trash" style="font-size: 15px"></i>
                         </button>
+
                     </div>
-                    
+                        </div>
+                        
                     <div class="card-footer">       
                         <div class="quantity-controls">
                             <button class="qty-btn" onclick="updateQuantity(${item.id}, -1)">−</button>
                             <input type="text" class="qty-input" value="${item.quantity}" readonly>
                             <button class="qty-btn add" onclick="updateQuantity(${item.id}, 1)">+</button>
                         </div>
-                        <div class="card-price">$ ${item.price.toFixed(2)}</div>
                     </div>
                 </div>
             </div>
