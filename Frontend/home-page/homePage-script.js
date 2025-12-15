@@ -103,7 +103,7 @@ function printBooks(books = null) {
 
     booksHTML += `
                     <div class="book-item">
-                        <a href="/book-details-view/book-details.html?bookId=${bookId}">
+                        <a href="../book-details-view/book-details.html?bookId=${bookId}">
                         <img src="${imageUrl}" alt="${bookInfo.title}" class="book-image"/>
                         </a>
                         <p class="book-title">${bookInfo.title}</p>

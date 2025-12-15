@@ -26,11 +26,15 @@ root_div.innerHTML += createNavBar();
 document.addEventListener("DOMContentLoaded", () => {
   const guardBtn = document.querySelectorAll(".guarded-btn");
   guardBtn.forEach((btn) => {
-    addEventListener("click", (e) => {
-      e.preventDefault();
-    const token = localStorage.getItem('authToken')
-    console.log(token)
+    btn.addEventListener("click", (e) => {
+      console.log("Guarded button clicked");
+      const token = localStorage.getItem('authToken');
+      console.log("Token:", token);
+      
       if (!token) {
+        console.log("No token, redirecting to login...");
+        e.preventDefault();
+        e.stopPropagation(); // Stop bubbling just in case
         const currentPage = window.location.pathname;
         window.location.href = `../login-view/login.html?redirect=${encodeURIComponent(
           currentPage
