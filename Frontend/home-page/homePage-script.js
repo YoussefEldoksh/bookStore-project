@@ -183,7 +183,7 @@ document.addEventListener('click', (e) => {
     
     if (!token) {
       const currentPage = window.location.pathname;
-      window.location.href = `/login?redirect=${encodeURIComponent(currentPage)}`;
+      window.location.href = `../login-view/login.html?redirect=${encodeURIComponent(currentPage)}`;
       return;
     }
     

@@ -35,7 +35,7 @@
           </div>
           <div class="signin-statement">
             <p class="statement">
-              One subscription for Liteverse, Recogoters, and Spark
+              Welcome to where Stories Live
             </p>
           </div>
 
@@ -52,12 +52,6 @@
               </div>
               <p class="option-desc">Sign Up with Facebook</p>
             </div>
-            <div class="login-option">
-              <div class="option-icon">
-                <i class="fa-brands fa-apple"></i>
-              </div>
-              <p class="option-desc">Sign Up with Apple</p>
-            </div>
           </div>
           <div class="divider-container">
             <div class="divider-line"></div>
@@ -66,19 +60,42 @@
           </div>
 
           <div class="login-form">
-            <form action="signup.php" method="post" onsubmit="return validateForm()">
+            <form action="signup.php" method="post" >
+              <div style="display: flex; gap: 5px">
+                <input
+                  type="text"
+                  placeholder="First name"
+                  class="form-input"
+                  name="firstname"
+                  required
+                />
+                <input
+                  type="text"
+                  placeholder="Last name"
+                  class="form-input"
+                  name="lastname"
+                  required
+                  />
+              </div>
               <input
                 type="email"
                 placeholder="Email address"
                 class="form-input"
-                id="usermail"
+                name="usermail"
                 required
               />
               <input
                 type="text"
                 placeholder="Username"
                 class="form-input"
-                id="username"
+                name="username"
+                required
+              />
+              <input
+                type="text"
+                placeholder="Shipping Address"
+                class="form-input"
+                name="useraddress"
                 required
               />
 
@@ -87,7 +104,7 @@
                   type="password"
                   placeholder="Password"
                   class="form-input"
-                  id="userpass"
+                  name="userpass"
                   required
                 />
                 <button
@@ -99,7 +116,7 @@
                 </button>
               </div>
               <a href="../login-view/login.html" class="recovery-link">have an account ?</a>
-              <button type="submit" class="continue-btn">Continue</button>
+              <button type="submit" class="continue-btn" name="submit">Continue</button>
             </form>
           </div>
         </div>
