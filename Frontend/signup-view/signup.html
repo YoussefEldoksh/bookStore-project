@@ -3,12 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script type="module" src="./login-script.js" defer></script>
+    <script type="module" src="./signup-script.js" defer></script>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     />
-    <link rel="stylesheet" href="./login-style.css" />
+    <link rel="stylesheet" href="./signup-style.css" />
     <title>Document</title>
   </head>
   <body>
@@ -16,17 +16,22 @@
       <div class="main-frame">
         <div class="left-div">
           <div class="image">
-                <img src="../assets/image.jpg" alt="">
+            <img src="../assets/cat.jpg" alt="" />
           </div>
           <div class="left-statement-container">
-            <h2 style="text-align: center; margin-bottom: 1%; font-size: 34px;">More Than Books</h2>
-             <p class="left-statement">More than a bookstore—a sanctuary for readers. We unite literature, community, and thoughtful curation to create an immersive world where every page turns into a cherished memory.</p>
+            <h2 style="text-align: center; margin-bottom: 1%; font-size: 34px">
+              Where Stories Live
+            </h2>
+            <p class="left-statement">
+              A carefully selected collection of fiction and non-fiction for
+              minds that crave meaning. From literary masterpieces to
+              contemporary voices, we believe great books deserve great readers.
+            </p>
           </div>
-          
         </div>
         <div class="right-div">
           <div class="title-signin">
-            <h2>SIGN IN TO YOUR ACCOUNT</h2>
+            <h2>SIGN UP TO YOUR ACCOUNT</h2>
           </div>
           <div class="signin-statement">
             <p class="statement">
@@ -39,34 +44,41 @@
               <div class="option-icon">
                 <i class="fa-brands fa-google"></i>
               </div>
-              <p class="option-desc">Sign in with google</p>
+              <p class="option-desc">Sign Up with google</p>
             </div>
             <div class="login-option">
               <div class="option-icon">
                 <i class="fa-brands fa-facebook"></i>
               </div>
-              <p class="option-desc">Sign in with Facebook</p>
+              <p class="option-desc">Sign Up with Facebook</p>
             </div>
             <div class="login-option">
               <div class="option-icon">
                 <i class="fa-brands fa-apple"></i>
               </div>
-              <p class="option-desc">Sign in with Apple</p>
+              <p class="option-desc">Sign Up with Apple</p>
             </div>
           </div>
           <div class="divider-container">
             <div class="divider-line"></div>
-            <span>or sign in with</span>
+            <span>or sign up with</span>
             <div class="divider-line"></div>
           </div>
 
           <div class="login-form">
-            <form action="login.php" method="post" onsubmit="return validateForm()">
+            <form action="signup.php" method="post" onsubmit="return validateForm()">
               <input
                 type="email"
                 placeholder="Email address"
                 class="form-input"
                 id="usermail"
+                required
+              />
+              <input
+                type="text"
+                placeholder="Username"
+                class="form-input"
+                id="username"
                 required
               />
 
@@ -83,13 +95,10 @@
                   class="toggle-password"
                   id="togglePassword"
                 >
-                  <i class="fa-solid fa-eye-slash" style="font-size: 11px;"></i>
+                  <i class="fa-solid fa-eye-slash" style="font-size: 11px"></i>
                 </button>
               </div>
-
-              <a href="#" class="recovery-link">Recovery Password</a>
-              <a href="../signup-view/signup.html" class="recovery-link">Don't have an account ?</a>
-
+              <a href="../login-view/login.html" class="recovery-link">have an account ?</a>
               <button type="submit" class="continue-btn">Continue</button>
             </form>
           </div>
