@@ -1,5 +1,5 @@
 <?php
-include '';  
+include '';  //header_page
 require "bookdb.php";
 session_start();
 if (!isset($_SESSION['user_id'])) header("Location: login.php");
@@ -10,12 +10,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $book_isbn = $_POST['book_isbn'];
     $title = $_POST['title'];
     $pub_id = intval($_POST['pub_id']);
-    $pub_year = intval($_POST['year']);
+    $pub_year = intval($_POST['pub_year']);
     $category = $_POST['category'];
     $selling_price = floatval($_POST['price']);
 
     $stmt = $conn->prepare("
-    SELECT FROM Book (book_isbn, title, pub_id, pub_year, selling_price, category) VALUES (?, ?, ?, ?, ?, ?)");
+    INSERT INTO Book (book_isbn, title, pub_id, pub_year, selling_price, category) VALUES (?, ?, ?, ?, ?, ?)");
 
     $stmt->bind_param("ssiids",
     $book_isbn,
@@ -25,6 +25,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $selling_price,
     $category);
 
+    $stmt->execute();
+    $stmt->close();
     header("Location: .php"); //redirection page
 }
 ?>
