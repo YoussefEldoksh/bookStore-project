@@ -39,6 +39,7 @@ function createCartPage(){
 
                     <div class="order-num">
                          <h3>ORDER #48247</h3>
+                        <p style="font-family: 'Libre Barcode 39';font-size: 28px; font-weight: lighter ; margin-top: 10px">abcdefghijkl</p>
                     </div>
                     <div class="receipt-content">
                         <div class="book-in-receipt"><p class="book-name">Storytelling in design</p> <p class="book-price">$154</p></div>
@@ -48,7 +49,7 @@ function createCartPage(){
 
                         <div class="receipt-footer">
 
-
+                            <div class="receipt-total"><p class="book-name" style="font-size: 18px">TOTAL:</p> <p class="book-price">$154</p></div>
                             <button class="pay-btn">CONFIRM PAYEMENT</button>
                         </div>
                     </div>
