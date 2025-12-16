@@ -12,7 +12,7 @@ function createNavBar() {
 
             <li><a href="./index.html"><i class="fa-solid fa-user"></i></a><p>ACCOUNT</p></li>
             <li ><a href="./contact.html"><i class="fa-solid fa-handshake"></i></a><p>CONTACT US</p></li>           
-            <li class="login-btn"><i class="fa-solid fa-door-open"></i><p class="door-btn">LOGIN</p></li>
+            <li class="login-btn"><i class="fa-solid fa-door-open"></i><p class="door-btn">LOGOUT</p></li>
 
         </ul>   
     </nav>
@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
         e.preventDefault();
         e.stopPropagation(); // Stop bubbling just in case
         const login_btn = document.querySelector(".door-btn");
-        login_btn.innerHTML = LOGOUT;
+        login_btn.innerHTML = "LOGOUT";
         const currentPage = window.location.pathname;
         window.location.href = `../login-view/login.html?redirect=${encodeURIComponent(
           currentPage
@@ -52,8 +52,6 @@ document.addEventListener("DOMContentLoaded", () => {
       console.log("No token, redirecting to login...");
       e.preventDefault();
       e.stopPropagation(); // Stop bubbling just in case
-      const login_btn = document.querySelector(".door-btn");
-      login_btn.innerHTML = LOGOUT;
       const currentPage = window.location.pathname;
       window.location.href = `../login-view/login.html?redirect=${encodeURIComponent(
         currentPage
