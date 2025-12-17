@@ -16,10 +16,12 @@ document.addEventListener("DOMContentLoaded", function () {
     const email = document.querySelector('input[name="usermail"]').value.trim();
     const password = document.querySelector('input[name="userpass"]').value;
     const username = document.querySelector('input[name="username"]').value;
-    const shippingAddress = document.querySelector('input[name="useraddress"]').value.trim();
+    const city = document.querySelector('input[name="useraddress-city"]').value.trim();
+    const street = document.querySelector('input[name="useraddress-street"]').value.trim();
+    const apartment = document.querySelector('input[name="useraddress-apt"]').value.trim();
 
     // Validate form
-    if (firstName === "" || lastName === "" || email === "" || password === "" || shippingAddress === "" || username === "") {
+    if (firstName === "" || lastName === "" || email === "" || password === "" || city === "" || username === "" || street === "" || apartment === "" ) {
       alert("All fields must be filled out!");
       return;
     }
@@ -35,10 +37,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
       const response = await fetch("signup.php", {
         method: "POST",
-        headers: {
+          headers: {
           "Content-Type": "application/x-www-form-urlencoded",
         },
-        body: `firstname=${encodeURIComponent(firstName)}&lastname=${encodeURIComponent(lastName)}&usermail=${encodeURIComponent(email)}&username=${encodeURIComponent(username)}&userpass=${encodeURIComponent(password)}&useraddress=${encodeURIComponent(shippingAddress)}&submit=1`,
+        body: `firstname=${encodeURIComponent(firstName)}&lastname=${encodeURIComponent(lastName)}&usermail=${encodeURIComponent(email)}&username=${encodeURIComponent(username)}&userpass=${encodeURIComponent(password)}&useraddress-city=${encodeURIComponent(city)}&useraddress-street=${encodeURIComponent(street)}&useraddress-apt=${encodeURIComponent(apartment)}&submit=1`,
       });
 
       console.log("Response status:", response.status);

@@ -60,7 +60,7 @@
           </div>
 
           <div class="login-form">
-            <form action="signup.php" method="post" >
+            <form >
               <div style="display: flex; gap: 5px">
                 <input
                   type="text"
@@ -91,13 +91,30 @@
                 name="username"
                 required
               />
-              <input
-                type="text"
-                placeholder="Shipping Address"
-                class="form-input"
-                name="useraddress"
-                required
-              />
+              <div style="width: 100%; display: flex; gap: 5px;">
+
+                <input
+                  type="text"
+                  placeholder="City"
+                  class="form-input"
+                  name="useraddress-city"
+                  required
+                />
+                <input
+                  type="text"
+                  placeholder="Street"
+                  class="form-input"
+                  name="useraddress-street"
+                  required
+                />
+                <input
+                  type="text"
+                  placeholder="Apt#"
+                  class="form-input"
+                  name="useraddress-apt"
+                  required
+                />
+              </div>
 
               <div class="password-container">
                 <input
