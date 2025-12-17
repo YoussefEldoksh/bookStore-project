@@ -1,0 +1,238 @@
+@import url("https://api.fontshare.com/css?f%5B%5D=pally@400,700&serif=swap");
+@import url("https://api.fontshare.com/css?f%5B%5D=neco@400,700&serif=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background-color: rgb(255, 239, 217);
+  outline: 1px solid #000000;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+#root {
+  background-color: rgb(255, 239, 217);
+  outline: 2px solid #000000;
+  height: 95vh;
+  width: 98%;
+  border-radius: 8px;
+  display: flex;
+  box-shadow: 8px 5px 0 #000;
+
+  /* --color1: rgb(37, 225, 210);
+  --color2: rgb(250, 255, 178);
+  background-color: var(--color1);
+  background-image: linear-gradient(45deg, var(--color2) 25%, transparent 25%, transparent 75%, var(--color2) 75%, var(--color2)), 
+                    linear-gradient(45deg, var(--color2) 25%, var(--color1) 25%, var(--color1) 75%, var(--color2) 75%, var(--color2));
+  background-size: 60px 60px;
+  background-position: 0 0, 30px 30px; */
+}
+
+.main-frame{
+
+    margin: 3%;
+    width: 100%;
+    display: flex;
+    outline: 2px solid #000000;
+    
+}
+
+.left-div{
+    width: 80%;
+    height: 100%;
+    border-right: 2px solid #000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.image{
+    width: 80%;
+    height: 60%;
+    outline: 2px solid #000000;
+
+}
+
+.right-div{
+    display: flex;
+    flex-direction: column;
+    padding: 2%;
+    align-items: center;
+    width: 30%;
+}
+
+.title-signin{
+    width: 100%;   
+    height: fit-content; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+h2{
+    font-family: pally;
+
+}
+
+.statement{
+    text-align: center;
+    font-family: 'IBM Plex Mono', 'Courier New', monospace;
+    font-weight: 600;   
+    word-wrap: word-break;
+}
+
+.signin-statement{
+    width: 100%;
+    margin-top: 2%;
+    padding: 1%;
+    
+}
+
+.options{
+    display: flex;
+    flex-direction: column; 
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5%;
+}
+
+.login-option{
+    display: flex;
+    width: 80%;
+    margin: 3%;
+    outline: 2px solid #000000;
+    padding: 2% 4%;
+    justify-content: start;
+    gap: 5%;
+    cursor: pointer;
+}
+
+
+i{
+    font-size: 22px;
+}
+
+.option-desc{
+    font-family: 'IBM Plex Mono', 'Courier New', monospace;
+    font-weight: 600;
+}
+
+.divider-container {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin: 20px 0;
+  width: 100%; /* Make sure it has full width */
+}
+
+.divider-line {
+  flex: 1;
+  height: 1px;
+  background-color: #8b7d6b;
+}
+
+.divider-container span {
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+  color: #333;
+  white-space: nowrap;
+}
+
+.login-form {
+  width: fit-content;
+  margin: 0 auto;
+}
+
+.login-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-input {
+  padding: 12px 15px;
+  border: 2px solid #000000;
+  background-color: transparent;
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+  color: #000000;
+  outline: none;
+  width: 100%;
+}
+
+
+
+.password-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-container .form-input {
+  width: 100%;
+  padding-right: 45px; /* Space for the eye icon */
+}
+
+.toggle-password {
+  position: absolute;
+  right: 12px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  color: #666;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.toggle-password:hover {
+  color: #333;
+}
+
+.recovery-link {
+  text-align: right;
+  text-decoration: underline;
+  color: #333;
+  font-family: 'Courier New', monospace;
+  font-size: 13px;
+  margin-top: -5px;
+}
+
+.recovery-link:hover {
+  color: #666;
+}
+
+.continue-btn {
+  padding: 15px;
+  background-color: #ff6633;
+  color: white;
+  border: none;
+  font-family: 'Courier New', monospace;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.continue-btn:hover {
+  background-color: #ff5511;
+}
+
+.continue-btn:active {
+  transform: scale(0.98);
+}

@@ -338,6 +338,9 @@ h3{
 
 .order-num{
   margin-bottom: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .book-in-receipt{
@@ -399,3 +402,10 @@ h3{
 }
 
 
+.receipt-total{
+  width: 100%;
+  text-wrap: nowrap;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4%;
+}

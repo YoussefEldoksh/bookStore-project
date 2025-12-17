@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script type="module" src="./login-script.js" defer></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link rel="stylesheet" href="./login-style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root">
+      <div class="main-frame">
+        <div class="left-div">
+          <div class="image"></div>
+        </div>
+        <div class="right-div">
+          <div class="title-signin">
+            <h2>SIGN IN TO YOUR ACCOUNT</h2>
+          </div>
+          <div class="signin-statement">
+            <p class="statement">
+              One subscription for Liteverse, Recogoters, and Spark
+            </p>
+          </div>
+
+          <div class="options">
+            <div class="login-option">
+              <div class="option-icon">
+                <i class="fa-brands fa-google"></i>
+              </div>
+              <p class="option-desc">Sign in with google</p>
+            </div>
+            <div class="login-option">
+              <div class="option-icon">
+                <i class="fa-brands fa-facebook"></i>
+              </div>
+              <p class="option-desc">Sign in with Facebook</p>
+            </div>
+            <div class="login-option">
+              <div class="option-icon">
+                <i class="fa-brands fa-apple"></i>
+              </div>
+              <p class="option-desc">Sign in with Apple</p>
+            </div>
+          </div>
+          <div class="divider-container">
+            <div class="divider-line"></div>
+            <span>or sign up with</span>
+            <div class="divider-line"></div>
+          </div>
+
+          <div class="login-form">
+            <form>
+              <input
+                type="email"
+                placeholder="Email address"
+                class="form-input"
+                required
+              />
+
+              <div class="password-container">
+                <input
+                  type="password"
+                  placeholder="Password"
+                  class="form-input"
+                  id="passwordInput"
+                  required
+                />
+                <button
+                  type="button"
+                  class="toggle-password"
+                  id="togglePassword"
+                >
+                  <i class="fa-solid fa-eye-slash" style="font-size: 11px;"></i>
+                </button>
+              </div>
+
+              <a href="#" class="recovery-link">Recovery Password</a>
+
+              <button type="submit" class="continue-btn">Continue</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

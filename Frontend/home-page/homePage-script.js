@@ -81,7 +81,7 @@ function printBooks(books = null) {
             <img class="fall-back-img" src="../assets/peep-2.png" alt="">
             <div class="error-container">
                   <h1> 404</h1>
-                  <p style="font-size: 20px; text-align: left"> This category is nott available currently</p>
+                  <p style="font-size: 20px; text-align: left"> This category is not available currently</p>
             </div>    
             </div>
             <div >
@@ -173,6 +173,26 @@ function colorEachCardButton() {
 
   })
 }
+
+const addToCartButtons = document.querySelectorAll('.add-item-btn');
+document.addEventListener('click', (e) => {
+  if (e.target.classList.contains('add-item-btn')) {
+    e.preventDefault();
+    
+    const token = localStorage.getItem('authToken');
+    
+    if (!token) {
+      const currentPage = window.location.pathname;
+      window.location.href = `/login?redirect=${encodeURIComponent(currentPage)}`;
+      return;
+    }
+    
+    // Get the book card and extract data you need
+    const bookCard = e.target.closest('.book-item');
+    addToCart(bookCard);
+  }
+});
+
 async function fetchData(genre) {
   try {
     const response = await fetch(
@@ -206,6 +226,7 @@ async function fetchData(genre) {
   }
 }
 
+
 // Initialize the page
 root_div.innerHTML += createSearchBar();
 
@@ -225,10 +246,15 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  
+
   // Load default fantasy books on page load
-  fetchData("Young Adult");
+  fetchData("Fantasy");
 
   // Color the category buttons
   colorEachCategory();
   colorEachCardButton();
+
+
+  
 });
