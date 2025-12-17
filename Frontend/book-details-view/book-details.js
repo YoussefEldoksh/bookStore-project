@@ -75,7 +75,7 @@ function createBookDetailsHTML(book) {
             <div style="margin-top: 0%; display: flex;">
                 <p class="book-data" style="text-align: left;">Publisher: ${publisher}</p>
             </div>
-            <p class="book-description">${description}</p>
+            <p class="book-description" style="text-align: left;">${description}</p>
         </div>
     `;
 }
