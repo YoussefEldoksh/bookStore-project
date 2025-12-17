@@ -75,8 +75,7 @@ document.addEventListener("DOMContentLoaded", function () {
         localStorage.setItem("user_id", data.user_id);
         localStorage.setItem("username", data.username);
         localStorage.setItem("userType", data.type || "Customer");
-        localStorage.setItem("useraddress", shippingAddress);
-
+        
         alert("Registration successful!");
 
         // Redirect after storing data
