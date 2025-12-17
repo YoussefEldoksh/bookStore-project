@@ -1,51 +1,45 @@
 <?php
-include '';  //header_page
 require "bookdb.php";
-session_start();
-if (!isset($_SESSION['user_id'])) header("Location: login.php");
 
-$user_id = $_SESSION['user_id'];
+if (isset($_GET['search'])) {
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $book_isbn = $_POST['book_isbn'];
-    $title = $_POST['title'];
-    $pub_id = intval($_POST['pub_id']);
-    $pub_year = intval($_POST['pub_year']);
-    $category = $_POST['category'];
-    $selling_price = floatval($_POST['price']);
+    $keyword = "%" . trim($_GET['search']) . "%";
 
     $stmt = $conn->prepare("
-    INSERT INTO Book (book_isbn, title, pub_id, pub_year, selling_price, category) VALUES (?, ?, ?, ?, ?, ?)");
+        SELECT DISTINCT
+            b.book_isbn,
+            b.title,
+            c.category_name,
+            b.selling_price,
+            b.quantity_in_stock,
+            p.name AS publisher
+        FROM book b
+        JOIN publisher p ON b.pub_id = p.pub_id
+        JOIN category c ON b.category_id = c.category_id
+        LEFT JOIN book_author ba ON b.book_isbn = ba.book_isbn
+        LEFT JOIN author a ON ba.author_id = a.author_id
+        WHERE b.book_isbn LIKE ?
+           OR b.title LIKE ?
+           OR c.category_name LIKE ?
+           OR a.name LIKE ?
+           OR p.name LIKE ?
+    ");
 
-    $stmt->bind_param("ssiids",
-    $book_isbn,
-    $title,
-    $pub_id,
-    $pub_year,
-    $selling_price,
-    $category);
-
+    $stmt->bind_param("sssss", $keyword, $keyword, $keyword, $keyword, $keyword);
     $stmt->execute();
-    $stmt->close();
-    header("Location: .php"); //redirection page
+    $result = $stmt->get_result();
 }
 ?>
-<form method="POST">
-    <label for="isbn">Enter ISBN:</label>
-    <input name="book_isbn" type="text" placeholder="ISBN" required/>
-    <label for="title">Enter book title:</label>
-    <input name="title" type="text" placeholder="book title" required/>
-    <input name="pub_id" type="number" required/>
-    <input name="pub_year" type="number" required/>
-    <input name="price" type="number" placeholder="Enter price" required/>
-    <label for="category-select">Choose a Category:</label>
-    <select name="category" id="select_category" required>
-        <option value="Science">Science</option>
-        <option value="Art">Art</option>
-        <option value="Religion">Religion</option>
-        <option value="History">History</option>
-        <option value="Geography">Geography</option>
-    </select>
-    
-    <button type="submit">Add Book</button>
+
+<form method="GET">
+    <input name="search" placeholder="Search by ISBN, title, author, category, publisher" required>
+    <button type="submit">Search</button>
 </form>
+
+<?php
+if (isset($result)) {
+    while ($row = $result->fetch_assoc()) {
+        echo "{$row['title']} | Stock: {$row['quantity_in_stock']}<br>";
+    }
+}
+?>
