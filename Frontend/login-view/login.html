@@ -15,7 +15,14 @@
     <div id="root">
       <div class="main-frame">
         <div class="left-div">
-          <div class="image"></div>
+          <div class="image">
+                <img src="../assets/image.jpg" alt="">
+          </div>
+          <div class="left-statement-container">
+            <h2 style="text-align: center; margin-bottom: 1%; font-size: 34px;">More Than Books</h2>
+             <p class="left-statement">More than a bookstore—a sanctuary for readers. We unite literature, community, and thoughtful curation to create an immersive world where every page turns into a cherished memory.</p>
+          </div>
+          
         </div>
         <div class="right-div">
           <div class="title-signin">
@@ -40,25 +47,21 @@
               </div>
               <p class="option-desc">Sign in with Facebook</p>
             </div>
-            <div class="login-option">
-              <div class="option-icon">
-                <i class="fa-brands fa-apple"></i>
-              </div>
-              <p class="option-desc">Sign in with Apple</p>
-            </div>
+
           </div>
           <div class="divider-container">
             <div class="divider-line"></div>
-            <span>or sign up with</span>
+            <span>or sign in with</span>
             <div class="divider-line"></div>
           </div>
 
           <div class="login-form">
-            <form>
+            <form >
               <input
                 type="email"
                 placeholder="Email address"
                 class="form-input"
+                name="usermail"
                 required
               />
 
@@ -67,21 +70,22 @@
                   type="password"
                   placeholder="Password"
                   class="form-input"
-                  id="passwordInput"
+                  name="userpass"
                   required
                 />
                 <button
                   type="button"
                   class="toggle-password"
-                  id="togglePassword"
+                  name="togglePassword"
                 >
                   <i class="fa-solid fa-eye-slash" style="font-size: 11px;"></i>
                 </button>
               </div>
 
               <a href="#" class="recovery-link">Recovery Password</a>
+              <a href="../signup-view/signup.html" class="recovery-link">Don't have an account ?</a>
 
-              <button type="submit" class="continue-btn">Continue</button>
+              <button type="submit" class="continue-btn" name="submit">Continue</button>
             </form>
           </div>
         </div>

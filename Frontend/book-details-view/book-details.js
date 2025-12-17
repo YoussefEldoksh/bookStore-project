@@ -53,7 +53,7 @@ function createBookDetailsHTML(book) {
                 <p class="book-title">${title}</p>
                 <div style="width: 70%;display: flex;gap: 2%;justify-contetn: end;flex-direction: row;justify-content: flex-end;">
                 <div class="price"> 300 EGP </div>
-                <button class="add-to-cart-btn">Add to Cart</button>
+                <button class="add-to-cart-btn" >Add to Cart</button>
                 <button class="fav"><i class="fa-regular fa-heart"></i></button>
                 </div>  
             </div>
@@ -75,10 +75,33 @@ function createBookDetailsHTML(book) {
             <div style="margin-top: 0%; display: flex;">
                 <p class="book-data" style="text-align: left;">Publisher: ${publisher}</p>
             </div>
-            <p class="book-description">${description}</p>
+            <p class="book-description" style="text-align: left;">${description}</p>
         </div>
     `;
 }
+
+
+
+
+
+const addToCartButtons = document.querySelectorAll('.add-to-cart-btn','.fav');
+document.addEventListener('click', (e) => {
+  if (e.target.classList.contains('add-to-cart-btn') || e.target.classList.contains('fav')) {
+    e.preventDefault();
+    
+    const token = localStorage.getItem('authToken');
+    
+    if (!token) {
+      const currentPage = window.location.pathname;
+      window.location.href = `../login-view/login.html?redirect=${encodeURIComponent(currentPage)}`;
+      return;
+    }
+    
+    // Get the book card and extract data you need
+    const bookCard = e.target.closest('.book-item');
+    addToCart(bookCard);
+  }
+});
 
 async function fetchBookDetails(bookId) {
     try {
@@ -121,4 +144,43 @@ document.addEventListener('DOMContentLoaded', function() {
             detailsContainer.innerHTML = '<p style="padding: 20px;">No book selected. Please go back and select a book.</p>';
         }
     }
+
+      const guardBtn = document.querySelectorAll(".guarded-btn");
+  guardBtn.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      console.log("Guarded button clicked");
+      const token = localStorage.getItem("authToken");
+      console.log("Token:", token);
+
+      if (!token) {
+        console.log("No token, redirecting to login...");
+        e.preventDefault();
+        e.stopPropagation(); // Stop bubbling just in case
+        const login_btn = document.querySelector(".door-btn");
+        login_btn.innerHTML = "LOGOUT";
+        const currentPage = window.location.pathname;
+        window.location.href = `../login-view/login.html?redirect=${encodeURIComponent(
+          currentPage
+        )}`;
+        return;
+      }
+    });
+  });
+  const login_btn = document.querySelector(".login-btn");
+
+  login_btn.addEventListener("click", (e) => {
+    const token = localStorage.getItem("authToken");
+    if (!token) {
+      console.log("No token, redirecting to login...");
+      e.preventDefault();
+      e.stopPropagation(); // Stop bubbling just in case
+      const currentPage = window.location.pathname;
+      window.location.href = `../login-view/login.html?redirect=${encodeURIComponent(
+        currentPage
+      )}`;
+    } else {
+      localStorage.clear();
+      window.location.href = `../login-view/login.html`;
+    }
+  });
 });

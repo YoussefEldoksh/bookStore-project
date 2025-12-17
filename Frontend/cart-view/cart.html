@@ -1,19 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <script type="module" src="../navbar/nav-script.js" defer></script> -->
+    <!-- <script type="module" src="../search-bar-component/search-bar.js" defer></script> -->  
     <script type="module" src="./cart.js" defer></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="../navbar/nav-style.css">
-    <link rel="stylesheet" href="./cart.css">
-<link href='https://fonts.googleapis.com/css?family=Libre Barcode 39' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link rel="stylesheet" href="./cart.css" />
+    <link rel="stylesheet" href="../navbar/nav-style.css" />
+    <link rel="stylesheet" href="../search-bar-component/search-bar.css">
+    <link href="https://fonts.googleapis.com/css?family=Libre Barcode 39" rel="stylesheet" />
     <title>Document</title>
 </head>
+
 <body>
     <div id="root">
-    
+        <nav>
+            <ul id="nav-icons">
+                <li><a href="../home-page/index.html"> <i class="fa-solid fa-house"></i></a>
+                    <p>HOME</p>
+                </li>
+                <li class="guarded-btn"><a href="../cart-view/cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
+                    <p>CART</p>
+                </li>
+                <li class="guarded-btn"><a href="./about.html"><i class="fa-solid fa-bookmark"></i></a>
+                    <p>SAVED</p>
+                </li>
+
+                <li class="guarded-btn"><a href="../profile-view/user-profile.html"><i class="fa-solid fa-user"></i></a>
+                    <p>ACCOUNT</p>
+                </li>
+                <li><a href="./contact.html"><i class="fa-solid fa-handshake"></i></a>
+                    <p>CONTACT US</p>
+                </li>
+                <li class="login-btn"><i class="fa-solid fa-door-open"></i>
+                    <p class="door-btn">LOGOUT</p>
+                </li>
+
+            </ul>
+        </nav>
+        <div class="checkout-page">
+
+            <div class="input-container">
+                <a href="./index.html"><i class="fa-solid fa-magnifying-glass"></i></a>
+                <input class="input" name="text" type="text" placeholder="Title, author, host, or topic..." />
+            </div>
+            <div class="main-frame">
+                <div class="left-div">
+                    <div class="left-statement-container">
+                        <h2
+                            style="text-align: center; margin-bottom: 5%; font-size: 42px ;font-family: pally;">
+                            CHECKOUT
+                        </h2>
+
+                    </div>
+                    <div class="order-form">
+                        <form action="./order.php" method="post">
+                            <div style="display: flex; gap: 5px; width: 100%; align-items: center;">
+                                <input type="text" placeholder="First name" class="form-input" name="firstname"
+                                    required />
+                                <input type="text" placeholder="Last name" class="form-input" name="lastname"
+                                    required />
+                            </div>
+                            <input type="email" placeholder="Email address" class="form-input" name="usermail"
+                                required />
+                            <div class="divider-container">
+                              <div class="divider-line"></div>
+                                <span>PAYMENT INFO</span>
+                                <div class="divider-line"></div>
+                            </div>
+                            <div style="display: flex; gap: 5px; width: 100%;">
+                                <input type="text" placeholder="Card number" class="form-input" name="card-number"
+                                    required />
+                                <input type="text" placeholder="Card holder" class="form-input" name="card-holder-name"
+                                    required />
+                            </div>
+                            <input type="text" placeholder="mm/yy" class="form-input" name="expiry-date" required />
+                            <input type="text" placeholder="CVV" class="form-input" name="card-cvv" required />
+
+                            <button type="submit" class="continue-btn" name="submit">Continue</button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="right-div">
+                    <div class="title-signin">
+                        <h2>ORDER SUMMARY</h2>
+                    </div>
+
+
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
     </div>
 </body>
-</html>
 
+</html>

@@ -1,4 +1,4 @@
-@import url("https://api.fontshare.com/css?f%5B%5D=hind@400,700&serif=swap");
+@import url("https://api.fontshare.com/css?f%5B%5D=pally@400,700&serif=swap");
 
 * {
   margin: 0;
@@ -82,330 +82,328 @@ i:hover {
   transform: scale(1.08);
 }
 
-.cart-page {
-  display: flex;
+.checkout-page {
   width: 100%;
+  display: flex;
   flex-direction: column;
-  align-items: center;
 }
 
-.cart-page-inner {
+.main-frame {
+  margin: 1%;
+  width: 98%;
   display: flex;
-  width: 100%;
+  outline: 2px solid #000000;
   height: 100%;
-  align-items: center;
-  justify-content: center;
+  justify-self: center;
+  align-self: center;
 }
 
-.payment-container {
-  background-color: rgb(255, 242, 226);
-  width: 30%;
-  height: 70%;
-  margin: 4%;
-  margin-top: 2%;
-  box-shadow: 12px 6px #000;
-  border-radius: 20px;
-  outline: 4px solid #000;
-  padding: 2%;
-  overflow-y: auto;
-}
-
-.payment-container::-webkit-scrollbar{
-  width: 8px;
-}
-
-
-.items-added {
-  background-color: #fb7da8;
+.left-div {
   width: 60%;
-  height: 70%;
-  margin: 4%;
-  margin-top: 2%;
-  box-shadow: 12px 6px #000;
-  border-radius: 20px;
-  outline: 4px solid #000;
-  padding: 4px;
-  overflow-x: hidden;
-  overflow-y: auto;
+  height: 100%;
+  border-right: 2px solid #000;
   display: flex;
   flex-direction: column;
-  align-items: center;
-}
-.items-added::-webkit-scrollbar{
-    width: 8px;
-}
-
-.item-cart {
-  width: 95%;
-  height: 25%;
-  outline: 3px solid #000;
-  border-radius: 15px;
-  margin-top: 2%;
-  display: flex;
-}
-
-.cart-title-div {
-  margin: 4%;
-  padding: auto;
-}
-
-.cart-title {
-  font-size: 24px;
-}
-
-.book-image {
-  width: 80%; /* Fixed width; height auto-scales to maintain aspect ratio */
-  height: auto; /* Or set a fixed height like '200px' if you want to force it */
-  object-fit: contain; /* Maintains aspect ratio */
-  display: block; /* Optional: Removes any inline spacing issues */
-  outline: 3px solid #000000;
-  box-shadow: 7px 5px #000000;
-  margin: 10%;
-  border-radius: 8px;
-  transition: all 0.3s ease;
-}
-
-.card {
-  background: white;
-  border: 1.5px solid #333;
-  border-radius: 12px;
-  outline: 1px solid #000000;
-  box-shadow: 10px 4px #000000;
-  
-  padding: 16px;
-  display: flex;
-  gap: 16px;
-  width: 95%;
-  height: 32%;
-  margin-bottom: 5%;
-
-}
-
-.card-image {
-  width: 95px;
-  height: 100px;
-  border-radius: 6px;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  padding: 8px;
-  font-size: 11px;
-  text-align: center;
-  margin-top: 2%;
-}
-
-.card-content {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-.card-header {
-  display: flex;
   justify-content: space-between;
-  align-items: flex-start;
-  flex-wrap: wrap;
-  width: 80%;
-  gap: 8px;
-  margin-bottom: 5%;
+  align-items: center;
+  padding: 2% 0%;
 }
-
-.card-title {
-  font-size: 14px;
-  font-weight: 600;
-  color: #000;
-  line-height: 1.3;
-  font-family: hind;
-}
-
-.delete-btn {
-
-    width: fit-content;
-    height: fit-content;
-    padding: 8px 12px;
-    font-size: 16px;
-    font-family: "Courier New", monospace;
-    text-transform: uppercase;
-    cursor: pointer;
-    border: 3px solid #000;
-    background-color: rgb(170, 244, 177);;
-    transition: all 0.3s ease;
-    font-weight: bolder;    
-    border-radius: 6px;
-
-}
-
- .delete-btn:hover  { background-color: rgb(0, 190, 19);
-    color: rgb(0, 0, 0);
-    transform: translate(-4px, -4px);
-    box-shadow: 4px 4px 0 #000;}
-
-.delete-btn:hover {
-  color: #333;
-}
-
-.card-author {
-  font-size: 12px;
-  color: #666;
-  margin-top: 4px;
-}
-
-.card-footer {
+.divider-container {
   display: flex;
   align-items: center;
-  gap: 8px;
-  width: 50%;
+  align-self: center;
+  justify-self: center;
+  gap: 15px;
+  margin: 20px 0;
+  width: 80%; /* Make sure it has full width */
+
 }
 
-.quantity-controls {
+.divider-line {
+  flex: 1;
+  height: 1px;
+  background-color: #8b7d6b;
+}
+
+.divider-container span {
+  font-family: "Courier New", monospace;
+  font-size: 16px;
+  color: #333;
+  white-space: nowrap;
+  font-weight: 600;
+}
+
+.left-statement-container {
+  width: 100%;
   display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.order-form {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.order-form form {
+  display: flex;
+  flex-direction: column;
   align-items: center;
   gap: 10px;
 }
 
-.qty-btn {
-  background: #fdc96f;
-  outline: 1.7px solid #000;
-  width: 24px;
-  height: 24px;
-  border-radius: 2px;
-  cursor: pointer;
+.form-input {
+  padding: 12px 15px;
+  border: 2px solid #000000;
+  background-color: transparent;
+  font-family: "Courier New", monospace;
   font-size: 14px;
+  color: #000000;
+  outline: none;
+  width: 100%;
+}
+
+.password-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 80%;
+}
+
+.password-container .form-input {
+  width: 100%;
+  padding-right: 45px; /* Space for the eye icon */
+}
+
+.toggle-password {
+  position: absolute;
+  right: 12px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  color: #666;
+  padding: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.3s ease;
-    border-radius: 6px;
-
 }
 
-.qty-btn:hover {
-  background-color: #f8a91f;
-  color: rgb(0, 0, 0);
-  transform: translate(-4px, -4px);
-  box-shadow: 4px 4px 0 #000;
+.toggle-password:hover {
+  color: #333;
 }
 
-.qty-input {
-  width: 28px;
-  height: 24px;
-  border-radius: 6px;
-  text-align: center;
-  font-size: 14px;
-  border-color: transparent;
-  outline: 1.8px solid #000;
-  font-weight: 600;
-  padding: 0;
-}
-
-.qty-btn.add {
-  background: #89b5f8;
-  color: rgb(0, 0, 0);
-  border-color: #000000;
-  border-radius: 6px;
-
-}
-
-.qty-btn.add:hover {
-  background: #0052cc;
-  border-color: #0052cc;
-}
-
-.card-price {
-  font-size: 14px;
-  font-weight: 600;
-  color: #000;
-  white-space: nowrap;
-  margin-right: 20%;
-  margin-left: 33%;
-}
-
-
-.receipt-title{
-  width: 100%;
-    margin-bottom: 5%;
-}
-
-h1{
+.recovery-link {
+  text-align: right;
+  text-decoration: underline;
+  color: #333;
   font-family: "Courier New", monospace;
+  font-size: 13px;
+  margin-top: -15px;
+}
+
+.recovery-link:hover {
+  color: #666;
+}
+
+.continue-btn {
+  padding: 15px;
+  width: 60%;
+  background-color: #ff6633;
+  color: white;
+  border: none;
+  font-family: "Courier New", monospace;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.continue-btn:hover {
+  background-color: rgb(0, 0, 255);
+  color: #ff5511;
+}
+
+.continue-btn:active {
+  transform: scale(0.98);
+}
+
+.right-div {
+  display: flex;
+  flex-direction: column;
+  padding: 2%;
+  align-items: center;
+  width: 40%;
+  gap: 14px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 540px; /* or whatever height you need */
+}
+
+.right-div::-webkit-scrollbar{
+  width: 8px;
+}
+
+.title-signin {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+h2 {
+  font-family: pally;
+  font-size: 42px;
+}
+
+.order-content {
+  display: flex;
+  outline: 2px solid #000000;
+  width: 100%;
+  padding: 2%;
+}
+.order-item {
+  display: flex;
+  background-color: #ff6633;
+  height: 100%;
+}
+
+img {
+  width: 100px;
+  height: auto;
+  border: 2px solid #000000;
+}
+
+.item-title {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 1px 4%;
+  height: fit-content;
+}
+
+.item-info {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.item-footer {
+  display: flex;
+  padding: 0% 4%;
+  justify-content: space-between;
+}
+
+.quantity-control {
+  display: inline-flex;
+  align-items: center;
+  border: 2px solid #000000;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.quantity-btn-increase {
+  background: none;
+  border: none;
+  color: #000000;
+  font-size: 16px;
+  font-weight: 600;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s;
+  border-left: 2px solid #000000;
+    font-family: "Courier New", monospace;
 
 }
 
-h3{
-    font-family: "Courier New", monospace;
+.quantity-btn-increase:hover {
+  background-color: #4744ff;
   
 }
 
-.order-num{
-  margin-bottom: 5%;
+.quantity-btn-increase:active {
+  background-color: #e0e0e0;
+}
+
+.quantity-value {
+  min-width: 32px;
+  text-align: center;
+  font-size: 14px;
+  color: #000000;
+  padding: 0 8px;
+  user-select: none;
+    font-family: "Courier New", monospace;
+
+}
+
+
+.quantity-btn-decrease{
+    background: none;
+  border: none;
+  color: #000000;
+  font-size: 16px;
+  font-weight: 600;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  transition: background-color 0.2s;
+  border-right: 2px solid #000000;
+    font-family: "Courier New", monospace;
+
 }
 
-.book-in-receipt{
+.quantity-btn-decrease:hover {
+  background-color: #bf0000;
+  
+}
 
-  width: 100%;
+.remove-btn{
+  background-color: #ff6633;
+  border: none;
+  color: #faf7f7;
+  font-size: 16px;
+  font-weight: 600; 
+  cursor: pointer;
   display: flex;
-  justify-content: space-between;
-  margin-top: 2%;
+  align-items: center;
+  justify-content: center;
+  padding: 5% 12%;
+  margin-top: 10% ;
+  font-family: "Courier New", monospace;
+  
+}
+
+.remove-btn :hover {
+  background-color: rgb(0, 0, 255);
+  color: #ff5511;
 }
 
 
-.book-name{
-  font-size: 14px;
-  text-transform: uppercase;
-}
 
-
-.book-price{
-    font-size: 14px;
-    font-weight: bolder;
-}
-
-.receipt-footer{
-    display: flex;
-    align-self: center;
-    align-items: flex-end;
-    justify-content: flex-end;
-    height: 100%;
-    flex-direction: column;
-
-}
-
-.receipt-content{
+.total-cost{
+  width: 100%;
+  padding: 0% 5%;
   display: flex;
   flex-direction: column;
-  height: 75%;
 }
 
-.pay-btn{
-    width: 100%;
-  height: fit-content;
-  margin-top: 1%;
-  padding: 4px 50px;
-  font-size: 18px;
-  font-family: "Courier New", monospace;
-  font-weight: bold;
-  cursor: pointer;
-  border: 2px solid #000;
-  background-color: rgb(227, 103, 103);
-  transition: all 0.3s ease;
-  margin-top: 5%;
-}
-
-.pay-btn:hover{
-  background-color: rgb(229, 47, 47);
-  color: rgb(0, 0, 0);
-  transform: translate(-4px, -4px);
-  box-shadow: 4px 4px 0 #000;
-}
-
-
-.receipt-total{
+.sub-cost{
   width: 100%;
-  text-wrap: nowrap;
+  padding: 2% 5%;
   display: flex;
   justify-content: space-between;
-  margin-bottom: 4%;
+  border-bottom: 1px solid #000000;
+}
+.sub-cost-name, .sub-cost-amount{
+  font-size: 14px;
+
 }
