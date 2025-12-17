@@ -88,9 +88,7 @@ function printBooks(books = null) {
 
             </div>
         </div>
-    `
-    
-    ;
+    `;
   }
 
   for (let i = 0; i < Math.min(15, books.items.length); i++) {
@@ -152,10 +150,10 @@ function colorEachCardButton() {
   const addBtn = document.querySelectorAll(".add-item-btn");
   const favBtn = document.querySelectorAll(".add-to-fav");
   const colors = [
-      "rgb(107, 255, 107)", // Bright green
-      "rgb(255, 255, 107)", // Bright yellow
-      "rgb(107, 107, 255)", // Bright blue
-      "rgb(255, 107, 107)", // Bright red
+    "rgb(107, 255, 107)", // Bright green
+    "rgb(255, 255, 107)", // Bright yellow
+    "rgb(107, 107, 255)", // Bright blue
+    "rgb(255, 107, 107)", // Bright red
     "rgb(255, 107, 255)", // Bright magenta
     "rgb(107, 255, 255)", // Bright cyan
     "rgb(255, 165, 0)", // Bright orange
@@ -167,28 +165,51 @@ function colorEachCardButton() {
   addBtn.forEach((Btn, index) => {
     Btn.style.backgroundColor = colors[index % colors.length];
   });
-  
-  favBtn.forEach((Btn,index)=>{
-        Btn.style.backgroundColor = colors[(index + 1) % colors.length]
 
-  })
+  favBtn.forEach((Btn, index) => {
+    Btn.style.backgroundColor = colors[(index + 1) % colors.length];
+  });
 }
 
-const addToCartButtons = document.querySelectorAll('.add-item-btn');
-document.addEventListener('click', (e) => {
-  if (e.target.classList.contains('add-item-btn')) {
+const addToFavButtons = document.querySelectorAll(".add-to-fav");
+
+document.addEventListener("click", (e) => {
+  if (e.target.classList.contains("add-to-fav")) {
     e.preventDefault();
-    
-    const token = localStorage.getItem('authToken');
-    
+
+    const token = localStorage.getItem("authToken");
+
     if (!token) {
       const currentPage = window.location.pathname;
-      window.location.href = `../login-view/login.html?redirect=${encodeURIComponent(currentPage)}`;
+      window.location.href = `../login-view/login.html?redirect=${encodeURIComponent(
+        currentPage
+      )}`;
+
       return;
     }
-    
+
+    const bookCard = e.target.closest(".book-item");
+    addToFav(bookCard);
+  }
+});
+
+const addToCartButtons = document.querySelectorAll(".add-item-btn");
+document.addEventListener("click", (e) => {
+  if (e.target.classList.contains("add-item-btn")) {
+    e.preventDefault();
+
+    const token = localStorage.getItem("authToken");
+
+    if (!token) {
+      const currentPage = window.location.pathname;
+      window.location.href = `../login-view/login.html?redirect=${encodeURIComponent(
+        currentPage
+      )}`;
+      return;
+    }
+
     // Get the book card and extract data you need
-    const bookCard = e.target.closest('.book-item');
+    const bookCard = e.target.closest(".book-item");
     addToCart(bookCard);
   }
 });
@@ -226,7 +247,6 @@ async function fetchData(genre) {
   }
 }
 
-
 // Initialize the page
 root_div.innerHTML += createSearchBar();
 
@@ -246,15 +266,10 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  
-
   // Load default fantasy books on page load
   fetchData("Fantasy");
 
   // Color the category buttons
   colorEachCategory();
   colorEachCardButton();
-
-
-  
 });
