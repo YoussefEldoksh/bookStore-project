@@ -17,7 +17,7 @@
         password VARCHAR(255) NOT NULL,
         first_name VARCHAR(100) NOT NULL,
         last_name VARCHAR(100) NOT NULL,
-        type ENUM('Admin', 'Customer') NOT NULL DEFAULT 'Customer',
+        `type` ENUM('Admin', 'Customer') NOT NULL DEFAULT 'Customer',
         registration_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         shipping_address VARCHAR(100) NOT NULL,
         PRIMARY KEY (user_id),

@@ -10,10 +10,12 @@ if(isset($_POST["submit"])){
     $_usermail = $_POST["usermail"];
     $_username = $_POST["username"];
     $_password = $_POST["userpass"];
-    $_shippingaddress = $_POST["useraddress"];
+    $_useraprt = $_POST["useraddress-apt"];
+    $_userstreet = $_POST["useraddress-street"];
+    $_usercity = $_POST["useraddress-city"];
     
     // Validate inputs
-    if (empty($_firstname) || empty($_lastname) || empty($_usermail) || empty($_password) || empty($_shippingaddress) || empty($_username)) {
+    if (empty($_firstname) || empty($_lastname) || empty($_usermail) || empty($_password) || empty($_useraprt) || empty($_userstreet) || empty($_usercity) || empty($_username)) {
         echo json_encode(["success" => false, "message" => "All fields are required!"]);
         exit;
     } 
@@ -50,7 +52,7 @@ if(isset($_POST["submit"])){
         mysqli_stmt_close($stmt);
         
         // Insert new user (add username to INSERT)
-        $sql = "INSERT INTO user (email, username, first_name, last_name, password, shipping_address, type) 
+        $sql = "INSERT INTO user (email, username, first_name, last_name, password, apartment, street_name, City, `type`) 
                 VALUES (?, ?, ?, ?, ?, ?, 'Customer')";
         
         $stmt = mysqli_prepare($conn, $sql);
@@ -60,10 +62,10 @@ if(isset($_POST["submit"])){
             exit;
         }
         
-        mysqli_stmt_bind_param($stmt, "ssssss", $_usermail, $_username, $_firstname, $_lastname, $_passwordhash, $_shippingaddress);
+        mysqli_stmt_bind_param($stmt, "ssssss", $_usermail, $_username, $_firstname, $_lastname, $_passwordhash, $_useraprt, $_userstreet, $_usercity);
         
         if (mysqli_stmt_execute($stmt)) {
-            $sql = "SELECT user_id, email, username, first_name, last_name, shipping_address, type FROM user WHERE email = ?";
+            $sql = "SELECT user_id, email, username, first_name, last_name, apartment, street_name, City, `type` FROM user WHERE email = ?";
             $stmt = mysqli_prepare($conn, $sql);
             
             if (!$stmt) {
@@ -87,7 +89,9 @@ if(isset($_POST["submit"])){
             $_SESSION["user_id"] = $user["user_id"];
             $_SESSION["email"] = $user["email"];
             $_SESSION["username"] = $user["username"];  // Store actual username
-            $_SESSION["shipping_address"] = $user["shipping_address"];
+            $_SESSION["useraddress-apt"] = $user["useraddress-apt"];
+            $_SESSION["useraddress-street"] = $user["useraddress-street"];
+            $_SESSION["useraddress-city"] = $user["useraddress-city"];
             $_SESSION["type"] = $user["type"];
             $_SESSION["token"] = $token;
             
