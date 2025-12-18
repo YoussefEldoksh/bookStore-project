@@ -19,7 +19,9 @@
         last_name VARCHAR(100) NOT NULL,
         type ENUM('Admin', 'Customer') NOT NULL DEFAULT 'Customer',
         registration_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        shipping_address VARCHAR(100) NOT NULL,
+        city VARCHAR(100) NOT NULL,
+        street VARCHAR(100) NOT NULL,
+        apartment VARCHAR(100) NOT NULL,
         PRIMARY KEY (user_id),
     );
 
@@ -151,7 +153,7 @@
         notes VARCHAR(500),
         PRIMARY KEY (order_id),
         FOREIGN KEY (user_id) REFERENCES user(user_id)
-            ON DELETE RESTRICT ON UPDATE CASCADE,
+            ON DELETE RESTRICT ON UPDATE CASCADE
     );
 
     -- =====================================================
