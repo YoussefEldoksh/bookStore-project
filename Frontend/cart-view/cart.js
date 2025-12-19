@@ -3,66 +3,41 @@ function createCards() {
   let subTotal = 0;
 
   // Sample data - you should replace this with actual cart data
-  const cartItems = [
-    {
-      id: 1,
-      title: "Storytelling in design",
-      author: "Anna Dalstrom",
-      price: 80.0,
-      image: "../assets/The-great-gatsby.jpg",
-      quantity: 1,
-    },
-    {
-      id: 2,
-      title: "The Great Gatsby",
-      author: "F. Scott Fitzgerald",
-      price: 15.99,
-      image: "../assets/The-great-gatsby.jpg",
-      quantity: 2,
-    },
-    {
-      id: 3,
-      title: "Design Systems",
-      author: "Alla Kholmatova",
-      price: 45.0,
-      image: "../assets/The-great-gatsby.jpg",
-      quantity: 1,
-    },
-  ];
+  const cartItems = JSON.parse(localStorage.getItem("cartArray"));
 
   cartItems.forEach((item) => {
-    subTotal += item.price * item.quantity;
+    subTotal += parseFloat(item.price) * parseFloat(item.quantity);
     booksHTML += `
                     <div class="order-content" data-id="${
-                      item.id
+                      item.bookId
                     }" data-price="${item.price}">
                         <div class="order-item">
-                            <img src="${item.image}" alt="${item.title}">
+                            <img src="${item.bookImage}" alt="${item.bookTitle}">
                         </div>
                         <div class="item-info">
                             <div class="item-title">
-                                <p style="font-size: 18px; margin-top: 5%">${
-                                  item.title
+                                <p style="font-size: 18px; margin-top: 5%; text-align: left">${
+                                  item.bookTitle
                                 }</p>
-                                <p style="font-size: 18px; margin-top: 6%">$${item.price.toFixed(
+                                <p style="font-size: 18px; margin-top: 6%">$${parseFloat(item.price).toFixed(
                                   2
                                 )}</p>
                             </div>
                             <div class="item-footer">
                                 <div class="quantity-control">
                                     <button class="quantity-btn-decrease" data-id="${
-                                      item.id
+                                      item.bookId
                                     }">−</button>
                                     <span class="quantity-value" data-id="${
-                                      item.id
+                                      item.bookId
                                     }">${item.quantity}</span>
                                     <button class="quantity-btn-increase" data-id="${
-                                      item.id
+                                      item.bookId
                                     }">+</button>
                                 </div>
                                 <div class="remove-btn-container">
                                     <button class="remove-btn" data-id="${
-                                      item.id
+                                      item.bookId
                                     }">remove</button>
                                 </div>
                             </div>
@@ -79,7 +54,7 @@ function createCards() {
                         <span>ORDER TOTAL</span>
                         <div class="divider-line"></div>
                     </div>
-
+                  
                     <div class="total-cost">
                         <div class="sub-cost">
                             <p class="sub-cost-name">Subtotal</p>
@@ -177,8 +152,8 @@ document.addEventListener("DOMContentLoaded", function () {
       }, 300);
     }
   });
-  let form = document.querySelector(".order-form");
-  form.addEventListener("submit", (e) => {
+  let form = document.querySelector(".myorder-form");
+  form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
     const firstName = document
@@ -247,6 +222,36 @@ document.addEventListener("DOMContentLoaded", function () {
       alert("Cardholder name must be at least 3 characters!");
       return;
     }
+
+//     cardNumber
+// cardCvv
+// cardHolderName
+// expiryDate
+    try {
+      const result = await fetch("order.php", {
+                  method: "POST",
+          headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+
+        body: `firstname=${encodeURIComponent(firstName)}&lastname=${encodeURIComponent(lastName)}&usermail=${encodeURIComponent(email)}&username=${encodeURIComponent(username)}&cardNumber=${encodeURIComponent(cardNumber)}&cardCvv=${encodeURIComponent(cardCvv)}&cardHolderName=${encodeURIComponent(cardHolderName)}&expiryDate=${encodeURIComponent(expiryDate)}&submit=1`,
+      });
+
+      console.log("Response status:", response.status);
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const text = await response.text();
+      console.log("Raw response:", text);
+      
+    } catch (error) {
+      
+    }
+
+
+
     alert("Order submitted successfully!");
 
   });

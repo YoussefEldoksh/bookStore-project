@@ -98,21 +98,25 @@ function printBooks(books = null) {
     const imageUrl =
       bookInfo.imageLinks?.thumbnail || "assets/The-great-gatsby.jpg";
     const bookId = book.id;
+    const price = book.saleInfo.listPrice?.amount || 300; 
 
     booksHTML += `
-                    <div class="book-item">
+                    <div class="book-item" data-book-id="${bookId}">
                         <a href="../book-details-view/book-details.html?bookId=${bookId}">
                         <img src="${imageUrl}" alt="${bookInfo.title}" class="book-image"/>
                         </a>
                         <p class="book-title">${bookInfo.title}</p>
                         <p class="book-author">${author}</p>
-                        <div class="book-rating" style="display: flex; align-items: center; gap: 20%;">
+                        <div class="book-rating" style="display: flex; align-items: center; gap: 2%;">
                             <div class="rating-stars" style="display: flex; gap: 2px;">
                             <i id="rating" class="fa-solid fa-star" style="font-size:11px"></i>
                             <i id="rating" class="fa-solid fa-star" style="font-size:11px"></i>
                             <i id="rating" class="fa-solid fa-star" style="font-size:11px"></i>
                             <i id="rating" class="fa-regular fa-star" style="font-size:11px"></i>   
                             <i id="rating" class="fa-regular fa-star" style="font-size:11px"></i>
+                            </div>
+                            <div class="book-price" style="hight:fit-content">
+                                 <p style="font-size:18px">${price} EGP</p> 
                             </div>
                             <div class="cart-btns">
                             <button class="add-item-btn">ADD TO CART</button>
@@ -210,7 +214,38 @@ document.addEventListener("click", (e) => {
 
     // Get the book card and extract data you need
     const bookCard = e.target.closest(".book-item");
-    addToCart(bookCard);
+
+    const bookId = bookCard.dataset.bookId;
+    const bookTitle = bookCard.querySelector(".book-title").textContent;
+    const bookAuthor = bookCard.querySelector(".book-author").textContent;
+    const bookImage = bookCard.querySelector(".book-image").src;
+    const price = bookCard.querySelector(".book-price").textContent.trim()
+    const bookObj = {
+      bookId: bookId,
+      bookTitle: bookTitle,
+      bookAuthor: bookAuthor,
+      bookImage: bookImage,
+      price: price,
+      quantity: 1
+    }
+
+
+    let cartArray = localStorage.getItem("cartArray");
+
+    if (!cartArray) {
+      cartArray = [bookObj];
+    } else {
+      cartArray = JSON.parse(cartArray);
+      const existingItem = cartArray.find(item => item.bookId === bookId);
+
+      if(!existingItem){
+        cartArray.push(bookObj);
+      }
+    }
+    
+    localStorage.setItem("cartArray", JSON.stringify(cartArray));
+    alert("Item added to cart!");
+
   }
 });
 

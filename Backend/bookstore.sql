@@ -41,7 +41,7 @@
     -- =====================================================
     CREATE TABLE author (
         author_id INT NOT NULL AUTO_INCREMENT,
-        name VARCHAR(225) NOT NULL,
+        `name` VARCHAR(225) NOT NULL,
         PRIMARY KEY (author_id)
     );
   -- =====================================================
@@ -65,7 +65,6 @@
         quantity_in_stock INT NOT NULL DEFAULT 0,
         stock_threshold INT NOT NULL DEFAULT 5,
         category_id INT NOT NULL,
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
         PRIMARY KEY (book_isbn),
         FOREIGN KEY (pub_id) REFERENCES publisher(pub_id)
