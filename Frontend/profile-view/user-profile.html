@@ -1,24 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script type="module" src="../navbar/nav-script.js" defer></script>
-    <script type="module" src="./user-profile.js" defer></script>
-    <link rel="stylesheet" href="../navbar/nav-style.css" />
-        <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-    />
 
-    <link rel="stylesheet" href="./user-profile.css" />
-    <title>Document</title>
-  </head>
-  <body>
-    <div id="root">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- <script type="module" src="../navbar/nav-script.js" defer></script> -->
+  <script type="module" src="./user-profile.js" defer></script>
+  <link rel="stylesheet" href="../navbar/nav-style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
-        
+  <link rel="stylesheet" href="./user-profile.css" />
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="root">
+    <nav>
+      <ul id="nav-icons">
+        <li><a href="../home-page/index.html"> <i class="fa-solid fa-house"></i></a>
+          <p>HOME</p>
+        </li>
+        <li class="guarded-btn"><a href="../cart-view/cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
+          <p>CART</p>
+        </li>
+        <li class="guarded-btn"><a href="./about.html"><i class="fa-solid fa-bookmark"></i></a>
+          <p>SAVED</p>
+        </li>
+
+        <li class="guarded-btn"><a href="../profile-view/user-profile.html"><i class="fa-solid fa-user"></i></a>
+          <p>ACCOUNT</p>
+        </li>
+        <li><a href="./contact.html"><i class="fa-solid fa-handshake"></i></a>
+          <p>CONTACT US</p>
+        </li>
+        <li class="login-btn"><i class="fa-solid fa-door-open"></i>
+          <p class="door-btn">LOGOUT</p>
+        </li>
+
+      </ul>
+    </nav>
+
+
+    <div class="profile-page">
+      <div class="main-frame">
+        <div class="left-div">
+
+          <div class="profile-pic-container">
+            <img src="../assets/cat.jpg" alt="">
+            <div class="username-container">
+              <p class="username-p">username</p>
+            </div>
+          </div>
+
+          <div class="left-div-options">
+
+            <div class="logout-option">
+              <p class="option-title">Logout </p> <i class="fa-solid fa-door-open" id="icon"></i>
+            </div>
+          </div>
+        </div>
+
+        <div class="right-div">
+          <div class="right-div-title-container">
+            <p class="right-div-title">
+              Personal Information
+            </p>
+          </div>
+
+          <div class="form-container">
+            <form method="post" action="editprofile.php"
+              style="width: 100%;height: 100% ; display: flex; flex-direction: column; justify-content: space-evenly; ">
+              <div style="display: flex; gap: 5px; width: 100%;">
+                <div style="width: 100%;">
+                  <h4>First name:</h4>
+                  <input type="text" placeholder="First name" class="form-input" name="firstname" required />
+                </div>
+                <div style="width: 100%;">
+                  <h4>Last name:</h4>
+                  <input type="text" placeholder="Last name" class="form-input" name="lastname" required />
+                </div>
+              </div>
+              <div style="width: 100%;">
+                <h4>Username:</h4>
+                <input type="text" placeholder="First name" class="form-input" name="username" required />
+              </div>
+              <div style="display: flex; gap: 5px; width: 100%;">
+                <div style="width: 100%;">
+                  <h4>Email:</h4>
+                  <input type="text" placeholder="First name" class="form-input" name="usermail" required />
+                </div>
+              </div>
+
+              <div style="display: flex; gap: 5px; width: 100%;">
+                <div style="width: 100%;">
+                  <h4>city:</h4>
+                  <input type="text" placeholder="First name" class="form-input" name="useraddress-city" required />
+                </div>
+                <div style="width: 100%;">
+                  <h4>street:</h4>
+                  <input type="text" placeholder="First name" class="form-input" name="useraddress-street" required />
+                </div>
+                <div style="width: 100%;">
+                  <h4>Apartment#:</h4>
+                  <input type="text" placeholder="First name" class="form-input" name="useraddress-apt" required />
+                </div>
+              </div>
+              <div style="width: 100%;">
+                <h4>Password:</h4>
+                <input type="password" placeholder=".........." class="form-input" name="userpass"  />
+              </div>
+              <div style="width: 100%; margin: 2%; display: flex; justify-content: center; gap: 5%;">
+                <button class="discard-btn">Discard Changes</button>
+                <button type="submit" class="continue-btn" name="submit">Save Changes</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
     </div>
+  </div>
 
-  </body>
+</body>
+
 </html>

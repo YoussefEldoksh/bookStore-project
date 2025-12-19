@@ -1,3 +1,6 @@
+@import url("https://api.fontshare.com/css?f%5B%5D=pally@400,700&serif=swap");
+
+
 * {
   margin: 0;
   padding: 0;
@@ -34,3 +37,173 @@ body {
   background-size: 60px 60px;
   background-position: 0 0, 30px 30px; */
 }
+.profile-page {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.main-frame {
+  margin: 2%;
+  height: 100%;
+  width: 95%;
+  display: flex;
+  outline: 2px solid #000000;
+}
+
+.left-div {
+  width: 25%;
+  height: 100%;
+  border-right: 2px solid #000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5%;
+  align-items: center;
+}
+
+.right-div {
+  display: flex;
+  flex-direction: column;
+  padding: 2%;
+  align-items: center;
+  width: 75%;
+  gap: 14px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 100%; /* or whatever height you need */
+}
+
+.profile-pic-container{
+  width: 100%;
+  /* outline: 2px solid #000000; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+
+.username-container {
+  width: 100%;
+  margin: 2%;
+
+}
+
+.username-p{
+    font-size: 22px;
+    font-family: pally;
+}
+
+img{
+  width: 50%;
+  height: auto;
+  margin: 3%;
+  outline: 2px solid #000000;
+}
+
+.left-div-options{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.personal-info,.password-info{
+  margin: 2%;
+  width: 95%;
+  padding: 3%;
+  outline: 2px solid #000000;
+}
+
+.logout-option{
+    margin: 2%;
+  width: 95%;
+  padding: 3%;
+  outline: 2px solid #000000;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  gap: 2%;
+}
+
+.option-title{
+    font-size: 16px;
+}
+
+
+.logout-option:hover {
+  color: rgb(255, 140, 0);
+  background-color: white;
+  cursor: pointer;
+}
+.logout-option:hover * {
+  color: rgb(255, 140, 0);
+  cursor: pointer;
+}
+
+.right-div-title-container{
+  width: 100%;
+}
+
+.right-div-title{
+  text-align: left;
+  font-size: 32px;
+  font-family: pally;
+}
+.form-container{
+  width: 100%;
+  height: 100%;
+}
+.form-input{
+  padding: 12px 15px;
+  border: 2px solid #000000;
+  background-color: transparent;
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+  color: #000000;
+  outline: none;
+  width: 100%;
+} 
+
+
+h4{
+  font-family: pally;
+}
+
+.continue-btn {
+  padding: 15px;
+  background-color: #ff6633;
+  color: white;
+  border: none;
+  font-family: 'Courier New', monospace;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 30%;
+}
+
+.continue-btn:hover {
+  background-color: white;
+  color: #ff5511;
+}
+
+.discard-btn{
+    padding: 15px;
+  background-color: white;
+  color: #ff6633;
+  border: none;
+  font-family: 'Courier New', monospace;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 30%;
+}
+
+.discard-btn:hover{
+    background-color: #ff5511;
+  color: white;
+}
+

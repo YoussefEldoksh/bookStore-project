@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
 
       let data;
-      try {
+      try { 
         data = JSON.parse(text);
       } catch (parseError) {
         console.error("JSON parse error:", parseError);

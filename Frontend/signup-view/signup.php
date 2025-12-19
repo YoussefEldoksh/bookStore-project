@@ -52,8 +52,8 @@ if(isset($_POST["submit"])){
         mysqli_stmt_close($stmt);
         
         // Insert new user (add username to INSERT)
-        $sql = "INSERT INTO user (email, username, first_name, last_name, password, apartment, street_name, City, `type`) 
-                VALUES (?, ?, ?, ?, ?, ?, 'Customer')";
+        $sql = "INSERT INTO user (email, username, password, first_name, last_name,`type`, city, street, apartment) 
+                VALUES (?, ?, ?, ?, ?,'Customer', ?,?,?)";
         
         $stmt = mysqli_prepare($conn, $sql);
         
@@ -62,10 +62,10 @@ if(isset($_POST["submit"])){
             exit;
         }
         
-        mysqli_stmt_bind_param($stmt, "ssssss", $_usermail, $_username, $_firstname, $_lastname, $_passwordhash, $_useraprt, $_userstreet, $_usercity);
+        mysqli_stmt_bind_param($stmt, "ssssssss", $_usermail, $_username, $_passwordhash, $_firstname, $_lastname,$_usercity, $_userstreet, $_useraprt);
         
         if (mysqli_stmt_execute($stmt)) {
-            $sql = "SELECT user_id, email, username, first_name, last_name, apartment, street_name, City, `type` FROM user WHERE email = ?";
+            $sql = "SELECT user_id, email, username, first_name, last_name, apartment, street, City, `type` FROM user WHERE email = ?";
             $stmt = mysqli_prepare($conn, $sql);
             
             if (!$stmt) {
@@ -89,9 +89,9 @@ if(isset($_POST["submit"])){
             $_SESSION["user_id"] = $user["user_id"];
             $_SESSION["email"] = $user["email"];
             $_SESSION["username"] = $user["username"];  // Store actual username
-            $_SESSION["useraddress-apt"] = $user["useraddress-apt"];
-            $_SESSION["useraddress-street"] = $user["useraddress-street"];
-            $_SESSION["useraddress-city"] = $user["useraddress-city"];
+            $_SESSION["useraddress-apt"] = $user["apartment"];
+            $_SESSION["useraddress-street"] = $user["street"];
+            $_SESSION["useraddress-city"] = $user["City"];
             $_SESSION["type"] = $user["type"];
             $_SESSION["token"] = $token;
             

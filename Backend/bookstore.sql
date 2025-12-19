@@ -10,7 +10,7 @@
     -- =====================================================
     -- 1. USER TABLE (Admin & Customer accounts)
     -- =====================================================
-    CREATE TABLE user (
+    CREATE TABLE `user` (
         user_id INT NOT NULL AUTO_INCREMENT,
         email VARCHAR(225) NOT NULL UNIQUE,
         username VARCHAR(100) NOT NULL UNIQUE,
@@ -22,7 +22,7 @@
         city VARCHAR(100) NOT NULL,
         street VARCHAR(100) NOT NULL,
         apartment VARCHAR(100) NOT NULL,
-        PRIMARY KEY (user_id),
+        PRIMARY KEY (user_id)
     );
 
     -- =====================================================

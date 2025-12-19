@@ -29,7 +29,7 @@ if (isset($_POST["submit"])) {
     }
 
     // Use prepared statement
-    $sql = "SELECT user_id, email, first_name, last_name, password, type FROM user WHERE email = ?";
+    $sql = "SELECT user_id, email, first_name, last_name,username, City, street, apartment, password, type FROM user WHERE email = ?";
     $stmt = mysqli_prepare($conn, $sql);
     
     if (!$stmt) {
@@ -72,7 +72,13 @@ if (isset($_POST["submit"])) {
                 "message" => "Login successful!",
                 "token" => $token,
                 "user_id" => $user["user_id"],
-                "username" => $user["first_name"] . " " . $user["last_name"],
+                "firstname" => $user["first_name"],
+                "lastname" =>  $user["last_name"],
+                "username" => $user["username"],
+                "email" => $user["email"],
+                "city" => $user["City"],
+                "street" => $user["street"],
+                "apartment" => $user["apartment"],
                 "type" => $user["type"]
             ]);
         header("refresh:2; url=../home-page/index.html");

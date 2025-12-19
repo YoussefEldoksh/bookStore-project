@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 },
                 body: `usermail=${encodeURIComponent(email)}&userpass=${encodeURIComponent(password)}&submit=1`
             });
-            
+
             console.log('Response status:', response.status);
             
             if (!response.ok) {
@@ -71,6 +71,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 localStorage.setItem('authToken', data.token);
                 localStorage.setItem('user_id', data.user_id);
                 localStorage.setItem('username', data.username);
+                localStorage.setItem('firstname', data.firstname);
+                localStorage.setItem('lastname', data.lastname);
+                localStorage.setItem('email', data.email);
+                localStorage.setItem('city', data.city);
+                localStorage.setItem('street', data.street);
+                localStorage.setItem('apartment', data.apartment);
                 localStorage.setItem('userType', data.type);
                 
                 console.log('Login successful, redirecting...');
