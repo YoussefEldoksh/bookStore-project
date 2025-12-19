@@ -1,4 +1,26 @@
 document.addEventListener("DOMContentLoaded", (e) => {
+
+  const discardBtn = document.querySelector(".discard-btn");
+  discardBtn.addEventListener("click", (e)=>{
+    e.preventDefault();
+     window.location.href = `../home-page/index.html`;
+  });
+  const logoutbtn = document.querySelector(".logout-option");
+  logoutbtn.addEventListener("click", (e)=>{
+    e.preventDefault();
+    localStorage.clear();
+     window.location.href = `../login-view/login.html`;
+  });
+
+  const leftDivUsername = document.querySelector(".username-p");
+
+
+  leftDivUsername.textContent = localStorage.getItem("username");
+
+
+
+
+
   const firstName = document.querySelector('input[name="firstname"]');
   const lastName = document.querySelector('input[name="lastname"]');
   const email = document.querySelector('input[name="usermail"]');
@@ -7,6 +29,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
   const city = document.querySelector('input[name="useraddress-city"]');
   const street = document.querySelector('input[name="useraddress-street"]');
   const apartment = document.querySelector('input[name="useraddress-apt"]');
+
 
   firstName.value = localStorage.getItem("firstname");
   lastName.value = localStorage.getItem("lastname");
@@ -81,8 +104,15 @@ document.addEventListener("DOMContentLoaded", (e) => {
         alert("Server returned empty response. Check PHP file.");
         return;
       }
+        localStorage.setItem('username', username);
+        localStorage.setItem('firstname', firstName);
+        localStorage.setItem('lastname', lastName);
+        localStorage.setItem('email', email);
+        localStorage.setItem('city', city);
+        localStorage.setItem('street', street);
+        localStorage.setItem('apartment', apartment);
 
-
+        alert("Info updates successfully!!")
     } catch (error) {
         console.error("JSON parse error:", error);
         alert("Invalid server response. Check browser console.");
