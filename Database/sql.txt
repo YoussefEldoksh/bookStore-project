@@ -71,7 +71,6 @@
         FOREIGN KEY (pub_id) REFERENCES publisher(pub_id)
             ON DELETE RESTRICT ON UPDATE CASCADE,
         FOREIGN KEY (category_id) REFERENCES category(category_id)
-
     );
 
     -- =====================================================
@@ -103,7 +102,7 @@
         FOREIGN KEY (pub_id) REFERENCES publisher(pub_id)
             ON DELETE RESTRICT ON UPDATE CASCADE,
         FOREIGN KEY (created_by) REFERENCES user(user_id)
-            ON DELETE SET NULL ON UPDATE CASCADE,
+            ON DELETE SET NULL ON UPDATE CASCADE
     );
 
     -- =====================================================
@@ -152,7 +151,7 @@
         notes VARCHAR(500),
         PRIMARY KEY (order_id),
         FOREIGN KEY (user_id) REFERENCES user(user_id)
-            ON DELETE RESTRICT ON UPDATE CASCADE,
+            ON DELETE RESTRICT ON UPDATE CASCADE
     );
 
     -- =====================================================
@@ -168,7 +167,7 @@
         FOREIGN KEY (order_id) REFERENCES customer_order(order_id)
             ON DELETE CASCADE ON UPDATE CASCADE,
         FOREIGN KEY (book_isbn) REFERENCES book(book_isbn)
-            ON DELETE RESTRICT ON UPDATE CASCADE,
+            ON DELETE RESTRICT ON UPDATE CASCADE
     );
 
     -- =====================================================
@@ -184,7 +183,7 @@
         FOREIGN KEY (user_id) REFERENCES user(user_id)
             ON DELETE CASCADE ON UPDATE CASCADE,
         FOREIGN KEY (book_isbn) REFERENCES book(book_isbn)
-            ON DELETE CASCADE ON UPDATE CASCADE,
+            ON DELETE CASCADE ON UPDATE CASCADE
     );
 
     -- =====================================================
@@ -201,7 +200,7 @@
         added_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         PRIMARY KEY (card_id),
         FOREIGN KEY (user_id) REFERENCES user(user_id)
-            ON DELETE CASCADE ON UPDATE CASCADE,
+            ON DELETE CASCADE ON UPDATE CASCADE
     );
 
     -- =====================================================
@@ -218,6 +217,5 @@
         FOREIGN KEY (order_id) REFERENCES customer_order(order_id)
             ON DELETE RESTRICT ON UPDATE CASCADE,
         FOREIGN KEY (book_isbn) REFERENCES book(book_isbn)
-            ON DELETE RESTRICT ON UPDATE CASCADE,
-
+            ON DELETE RESTRICT ON UPDATE CASCADE
     );
