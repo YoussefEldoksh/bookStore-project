@@ -149,7 +149,6 @@
         City varchar(40) NOT NULL,
         payment_method ENUM('Credit Card', 'Debit Card', 'PayPal', 'Bank Transfer', 'Apple Pay') NOT NULL,
         credit_card_last4 VARCHAR(4),
-        notes VARCHAR(500),
         PRIMARY KEY (order_id),
         FOREIGN KEY (user_id) REFERENCES user(user_id)
             ON DELETE RESTRICT ON UPDATE CASCADE
@@ -221,3 +220,7 @@
             ON DELETE RESTRICT ON UPDATE CASCADE,
 
     );
+
+
+
+

@@ -31,9 +31,15 @@ if (isset($_POST['remove_isbn'])) {
 
 // ---------- CHECKOUT ----------
 $checkout_success = null;
-if (isset($_POST['card_number'], $_POST['expiry_date'])) {
-    $card = trim($_POST['card_number']);
-    $expiry = trim($_POST['expiry_date']);
+if (isset($_POST['cardNumber'], $_POST['expiryDate'])) {
+    $card = trim($_POST['cardNumber']);
+    $expiry = trim($_POST['expiryDate']);
+    $user_id = $_POST['userId'];
+    $total_amount = $POST['totalAmount'];
+    $_useraprt = $_POST['apartment'];
+    $_userstreet = $_POST['street'];
+    $_usercity = $_POST['city'];
+    
 
     // Simple validation
     if (strlen($card) === 16 && preg_match("/^\d{4}-\d{2}$/", $expiry)) {

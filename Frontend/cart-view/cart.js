@@ -139,19 +139,24 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Event listener for remove buttons
   document.addEventListener("click", function (e) {
-    if (e.target.classList.contains("remove-btn")) {
-      const itemId = e.target.dataset.id;
-      const cartItem = document.querySelector(
-        `.order-content[data-id="${itemId}"]`
-      );
-      cartItem.style.transition = "opacity 0.3s ease";
-      cartItem.style.opacity = "0";
-      setTimeout(() => {
-        cartItem.remove();
-        updateTotals();
-      }, 300);
-    }
-  });
+  if (e.target.classList.contains("remove-btn")) {
+    const itemId = e.target.dataset.id;
+    const cartItem = document.querySelector(`.order-content[data-id="${itemId}"]`);
+    
+    // Update localStorage
+    let cartArray = JSON.parse(localStorage.getItem("cartArray") || "[]");
+    cartArray = cartArray.filter(item => item.bookId !== itemId);
+    localStorage.setItem("cartArray", JSON.stringify(cartArray));
+    
+    // Animate removal
+    cartItem.style.transition = "opacity 0.3s ease";
+    cartItem.style.opacity = "0";
+    setTimeout(() => {
+      cartItem.remove();
+      updateTotals();
+    }, 300);
+  }
+});
   let form = document.querySelector(".myorder-form");
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -223,18 +228,18 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-//     cardNumber
-// cardCvv
-// cardHolderName
-// expiryDate
+    const totalAmount = document.getElementById("total");
+    const city = localStorage.getItem("city");
+    const street = localStorage.getItem("street");
+    const apartment = localStorage.getItem("apartment");
     try {
       const result = await fetch("order.php", {
-                  method: "POST",
+          method: "POST",
           headers: {
           "Content-Type": "application/x-www-form-urlencoded",
         },
 
-        body: `firstname=${encodeURIComponent(firstName)}&lastname=${encodeURIComponent(lastName)}&usermail=${encodeURIComponent(email)}&username=${encodeURIComponent(username)}&cardNumber=${encodeURIComponent(cardNumber)}&cardCvv=${encodeURIComponent(cardCvv)}&cardHolderName=${encodeURIComponent(cardHolderName)}&expiryDate=${encodeURIComponent(expiryDate)}&submit=1`,
+        body: `firstname=${encodeURIComponent(firstName)}&city=${encodeURIComponent(city)}&street=${encodeURIComponent(street)}&apartment=${encodeURIComponent(apartment)}&lastname=${encodeURIComponent(lastName)}&usermail=${encodeURIComponent(email)}&username=${encodeURIComponent(username)}&cardNumber=${encodeURIComponent(cardNumber)}&cardCvv=${encodeURIComponent(cardCvv)}&cardHolderName=${encodeURIComponent(cardHolderName)}&expiryDate=${encodeURIComponent(expiryDate)}&userId=${encodeURIComponent(localStorage.getItem('user_id'))}&totalAmount=${encodeURIComponent(localStorage.getItem('totalAmount'))}&submit=1`,
       });
 
       console.log("Response status:", response.status);
