@@ -160,14 +160,14 @@
     CREATE TABLE customer_order_item (
         order_id INT NOT NULL,
         book_isbn VARCHAR(13) NOT NULL,
-        quantity INT NOT NULL CHECK (quantity > 0),
+        quantity INT NOT NULL,  
         unit_price DECIMAL(10, 2) NOT NULL,
-        subtotal DECIMAL(12, 2) GENERATED ALWAYS AS (quantity * unit_price) STORED,
+        subtotal DECIMAL(12, 2) NOT NULL,
         PRIMARY KEY (order_id, book_isbn),
         FOREIGN KEY (order_id) REFERENCES customer_order(order_id)
             ON DELETE CASCADE ON UPDATE CASCADE,
         FOREIGN KEY (book_isbn) REFERENCES book(book_isbn)
-            ON DELETE RESTRICT ON UPDATE CASCADE,
+            ON DELETE RESTRICT ON UPDATE CASCADE
     );
 
     -- =====================================================
