@@ -1,14 +1,20 @@
+
 <?php
-$hostName = "localhost";       // Local server
-$dbUser = "root";              // Default XAMPP MySQL user
-$dbPassword = "";              // Default XAMPP MySQL password (usually empty)
-$dbName = "bookstore";         // Your local database name
-$dbPort = 3306;
+$hostName = "localHost";
+$hostName = "sql7.freesqldatabase.com";
+$dbUser = "root";
+$dbUser = "sql7812236";
+$dbPassword = "";
+$dbPassword = "R2DRKzTFmz";
+$dbName = "bookstore";
+$dbName = "sql7812236";
+$dbPort = "3306";
 
+
+$conn = mysqli_connect($hostName, $dbUser, $dbPassword, $dbName);
 $conn = mysqli_connect($hostName, $dbUser, $dbPassword, $dbName, $dbPort);
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
+if(!$conn){
+if(!$conn){
+    die("Something went wrong!");
 }
-
-echo "Connected successfully";
-?>
+}
