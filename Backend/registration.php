@@ -39,18 +39,26 @@ if (isset($_POST["usermail"])) {
     die("<p style='color:red;'>Password must be at least 8 characters.</p>");
   }
 
-  $shipping_address = $street . ', Apt ' . $apt . ', ' . $city;
-
   // Insert user into table
   $stmt = $conn->prepare(
-    "INSERT INTO user (email, username, password, first_name, last_name, shipping_address, type) 
-     VALUES (?, ?, ?, ?, ?, ?, ?)"
-  );
+    "INSERT INTO user (email, username, password, first_name, last_name, type, city, street, apartment) 
+     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"
+);
 
-  // Default type is Customer
-  $type = isset($_POST['type']) ? $_POST['type'] : 'Customer'; // default to Customer
+$type = isset($_POST['type']) ? $_POST['type'] : 'Customer';
 
-  $stmt->bind_param("sssssss", $email, $username, $passwordhash, $firstname, $lastname, $shipping_address, $type);
+$stmt->bind_param(
+    "sssssssss",
+    $email,
+    $username,
+    $passwordhash,
+    $firstname,
+    $lastname,
+    $type,
+    $city,
+    $street,
+    $apt
+);
 
   if ($stmt->execute()) {
     echo "<p style='color:green;'>Registration successful!</p>";

@@ -1,5 +1,11 @@
 <?php
 session_start();
+
+if (!isset($_SESSION["type"]) || $_SESSION["type"] !== "Admin") {
+    header("Location: login.php");
+    exit;
+}
+
 require "../../Backend/bookdb.php";
 
 /* Fetch publishers */
@@ -63,19 +69,60 @@ while ($row = $pubQuery->fetch_assoc()) {
                 </select>
             </div>
 
+            <div class="form-group author_input">
+                <label for="num_authors">Number of Authors</label>
+                <input type="number" id="num_authors" name="num_authors" min="1" value="1" required>
+            </div>
+
+            <div id="author_fields">
+            </div>
+
+            <script>
+                document.addEventListener("DOMContentLoaded", () => {
+                    const numAuthorsInput = document.getElementById("num_authors");
+                    const authorFieldsDiv = document.getElementById("author_fields");
+
+                    function createAuthorFields() {
+                        let numAuthors = parseInt(numAuthorsInput.value);
+                        if (isNaN(numAuthors) || numAuthors < 1) numAuthors = 1;
+
+                        // Clear previous fields
+                        authorFieldsDiv.innerHTML = "";
+
+                        // Create input fields dynamically
+                        for (let i = 0; i < numAuthors; i++) {
+                            const div = document.createElement("div");
+                            div.className = "form-group";
+                            div.innerHTML = `
+                <label>Author ${i + 1}</label>
+                <input type="text" name="authors[]" placeholder="Author Name" required>
+            `;
+                            authorFieldsDiv.appendChild(div);
+                        }
+                    }
+
+                    // Initialize fields on page load
+                    createAuthorFields();
+
+                    // Update fields when user changes number
+                    numAuthorsInput.addEventListener("input", createAuthorFields);
+                });
+
+            </script>
+
             <div class="form-group">
                 <label for="price">Selling Price</label>
-                <input type="number" id="price" name="selling_price" step="0.01" required>
+                <input type="number" id="price" name="price" step="0.01" required>
             </div>
 
             <div class="form-group">
                 <label for="quantity">Quantity in Stock</label>
-                <input type="number" id="quantity" name="quantity_in_stock" value="0" min="0">
+                <input type="number" id="quantity" name="quantity" value="0" min="0">
             </div>
 
             <div class="form-group">
                 <label for="threshold">Minimum Stock Threshold</label>
-                <input type="number" id="threshold" name="stock_threshold" value="5" min="0">
+                <input type="number" id="threshold" name="threshold" value="5" min="0">
             </div>
 
             <div class="form-group">
