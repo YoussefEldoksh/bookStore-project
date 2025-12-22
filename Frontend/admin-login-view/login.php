@@ -25,21 +25,21 @@ require_once "../../Backend/bookdb.php";
       <div class="main-frame">
         <div class="left-div">
           <div class="image">
-                <img src="../assets/image.jpg" alt="">
+                <img src="../assets/adminsignup.jpg" alt="">
           </div>
           <div class="left-statement-container">
             <h2 style="text-align: center; margin-bottom: 1%; font-size: 34px;">More Than Books</h2>
-             <p class="left-statement">More than a bookstore—a sanctuary for readers. We unite literature, community, and thoughtful curation to create an immersive world where every page turns into a cherished memory.</p>
+             <p class="left-statement">Login to your admin account now and check the recent purchases, book orders and statistics.</p>
           </div>
           
         </div>
         <div class="right-div">
           <div class="title-signin">
-            <h2>SIGN IN TO YOUR ACCOUNT</h2>
+            <h2>SIGN IN TO YOUR ADMIN ACCOUNT</h2>
           </div>
           <div class="signin-statement">
             <p class="statement">
-              One subscription for Liteverse, Recogoters, and Spark
+              Be an admin and manage books, orders, and users with ease.
             </p>
           </div>
 
@@ -73,7 +73,7 @@ require_once "../../Backend/bookdb.php";
               </div>
 
               <a href="#" class="recovery-link">Recovery Password</a>
-              <a href="../signup-view/signup.html" class="recovery-link">Don't have an account ?</a>
+              <a href="../admin-signup-view/signup.html" class="recovery-link">Don't have an account ?</a>
 
               <button type="submit" name="submit" value="1" class="continue-btn" name="submit">Continue</button>
             </form>

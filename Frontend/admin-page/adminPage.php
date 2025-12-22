@@ -15,9 +15,10 @@
 <body>
 
     <div class="admin-container">
-        <!-- SIDEBAR -->
+        <!-- SIDEBAR with navigation menu-->
         <aside class="sidebar">
             <nav class="menu">
+                <!-- data section attribute used by JS-->
                 <a href="#" data-section="home" class="active">
                     <i class="fa-solid fa-house"></i>
                 </a>
@@ -38,14 +39,11 @@
 
         <!-- MAIN CONTENT -->
         <main class="content" id="content">
-            <h1>Admin Dashboard</h1>
-            <p>Welcome to the admin panel.</p>
-
             <div class="dashboard-cards">
-
                 <div class="card" data-section="dashboard">
                     <i class="fa-solid fa-chart-line fa-2x"></i>
                     <h3>Dashboard</h3>
+                    <!-- Description-->
                     <p>View statistics and overview.</p>
                 </div>
 

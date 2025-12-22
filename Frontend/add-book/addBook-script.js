@@ -1,4 +1,5 @@
 const form = document.getElementById("addBookForm");
+const sidebarLinks = document.querySelectorAll(".menu a");
 
 form.addEventListener("submit", function (e) {
     const isbn = document.getElementById("isbn");
@@ -79,3 +80,32 @@ form.addEventListener("submit", function (e) {
     
 });
 
+
+
+sidebarLinks.forEach(link => {
+    link.addEventListener("click", e => {
+        e.preventDefault();
+
+        // Remove active class from all links
+        sidebarLinks.forEach(l => l.classList.remove("active"));
+        // Add active class to clicked link
+        link.classList.add("active");
+
+        const section = link.dataset.section.toLowerCase();
+
+        switch (section) {
+            case "home":
+                window.location.href = "../admin-page/adminPage.php"; // replace with actual profile page
+                break;
+            case "profile":
+                window.location.href = "../admin-profile.php"; // replace with actual profile page
+                break;
+            case "search":
+                window.location.href = "../search.php"; // replace with actual search page
+                break;
+            case "logout":
+                window.location.href = "../logout.php"; // logout page
+                break;
+        }
+    });
+});

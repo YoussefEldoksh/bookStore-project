@@ -66,7 +66,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $selling_price, $quantity, $stock_threshold, $category_id
 );
     $stmt->execute();
-    header("Location: admin_dashboard.php");
+    header("Location: ../Frontend/admin-page/adminPage.php");
+    exit;
 }
 ?>
 

@@ -1,69 +1,159 @@
+/* Reset */
 * {
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
 }
-
-body {
-    background-color: #f4f6f8;
+.admin-container {
     display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    min-height: 100vh;
-    padding: 30px;
+    width: 100vw;
+    min-height: 100vh; /* instead of height */
 }
 
-.addbook-container {
-    background-color: #fff;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    width: 100%;
-    max-width: 600px;
-}
-
-h1 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #333;
-}
-
-form .form-group {
-    margin-bottom: 15px;
+/* Keep your existing sidebar styles */
+.sidebar {
+    width: 80px;
+    background-color: #ffe483;
+    color: black;
+    padding: 20px 10px;
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
-form label {
-    margin-bottom: 5px;
-    font-weight: bold;
-    color: #555;
+.menu a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    color: black;
+    text-decoration: none;
+    border-radius: 12px;
+    transition: all 0.2s;
 }
 
-form input, form select {
-    padding: 10px;
-    font-size: 16px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    transition: border-color 0.2s;
+.menu a:hover,
+.menu a.active {
+    background-color: #d9bd7b;
+    color: rgb(16, 15, 15);
 }
 
-form input:focus, form select:focus {
-    border-color: #fa8383;
+.main-content {
+    flex: 1; /* fill remaining space */
+    display: flex;
+    justify-content: center; /* center form horizontally */
+    align-items: center;     /* center form vertically */
+    padding: 40px;
+}
+
+form {
+    width: 420px;
+    background: #EBECF0;
+    padding: 32px;
+    border-radius: 20px;
+    box-shadow:
+        9px 9px 16px #BABECC,
+       -9px -9px 16px #FFFFFF;
+}
+
+
+/* Page background + center form */
+body {
+    min-height: 100vh;
+    margin: 0;
+    background: #EBECF0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Montserrat', sans-serif;
+}
+
+form {
+    width: 420px;
+    background: #EBECF0;
+    padding: 32px;
+    border-radius: 20px;
+    box-shadow:
+        9px 9px 16px #BABECC,
+       -9px -9px 16px #FFFFFF;
+}
+
+/* Title */
+.segment h1 {
+    text-align: center;
+    margin-bottom: 24px;
+    color: #61677C;
+}
+
+/* Force vertical stacking */
+.form-group,
+label {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 18px;
+}
+
+/* Inputs & selects */
+input,
+select {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 12px;
+    border: none;
+    background: #EBECF0;
+    font-size: 14px;
+    box-shadow:
+        inset 2px 2px 5px #BABECC,
+        inset -5px -5px 10px #FFFFFF;
+}
+
+/* Focus effect */
+input:focus,
+select:focus {
     outline: none;
+    box-shadow:
+        inset 1px 1px 2px #BABECC,
+        inset -1px -1px 2px #FFFFFF;
 }
 
+/* Labels */
+label {
+    margin-top: 5px;
+    font-weight: 600;
+    color: #61677C;
+}
+
+/* Author fields spacing */
+#author_fields .form-group {
+    margin-bottom: 0px;
+}
+
+/* Submit button */
 button {
     width: 100%;
-    padding: 12px;
-    font-size: 16px;
-    background-color: #fa8383;
-    color: #fff;
+    padding: 14px;
+    margin-top: 10px;
+    border-radius: 14px;
     border: none;
-    border-radius: 8px;
+    background: #EBECF0;
+    color: #AE1100;
+    font-size: 15px;
+    font-weight: bold;
     cursor: pointer;
-    transition: background-color 0.2s;
+    box-shadow:
+        -5px -5px 20px #FFFFFF,
+         5px 5px 20px #BABECC;
 }
 
+/* Button interactions */
 button:hover {
-    background-color: #e66b6b;
+    box-shadow:
+        -2px -2px 6px #FFFFFF,
+         2px 2px 6px #BABECC;
 }
+
+button:active {
+    box-shadow:
+        inset 2px 2px 5px #BABECC,
+        inset -2px -2px 5px #FFFFFF;
+}
+

@@ -21,16 +21,14 @@ require_once "../../Backend/bookdb.php";
     <div class="main-frame">
       <div class="left-div">
         <div class="image">
-          <img src="../assets/cat.jpg" alt="" />
+          <img src="../assets/adminsignup.jpg" alt="" />
         </div>
         <div class="left-statement-container">
           <h2 style="text-align: center; margin-bottom: 1%; font-size: 34px">
             Where Stories Live
           </h2>
           <p class="left-statement">
-            A carefully selected collection of fiction and non-fiction for
-            minds that crave meaning. From literary masterpieces to
-            contemporary voices, we believe great books deserve great readers.
+            As an admin, you'll have full control over books, orders, users and can easily track order requests, add and modify existing books and view reports.
           </p>
         </div>
       </div>
@@ -67,7 +65,7 @@ require_once "../../Backend/bookdb.php";
                 <i class="fa-solid fa-eye-slash" style="font-size: 11px"></i>
               </button>
             </div>
-            <a href="../login-view/login.html" class="recovery-link">have an account ?</a>
+            <a href="../admin-login-view/login.php" class="recovery-link">have an account ?</a>
             <button type="submit" class="continue-btn" name="submit">Continue</button>
           </form>
         </div>

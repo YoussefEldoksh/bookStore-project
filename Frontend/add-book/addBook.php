@@ -14,6 +14,7 @@ $pubQuery = $conn->query("SELECT pub_id, name FROM publisher");
 while ($row = $pubQuery->fetch_assoc()) {
     $publishers[] = $row;
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -23,122 +24,151 @@ while ($row = $pubQuery->fetch_assoc()) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add New Book</title>
-    <link rel="stylesheet" href="../CSS/addBook-style.css">
-    <script src="../JS/addBook-script.js" defer></script>
+    <link rel="stylesheet" href="./addBook-style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <script src="./addBook-script.js" defer></script>
 </head>
 
 <body>
-    <div class="addbook-container">
-        <h1>Add New Book</h1>
-        <!-- Each name should match the database column names -->
-        <form id="addBookForm" action="../../Backend/addBook.php" method="POST">
-            <div class="form-group">
-                <label for="isbn">Book ISBN</label>
-                <input type="text" id="isbn" name="book_isbn" maxlength="13" required>
-            </div>
+    <div class="admin-container">
+        <aside class="sidebar">
+            <nav class="menu">
+                <a href="#" data-section="home" class="active">
+                    <i class="fa-solid fa-house"></i>
+                </a>
 
-            <div class="form-group">
-                <label for="title">Title</label>
-                <input type="text" id="title" name="title" maxlength="225" required>
-            </div>
+                <a href="#" data-section="profile">
+                    <i class="fa-solid fa-user"></i>
+                </a>
 
-            <div class="form-group">
-                <label for="pub_id">Publisher</label>
-                <select id="pub_id" name="pub_id" required>
-                    <option value="">Select Publisher</option> <!-- Only one static placeholder -->
+                <a href="#" data-section="search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </a>
 
-                    <?php foreach ($publishers as $pub): ?>
-                        <option value="<?= $pub['pub_id'] ?>">
-                            <?= htmlspecialchars($pub['name']) ?>
-                        </option>
-                    <?php endforeach; ?>
+                <a href="#" data-section="logout">
+                    <i class="fa-solid fa-log-out"></i>
+                </a>
+            </nav>
+        </aside>
 
-                </select>
-            </div>
+        <main class="main-content">
+            <!-- Each name should match the database column names -->
+            <form id="addBookForm" action="../../Backend/addBook.php" method="POST">
 
-            <div class="form-group">
-                <label for="pub_year">Publication Year</label>
-                <select id="pub_year" name="pub_year" required>
-                    <option value="">Select Year</option>
-                    <?php
-                    $currentYear = date("Y");
-                    for ($year = $currentYear; $year >= 1700; $year--) {
-                        echo "<option value='$year'>$year</option>";
-                    }
-                    ?>
-                </select>
-            </div>
+                <div class="segment">
+                    <h1>Add New Book</h1>
+                </div>
 
-            <div class="form-group author_input">
-                <label for="num_authors">Number of Authors</label>
-                <input type="number" id="num_authors" name="num_authors" min="1" value="1" required>
-            </div>
+                <label>
+                    <input type="text" placeholder="ISBN" id="isbn" name="book_isbn" maxlength="13" required />
+                </label>
 
-            <div id="author_fields">
-            </div>
+                <label>
+                    <input type="text" placeholder="Book Title" id="title" name="title" maxlength="225" required />
+                </label>
 
-            <script>
-                document.addEventListener("DOMContentLoaded", () => {
-                    const numAuthorsInput = document.getElementById("num_authors");
-                    const authorFieldsDiv = document.getElementById("author_fields");
+                <label>
+                    <select id="pub_id" name="pub_id" required>
+                        <option value="">Select Publisher</option>
+                        <?php foreach ($publishers as $pub): ?>
+                            <option value="<?= $pub['pub_id'] ?>">
+                                <?= htmlspecialchars($pub['name']) ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                </label>
 
-                    function createAuthorFields() {
-                        let numAuthors = parseInt(numAuthorsInput.value);
-                        if (isNaN(numAuthors) || numAuthors < 1) numAuthors = 1;
-
-                        // Clear previous fields
-                        authorFieldsDiv.innerHTML = "";
-
-                        // Create input fields dynamically
-                        for (let i = 0; i < numAuthors; i++) {
-                            const div = document.createElement("div");
-                            div.className = "form-group";
-                            div.innerHTML = `
-                <label>Author ${i + 1}</label>
-                <input type="text" name="authors[]" placeholder="Author Name" required>
-            `;
-                            authorFieldsDiv.appendChild(div);
+                <label>
+                    <select id="pub_year" name="pub_year" required>
+                        <option value="">Publication Year</option>
+                        <?php
+                        $currentYear = date("Y");
+                        for ($year = $currentYear; $year >= 1700; $year--) {
+                            echo "<option value='$year'>$year</option>";
                         }
-                    }
+                        ?>
+                    </select>
+                </label>
 
-                    // Initialize fields on page load
-                    createAuthorFields();
+                <div class="form-group">
+                    <label for="num_authors">Number of Authors</label>
+                    <input type="number" id="num_authors" name="num_authors" min="1" value="1" required />
+                </div>
 
-                    // Update fields when user changes number
-                    numAuthorsInput.addEventListener("input", createAuthorFields);
-                });
+                <!-- Dynamic author fields -->
+                <div id="author_fields"></div>
 
-            </script>
+                <script>
+                    document.addEventListener("DOMContentLoaded", () => {
+                        const numAuthorsInput = document.getElementById("num_authors");
+                        const authorFieldsDiv = document.getElementById("author_fields");
 
-            <div class="form-group">
-                <label for="price">Selling Price</label>
-                <input type="number" id="price" name="price" step="0.01" required>
-            </div>
+                        function createAuthorFields() {
+                            let numAuthors = parseInt(numAuthorsInput.value, 10);
 
-            <div class="form-group">
-                <label for="quantity">Quantity in Stock</label>
-                <input type="number" id="quantity" name="quantity" value="0" min="0">
-            </div>
+                            if (isNaN(numAuthors) || numAuthors < 1) {
+                                numAuthors = 1;
+                                numAuthorsInput.value = 1;
+                            }
 
-            <div class="form-group">
-                <label for="threshold">Minimum Stock Threshold</label>
-                <input type="number" id="threshold" name="threshold" value="5" min="0">
-            </div>
+                            // Clear existing fields
+                            authorFieldsDiv.innerHTML = "";
 
-            <div class="form-group">
-                <label for="category">Category</label>
-                <select id="category" name="category_id" required>
-                    <option value="">Select Category</option>
-                    <option value="1">Science</option>
-                    <option value="2">Art</option>
-                    <option value="3">Religion</option>
-                    <option value="4">History</option>
-                    <option value="5">Geography</option>
-                </select>
-            </div>
+                            // Create author inputs
+                            for (let i = 0; i < numAuthors; i++) {
+                                const wrapper = document.createElement("div");
+                                wrapper.classList.add("form-group");
 
-            <button type="submit">Add Book</button>
-        </form>
+                                wrapper.innerHTML = `
+                <label>
+            <input type="text" placeholder="Author ${i + 1}" id="title" name="authors[]"  maxlength="225" required />
+        </label>
+            `;
+
+                                authorFieldsDiv.appendChild(wrapper);
+                            }
+                        }
+
+                        // Initialize on load
+                        createAuthorFields();
+
+                        // Update when number changes
+                        numAuthorsInput.addEventListener("input", createAuthorFields);
+                    });
+                </script>
+
+                <label>
+                    <input type="number" id="price" name="price" step="0.01" placeholder="Selling Price" required />
+                </label>
+
+                <div class="form-group">
+                    <label for="quantity">Quantity in Stock</label>
+                    <input type="number" id="quantity" name="quantity" value="0" min="0"
+                        placeholder="Quantity in Stock" />
+                </div>
+
+                <div class="form-group">
+                    <label for="threshold">Minimum Stock Threshold</label>
+                    <input type="number" id="threshold" name="threshold" value="5" min="0"
+                        placeholder="Minimum Stock Threshold" />
+                </div>
+
+                <label>
+                    <select id="category" name="category_id" required>
+                        <option value="">Select Category</option>
+                        <option value="1">Science</option>
+                        <option value="2">Art</option>
+                        <option value="3">Religion</option>
+                        <option value="4">History</option>
+                        <option value="5">Geography</option>
+                    </select>
+                </label>
+
+                <button class="red" type="submit">Add Book</button>
+
+            </form>
+        </main>
     </div>
 </body>
 
