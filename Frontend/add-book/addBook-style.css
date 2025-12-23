@@ -2,74 +2,30 @@
 * {
     box-sizing: border-box;
 }
-.admin-container {
-    display: flex;
-    width: 100vw;
-    min-height: 100vh; /* instead of height */
-}
 
-/* Keep your existing sidebar styles */
-.sidebar {
-    width: 80px;
-    background-color: #ffe483;
-    color: black;
-    padding: 20px 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.menu a {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 50px;
-    height: 50px;
-    color: black;
-    text-decoration: none;
-    border-radius: 12px;
-    transition: all 0.2s;
-}
-
-.menu a:hover,
-.menu a.active {
-    background-color: #d9bd7b;
-    color: rgb(16, 15, 15);
-}
-
-.main-content {
-    flex: 1; /* fill remaining space */
-    display: flex;
-    justify-content: center; /* center form horizontally */
-    align-items: center;     /* center form vertically */
-    padding: 40px;
-}
-
-form {
-    width: 420px;
-    background: #EBECF0;
-    padding: 32px;
-    border-radius: 20px;
-    box-shadow:
-        9px 9px 16px #BABECC,
-       -9px -9px 16px #FFFFFF;
-}
-
-
-/* Page background + center form */
+/* Page background + center form (slightly adjusted for layout) */
 body {
     min-height: 100vh;
     margin: 0;
     background: #EBECF0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     font-family: 'Montserrat', sans-serif;
+    /* Removed display: flex; justify-content: center; align-items: center; to avoid conflicting with .main-content's layout */
 }
 
+/* Main content area (simplified: no flex for image, just contains the form) */
+.main-content {
+    margin-left: 200px; /* Width of the sidebar */
+    padding: 30px;
+    transition: margin-left 0.3s ease;
+    min-height: 100vh;
+    width: calc(100vw - 200px); /* Ensures it fits beside the sidebar */
+    /* Removed display: flex, flex-direction, justify-content, align-items, gap (no longer needed without the image) */
+}
+
+/* Form styles (updated to take full available width) */
 form {
-    width: 420px;
-    background: #EBECF0;
+    width: 100%; /* Changed from 420px to 100%: Takes the full width of .main-content */
+    background: #d6d3d3;
     padding: 32px;
     border-radius: 20px;
     box-shadow:
@@ -81,7 +37,7 @@ form {
 .segment h1 {
     text-align: center;
     margin-bottom: 24px;
-    color: #61677C;
+    color: #443a2f;
 }
 
 /* Force vertical stacking */
@@ -119,7 +75,7 @@ select:focus {
 label {
     margin-top: 5px;
     font-weight: 600;
-    color: #61677C;
+    color: #443a2f;
 }
 
 /* Author fields spacing */
@@ -156,4 +112,82 @@ button:active {
         inset 2px 2px 5px #BABECC,
         inset -2px -2px 5px #FFFFFF;
 }
+
+/* SIDEBAR */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 200px;
+    height: 100vh;
+    background-color: #443a2f; /* Dark background for contrast */
+    color: white;
+    padding: 20px 0;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    transition: transform 0.3s ease; /* For mobile toggle */
+}
+
+.sidebar-header h2 {
+    font-size: 1.2rem;
+    margin: 0 20px 20px;
+    color: #b84949; /* Match your theme */
+}
+
+.sidebar-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-menu li {
+    margin: 10px 0;
+}
+
+.sidebar-menu a {
+    display: block;
+    padding: 10px 20px;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+.sidebar-menu a:hover {
+    background-color: #555; /* Hover effect */
+}
+
+/* Mobile toggle (hidden on desktop) */
+.sidebar-toggle {
+    display: none;
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    background: #b84949;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .sidebar {
+        transform: translateX(-100%); /* Hidden by default on mobile */
+    }
+    .sidebar.open {
+        transform: translateX(0); /* Show when toggled */
+    }
+    .sidebar-toggle {
+        display: block;
+    }
+    .main-content {
+        margin-left: 0; /* Remove margin on mobile */
+        width: 100vw; /* Full width */
+        /* Removed flex-direction: column and align-items (no longer needed) */
+    }
+}
+
+
 

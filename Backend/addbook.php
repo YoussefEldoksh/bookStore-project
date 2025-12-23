@@ -28,7 +28,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ) {
     die("Invalid input data.");
 }
-
     //isbn uniqueness
     $checkISBN = $conn->prepare("SELECT 1 FROM book WHERE book_isbn = ?");
     $checkISBN->bind_param("s", $book_isbn);
@@ -37,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($checkISBN->num_rows > 0) die("ISBN already exists.");
     $checkISBN->close();
 
-    //publisher fk check
+    //Publisher fk check
     $checkPub = $conn->prepare("SELECT 1 FROM publisher WHERE pub_id = ?");
     $checkPub->bind_param("i", $pub_id);
     $checkPub->execute();
@@ -70,23 +69,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     exit;
 }
 ?>
-
-<form method="POST"> 
-    <label for="isbn">Enter ISBN:</label> 
-    <input name="book_isbn" type="text" placeholder="ISBN" required/> 
-    <label for="title">Enter book title:</label> 
-    <input name="title" type="text" placeholder="book title" required/> 
-    <input name="pub_id" type="number" required/> 
-    <input name="pub_year" type="number" required/> 
-    <input name="price" type="number" placeholder="Enter price" required/> 
-    <label>Minimum Stock Threshold:</label> 
-    <input type="number" name="threshold" min="0" required> 
-    <label for="category-select">Choose a Category:</label> 
-    <select name="category_id" id="select_category" required>
-        <option value="1">Science</option>
-        <option value="2">Art</option> 
-        <option value="3">Religion</option> 
-        <option value="4">History</option> 
-        <option value="5">Geography</option> 
-    </select> <button type="submit">Add Book</button> 
-</form>
