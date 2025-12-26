@@ -2,37 +2,44 @@
 require "bookdb.php";
 session_start();
 
-if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'Admin') {
+// Redirect to login page if not logged in or not an Admin
+if (!isset($_SESSION['user_id']) || $_SESSION['type'] !== 'Admin') {
     header("Location: login.php");
     exit;
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
     $book_isbn = trim($_POST['book_isbn']);
     $title = trim($_POST['title']);
-    $pub_id = intval($_POST['pub_id']);
     $pub_year = intval($_POST['pub_year']);
     $selling_price = floatval($_POST['price']);
     $category_id = intval($_POST['category_id']);
     $sold_qty = intval($_POST['sold_qty']);
 
+    // Start a transaction
     $conn->begin_transaction();
 
     try {
-        //Update book info
+        // Update book info
         $stmt = $conn->prepare("
             UPDATE book
-            SET title = ?, pub_id = ?, pub_year = ?, selling_price = ?, category_id = ?
+            SET title = ?, pub_year = ?, selling_price = ?, category_id = ?
             WHERE book_isbn = ?
         ");
         $stmt->bind_param(
-            "siidss",
-            $title, $pub_id, $pub_year, $selling_price, $category_id, $book_isbn
+            "ssiid",
+            $title, $pub_year, $selling_price, $category_id, $book_isbn
         );
         $stmt->execute();
 
-        //Reduce stock
+        if ($selling_price <= 0) {
+            $_SESSION['message'] = "Error: Selling price must be a positive value.";
+            $_SESSION['message_type'] = "error";
+            header("Location: ../Frontend/admin-manage-book/manageBook.php?book_isbn=" . $book_isbn);
+            exit;
+        }
+
+        // Reduce stock if sold quantity is provided
         if ($sold_qty > 0) {
             $stmt2 = $conn->prepare("
                 UPDATE book
@@ -41,36 +48,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ");
             $stmt2->bind_param("is", $sold_qty, $book_isbn);
             $stmt2->execute();
+
+            // Check if the stock doesn't go negative
+            if ($stmt2->affected_rows == 0) {
+                throw new Exception("Insufficient stock or invalid book ISBN.");
+            }
         }
 
+        // Commit the transaction
         $conn->commit();
-        header("Location: admin_dashboard.php");
+
+        // Set success message
+        $_SESSION['message'] = "Book updated successfully!";
+        $_SESSION['message_type'] = "success";
+
+        // Redirect to the page with success message
+        header("Location: ../Frontend/admin-manage-book/manageBook.php?book_isbn=" . $book_isbn);
+        exit;
 
     } catch (Exception $e) {
+        // Rollback transaction in case of error
         $conn->rollback();
-        die($e->getMessage());
+
+        // Set error message
+        $_SESSION['message'] = "Error: " . $e->getMessage();
+        $_SESSION['message_type'] = "error";
+
+        // Redirect to the page with error message
+        header("Location: ../Frontend/admin-manage-book/manageBook.php?book_isbn=" . $book_isbn);
+        exit;
     }
 }
 ?>
 
-<form method="POST">
-    <label for="isbn">Enter ISBN:</label>
-    <input name="book_isbn" type="text" placeholder="ISBN" required/>
-    <label for="title">Enter book title:</label>
-    <input name="title" type="text" placeholder="book title" required/>
-    <input name="pub_id" type="number" required/>
-    <input name="pub_year" type="number" required/>
-    <input name="price" type="number" placeholder="Enter price" required/>
-    <label>Minimum Stock Threshold:</label>
-    <input type="number" name="threshold" min="0" required>
-    <label for="category-select">Choose a Category:</label>
-    <select name="category" id="select_category" required>
-        <option value="Science">Science</option>
-        <option value="Art">Art</option>
-        <option value="Religion">Religion</option>
-        <option value="History">History</option>
-        <option value="Geography">Geography</option>
-    </select>
-    
-    <button type="submit">Modify Book</button>
-</form>
+
