@@ -139,4 +139,4 @@ if (isset($_POST['cardNumber'], $_POST['expiryDate'])) {
 //     $total += $row['subtotal'];
 //     $cart_items[] = $row;
 // }
-// ?>
+ ?>

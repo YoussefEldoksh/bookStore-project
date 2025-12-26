@@ -28,13 +28,13 @@ if (isset($_GET['search'])) {
     $stmt->bind_param("sssss", $keyword, $keyword, $keyword, $keyword, $keyword);
     $stmt->execute();
     $result = $stmt->get_result();
+
+    echo json_encode(["status" => "success", "data" => $result->fetch_all(MYSQLI_ASSOC)]);
+    exit;
 }
 ?>
 
-<form method="GET">
-    <input name="search" placeholder="Search by ISBN, title, author, category, publisher" required>
-    <button type="submit">Search</button>
-</form>
+
 
 <?php
 if (isset($result)) {

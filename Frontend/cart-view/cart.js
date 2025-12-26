@@ -107,6 +107,38 @@ function updateLocalStorageQuantities() {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
+
+
+
+  
+  const searchIcon = document.getElementById("search-icon");
+  const searchInput = document.querySelector(".input");
+  if (searchIcon && searchInput) {
+    searchIcon.addEventListener("click", async function () {
+      const query = searchInput.value.trim();
+      const booksList = document.getElementById("books-list");            
+      booksList.innerHTML = getLoaderHTML();
+      
+      try {
+        const response = await fetch('../../Backend/searchbook.php?search=' + encodeURIComponent(query));
+        
+        if(!response.ok){
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const data = await response.json();
+
+        if (booksList) {
+          if (data.data && data.data.length > 0) {
+            booksList.innerHTML = await printBooks(data.data);
+          } else {
+            booksList.innerHTML = await printBooks(null);
+          }      colorEachCategory();
+          colorEachCardButton();
+        }
+      } catch (error) {
+        console.error("Fetch error:", error.message);
+      }
+    })};
   let right_div = document.querySelector(".right-div");
   right_div.innerHTML += createCards();
 
