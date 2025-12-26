@@ -1,21 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // Get main content
-    const content = document.getElementById("content");
-
-    // Attach click events to all cards
-    function attachCardClickEvents() {
-        const cards = document.querySelectorAll(".card");
-        cards.forEach(card => {
-            card.addEventListener("click", () => {
-                const page = card.dataset.page;
-                if (page) {
-                    window.location.href = page; // redirect to the page
-                }
-            });
-        });
-    }
-
-
     const logoutLink = document.getElementById("logout-link");
     const logoutModal = document.getElementById("logout-modal");
     const logoutYes = document.getElementById("logout-yes");

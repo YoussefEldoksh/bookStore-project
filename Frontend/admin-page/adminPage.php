@@ -15,6 +15,9 @@ if (!isset($_SESSION['user_id']) || $_SESSION['type'] !== 'Admin') {
     <link rel="stylesheet" href="./adminPage-style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script type="module" src="./adminPage-script.js" defer></script>
+    <script>
+        const username = "<?php echo $_SESSION['username']; ?>";
+    </script>
     <title>Admin Page</title>
 </head>
 
@@ -25,19 +28,23 @@ if (!isset($_SESSION['user_id']) || $_SESSION['type'] !== 'Admin') {
         </div>
         <ul class="sidebar-menu">
             <li><a href="./adminPage.php" id="home-link">Home</a></li>
-            <li><a href="../admin-profile-view/profile.php" id="profile-link">Profile</a></li>
-            <li><a href="../admin-search/search.php" id="search-link">Search</a></li>
-            <li><a href="../admin-logout/logout.php" id="logout-link">Logout</a></li>
+            <li><a href="../admin-profile/adminProfile.php" id="profile-link">Profile</a></li>
+            <li><a href="../admin-search/adminSearch.php" id="search-link">Search</a></li>
+            <li>
+                <a href="#" id="logout-link">
+                    <i class="fa fa-sign-out-alt"></i> Logout
+                </a>
+            </li>
         </ul>
         <!-- Optional: Toggle button for mobile -->
         <button class="sidebar-toggle" id="sidebar-toggle">☰</button>
     </div>
 
     <!-- MAIN CONTENT -->
-    <main class="content" id="content">
+    <main class="content" id="content" data-username="<?php echo htmlspecialchars($_SESSION['username']); ?>">
         <div class="greeting-section">
             <div class="text-container">
-                <h1>Hello ${username}!</h1>
+                <h1>Hello <?php echo htmlspecialchars($_SESSION['username']); ?>!</h1>
                 <p class="subtitle">Welcome to your admin page. Manage your bookstore with ease.</p>
             </div>
             <img src="../assets/adminbook.jpg" alt="Books Image" class="books-image">
@@ -69,6 +76,15 @@ if (!isset($_SESSION['user_id']) || $_SESSION['type'] !== 'Admin') {
             </a>
         </div>
     </main>
-</body>
 
+    <div class="logout-modal" id="logout-modal">
+        <div class="logout-box">
+            <p>Are you sure you want to log out?</p>
+            <div class="logout-actions">
+                <button id="logout-yes">Yes</button>
+                <button id="logout-no">No</button>
+            </div>
+        </div>
+    </div>
+</body>
 </html>

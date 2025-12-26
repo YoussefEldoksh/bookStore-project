@@ -3,44 +3,42 @@
     box-sizing: border-box;
 }
 
-/* Page background + center form (slightly adjusted for layout) */
+/* Page background + main content */
 body {
     min-height: 100vh;
     margin: 0;
-    background: #EBECF0;
+    background: #f5f0e8; /* warm light background */
     font-family: 'Montserrat', sans-serif;
-    /* Removed display: flex; justify-content: center; align-items: center; to avoid conflicting with .main-content's layout */
 }
 
-/* Main content area (simplified: no flex for image, just contains the form) */
+/* Main content */
 .main-content {
-    margin-left: 200px; /* Width of the sidebar */
+    margin-left: 200px;
     padding: 30px;
     transition: margin-left 0.3s ease;
     min-height: 100vh;
-    width: calc(100vw - 200px); /* Ensures it fits beside the sidebar */
-    /* Removed display: flex, flex-direction, justify-content, align-items, gap (no longer needed without the image) */
+    width: calc(100vw - 200px);
 }
 
-/* Form styles (updated to take full available width) */
+/* Form styles */
 form {
-    width: 100%; /* Changed from 420px to 100%: Takes the full width of .main-content */
-    background: #d6d3d3;
+    width: 100%;
+    background: #f0dfbf; /* gold */
     padding: 32px;
     border-radius: 20px;
     box-shadow:
-        9px 9px 16px #BABECC,
-       -9px -9px 16px #FFFFFF;
+        5px 5px 10px #ad6a34,
+       -5px -5px 10px #ffffff;
 }
 
-/* Title */
+/* Form title */
 .segment h1 {
     text-align: center;
     margin-bottom: 24px;
-    color: #443a2f;
+    color: #ef5d58; /* red accent */
 }
 
-/* Force vertical stacking */
+/* Form groups */
 .form-group,
 label {
     display: flex;
@@ -54,28 +52,24 @@ select {
     width: 100%;
     padding: 12px 14px;
     border-radius: 12px;
-    border: none;
-    background: #EBECF0;
+    border: 1px solid #ad6a34;
+    background: #ffffff; /* clean white input */
     font-size: 14px;
-    box-shadow:
-        inset 2px 2px 5px #BABECC,
-        inset -5px -5px 10px #FFFFFF;
+    color: #4e1d04; /* dark brown text */
 }
 
-/* Focus effect */
 input:focus,
 select:focus {
     outline: none;
-    box-shadow:
-        inset 1px 1px 2px #BABECC,
-        inset -1px -1px 2px #FFFFFF;
+    border-color: #ef5d58;
+    box-shadow: 0 0 5px rgba(239, 93, 88, 0.5);
 }
 
 /* Labels */
 label {
     margin-top: 5px;
     font-weight: 600;
-    color: #443a2f;
+    color: #4e1d04;
 }
 
 /* Author fields spacing */
@@ -90,27 +84,20 @@ button {
     margin-top: 10px;
     border-radius: 14px;
     border: none;
-    background: #EBECF0;
-    color: #AE1100;
+    background: #ef5d58;
+    color: #ffffff;
     font-size: 15px;
     font-weight: bold;
     cursor: pointer;
-    box-shadow:
-        -5px -5px 20px #FFFFFF,
-         5px 5px 20px #BABECC;
+    box-shadow: 2px 2px 8px #ad6a34;
 }
 
-/* Button interactions */
 button:hover {
-    box-shadow:
-        -2px -2px 6px #FFFFFF,
-         2px 2px 6px #BABECC;
+    box-shadow: 2px 2px 8px #4e1d04;
 }
 
 button:active {
-    box-shadow:
-        inset 2px 2px 5px #BABECC,
-        inset -2px -2px 5px #FFFFFF;
+    box-shadow: inset 2px 2px 5px #ad6a34;
 }
 
 /* SIDEBAR */
@@ -120,18 +107,16 @@ button:active {
     left: 0;
     width: 200px;
     height: 100vh;
-    background-color: #443a2f; /* Dark background for contrast */
-    color: white;
+    background-color: #325453; /* muted dark teal */
+    color: #dcbe87; /* gold text */
     padding: 20px 0;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
     z-index: 1000;
-    transition: transform 0.3s ease; /* For mobile toggle */
 }
 
 .sidebar-header h2 {
     font-size: 1.2rem;
     margin: 0 20px 20px;
-    color: #b84949; /* Match your theme */
+    color: #ef5d58;
 }
 
 .sidebar-menu {
@@ -147,23 +132,24 @@ button:active {
 .sidebar-menu a {
     display: block;
     padding: 10px 20px;
-    color: white;
+    color: #dcbe87;
     text-decoration: none;
     font-weight: 500;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .sidebar-menu a:hover {
-    background-color: #555; /* Hover effect */
+    background-color: #ad6a34;
+    color: #ffffff;
 }
 
-/* Mobile toggle (hidden on desktop) */
+/* Mobile toggle */
 .sidebar-toggle {
     display: none;
     position: fixed;
     top: 10px;
     left: 10px;
-    background: #b84949;
+    background: #ef5d58;
     color: white;
     border: none;
     padding: 10px;
@@ -174,20 +160,70 @@ button:active {
 /* Mobile responsiveness */
 @media (max-width: 768px) {
     .sidebar {
-        transform: translateX(-100%); /* Hidden by default on mobile */
+        transform: translateX(-100%);
     }
     .sidebar.open {
-        transform: translateX(0); /* Show when toggled */
+        transform: translateX(0);
     }
     .sidebar-toggle {
         display: block;
     }
     .main-content {
-        margin-left: 0; /* Remove margin on mobile */
-        width: 100vw; /* Full width */
-        /* Removed flex-direction: column and align-items (no longer needed) */
+        margin-left: 0;
+        width: 100vw;
     }
 }
 
 
+/* =========================
+   LOGOUT BUTTON
+========================= */
+.logout-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(50, 84, 83, 0.6);
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.logout-box {
+  background: #f1ded5; /* dark brown */
+  padding: 20px 25px;
+  border-radius: 8px;
+  width: 280px;
+  text-align: center;
+  box-shadow: 0 6px 15px rgba(50, 84, 83, 0.4);
+}
+
+.logout-box p {
+  margin-bottom: 15px;
+  font-size: 16px;
+  color: #ad6a34; /* gold text */
+}
+
+.logout-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.logout-actions button {
+  flex: 1;
+  padding: 8px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#logout-yes {
+  background-color: #ef5d58; /* red accent */
+  color: white;
+}
+
+#logout-no {
+  background-color: #517174; /* lighter teal */
+  color: white;
+}
 

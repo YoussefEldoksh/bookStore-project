@@ -39,7 +39,11 @@ while ($row = $pubQuery->fetch_assoc()) {
             <li><a href="../admin-page/adminPage.php" id="home-link">Home</a></li>
             <li><a href="../admin-profile-view/profile.php" id="profile-link">Profile</a></li>
             <li><a href="../admin-search/search.php" id="search-link">Search</a></li>
-            <li><a href="../admin-logout/logout.php" id="logout-link">Logout</a></li>
+            <li>
+                <a href="#" id="logout-link">
+                    <i class="fa fa-sign-out-alt"></i> Logout
+                </a>
+            </li>
         </ul>
         <!-- Optional: Toggle button for mobile -->
         <button class="sidebar-toggle" id="sidebar-toggle">☰</button>
@@ -118,7 +122,6 @@ while ($row = $pubQuery->fetch_assoc()) {
             <input type="text" placeholder="Author ${i + 1}" id="title" name="authors[]"  maxlength="225" required />
         </label>
             `;
-
                             authorFieldsDiv.appendChild(wrapper);
                         }
                     }
@@ -161,6 +164,16 @@ while ($row = $pubQuery->fetch_assoc()) {
 
         </form>
     </main>
+
+    <div class="logout-modal" id="logout-modal">
+        <div class="logout-box">
+            <p>Are you sure you want to log out?</p>
+            <div class="logout-actions">
+                <button id="logout-yes">Yes</button>
+                <button id="logout-no">No</button>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>

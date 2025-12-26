@@ -17,55 +17,39 @@
    MAIN CONTENT
 ========================= */
 .content {
-  margin-left: 200px;
-  /* Width of the sidebar */
+  margin-left: 200px; /* Width of the sidebar */
   padding: 30px;
   transition: margin-left 0.3s ease;
   min-height: 100vh;
 }
 
-/*greeting section for admins*/
+/* Greeting section for admins */
 .greeting-section {
   display: flex;
   align-items: center;
   text-align: left;
   margin-bottom: 20px;
-  padding: 0px;
-  flex-direction: row;  /* Explicitly set to row: places text left and image right */
-  justify-content: space-between;  /* Spreads text container left and image right */
-  gap: 20px;  /* Adds space between text and image */
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 20px;
 }
-
-/*
-.greeting-section .img-container {
-  display: flex;
-  flex-direction: row;  
-  align-items: flex-start;
-  text-align: left;
-  gap: 0px; 
-  width: 100%;  
-}
-*/
 
 .greeting-section .text-container {
   display: flex;
   flex-direction: column;
-  align-items: flex-start; 
+  align-items: flex-start;
 }
 
 .greeting-section h1 {
   font-size: 1.5rem;
   font-weight: 500;
-  color: #b84949;
-  /* Dark color for contrast */
+  color: #ef5d58; /* red accent */
   margin-bottom: 10px;
 }
 
 .greeting-section .subtitle {
   font-size: 1rem;
-  /* Smaller than the main title */
-  color: #7b4242;
-  /* Lighter gray */
+  color: #ad6a34; /* brown accent */
   font-weight: 500;
   margin: 0;
 }
@@ -74,9 +58,10 @@
   height: 100px;
   object-fit: cover;
   border-radius: 8px;
+  border: 2px solid #dcbe87; /* subtle border for contrast */
 }
 
-/*DASHBOARD CARDS*/
+/* DASHBOARD CARDS */
 .dashboard-cards {
   text-align: left;
   display: grid;
@@ -89,97 +74,98 @@
 
 .card-link {
   text-decoration: none;
-  /* Removes underline */
   color: inherit;
-  /* Inherits text color */
   display: block;
-  /* Makes the whole area clickable */
 }
 
 .card_1 {
-  background-color: #f9c88f;
+  background-color: #dcbe87; /* gold accent */
   padding: 20px;
   border-radius: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 6px 12px rgba(50, 84, 83, 0.2);
   text-align: center;
   cursor: pointer;
   transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .card_2 {
-  background-color: #f7b76d;
+  background-color: #517174; /* lighter teal */
   padding: 20px;
   border-radius: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 6px 12px rgba(50, 84, 83, 0.2);
   text-align: center;
   cursor: pointer;
   transition: transform 0.2s, box-shadow 0.2s;
+  color: #fff;
 }
 
 .card_3 {
-  background-color: #f5a64b;
+  background-color: #ef5d58; /* red accent */
   padding: 20px;
   border-radius: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 6px 12px rgba(50, 84, 83, 0.2);
   text-align: center;
   cursor: pointer;
   transition: transform 0.2s, box-shadow 0.2s;
+  color: #fff;
 }
 
 .card_4 {
-  background-color: #ffd7aa;
+  background-color: #ad6a34; /* brown accent */
   padding: 20px;
   border-radius: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 6px 12px rgba(50, 84, 83, 0.2);
   text-align: center;
   cursor: pointer;
   transition: transform 0.2s, box-shadow 0.2s;
+  color: #fff;
 }
 
 .card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 16px rgba(50, 84, 83, 0.3);
 }
 
 .card i {
-  color: #7f6850;
   margin-bottom: 10px;
+  color: #ffffff; 
 }
 
 .card h3 {
-  color: #4b3b2a;
   margin: 10px 0 5px;
   font-weight: 600;
 }
 
 .card p {
   font-size: 0.9rem;
-  color: #7f6850;
+}
+
+.card h3,
+.card p,
+.card i {
+  color: #ffffff; /* white for all card text and icons */
 }
 
 
-/*SIDEBAR */
+/* SIDEBAR */
 .sidebar {
   position: fixed;
   top: 0;
   left: 0;
   width: 200px;
   height: 100vh;
-  background-color: #443a2f;
-  /* Dark background for contrast */
+  background-color: #325453; /* dark teal */
   color: white;
   padding: 20px 0;
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
   z-index: 1000;
   transition: transform 0.3s ease;
-  /* For mobile toggle */
 }
 
 .sidebar-header h2 {
   font-size: 1.2rem;
   margin: 0 20px 20px;
-  color: #b84949;
-  /* Match your theme */
+  color: #ef5d58; /* red accent */
 }
 
 .sidebar-menu {
@@ -195,24 +181,24 @@
 .sidebar-menu a {
   display: block;
   padding: 10px 20px;
-  color: white;
+  color: #dcbe87; /* gold accent */
   text-decoration: none;
   font-weight: 500;
   transition: background-color 0.3s ease;
 }
 
 .sidebar-menu a:hover {
-  background-color: #555;
-  /* Hover effect */
+  background-color: #517174; /* lighter teal hover */
+  color: #fff;
 }
 
-/* Mobile toggle (hidden on desktop) */
+/* Mobile toggle */
 .sidebar-toggle {
   display: none;
   position: fixed;
   top: 10px;
   left: 10px;
-  background: #b84949;
+  background: #ef5d58; /* red accent */
   color: white;
   border: none;
   padding: 10px;
@@ -220,16 +206,13 @@
   z-index: 1001;
 }
 
-/* Mobile responsiveness */
 @media (max-width: 768px) {
   .sidebar {
     transform: translateX(-100%);
-    /* Hidden by default on mobile */
   }
 
   .sidebar.open {
     transform: translateX(0);
-    /* Show when toggled */
   }
 
   .sidebar-toggle {
@@ -238,7 +221,55 @@
 
   .content {
     margin-left: 0;
-    /* Remove margin on mobile */
   }
 }
 
+/* LOGOUT MODAL */
+.logout-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(50, 84, 83, 0.6);
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.logout-box {
+  background: #f1ded5; /* dark brown */
+  padding: 20px 25px;
+  border-radius: 8px;
+  width: 280px;
+  text-align: center;
+  box-shadow: 0 6px 15px rgba(50, 84, 83, 0.4);
+}
+
+.logout-box p {
+  margin-bottom: 15px;
+  font-size: 16px;
+  color: #ad6a34; /* gold text */
+}
+
+.logout-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.logout-actions button {
+  flex: 1;
+  padding: 8px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#logout-yes {
+  background-color: #ef5d58; /* red accent */
+  color: white;
+}
+
+#logout-no {
+  background-color: #517174; /* lighter teal */
+  color: white;
+}
