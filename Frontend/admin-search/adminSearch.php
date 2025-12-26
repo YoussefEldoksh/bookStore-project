@@ -13,10 +13,21 @@ if (!isset($_SESSION['user_id']) || $_SESSION['type'] !== 'Admin') {
 $searchQuery = '';
 if (isset($_GET['search'])) {
     $searchQuery = $_GET['search'];
+
+    // SQL Query to search by ISBN, book title, publisher, or author
     $stmt = $conn->prepare("
-        SELECT * FROM books
-        WHERE isbn LIKE ? OR title LIKE ? OR publisher LIKE ? OR author LIKE ?
+        SELECT book.book_isbn, book.title, book.pub_year, book.selling_price, 
+               publisher.name AS publisher_name, author.name AS author_name
+        FROM book
+        LEFT JOIN publisher ON book.pub_id = publisher.pub_id
+        LEFT JOIN book_author ON book.book_isbn = book_author.book_isbn
+        LEFT JOIN author ON book_author.author_id = author.author_id
+        WHERE book.book_isbn LIKE ? 
+           OR book.title LIKE ? 
+           OR publisher.name LIKE ? 
+           OR author.name LIKE ?
     ");
+
     $searchTerm = "%$searchQuery%";
     $stmt->bind_param("ssss", $searchTerm, $searchTerm, $searchTerm, $searchTerm);
     $stmt->execute();
@@ -39,7 +50,7 @@ if (isset($_GET['search'])) {
 <body>
     <div class="sidebar">
         <div class="sidebar-header">
-            <h2>Admin Panel</h2> <!-- Optional: Add a title -->
+            <h2>Admin Panel</h2>
         </div>
         <ul class="sidebar-menu">
             <li><a href="../admin-page/adminPage.php" id="home-link">Home</a></li>
@@ -51,11 +62,10 @@ if (isset($_GET['search'])) {
                 </a>
             </li>
         </ul>
-        <!-- Optional: Toggle button for mobile -->
         <button class="sidebar-toggle" id="sidebar-toggle">☰</button>
     </div>
 
-        <div class="main-content">
+    <div class="main-content">
         <div class="form-card">
             <h2 class="right-div-title">Search Books</h2>
 
@@ -71,12 +81,13 @@ if (isset($_GET['search'])) {
                     while ($book = $result->fetch_assoc()) {
                         echo "<div class='book-card'>";
                         echo "<h3>" . htmlspecialchars($book['title']) . "</h3>";
-                        echo "<p>ISBN: " . htmlspecialchars($book['isbn']) . "</p>";
-                        echo "<p>Author: " . htmlspecialchars($book['author']) . "</p>";
-                        echo "<p>Publisher: " . htmlspecialchars($book['publisher']) . "</p>";
+                        echo "<p>ISBN: " . htmlspecialchars($book['book_isbn']) . "</p>";
+                        echo "<p>Author: " . htmlspecialchars($book['author_name'] ?: 'N/A') . "</p>";
+                        echo "<p>Publisher: " . htmlspecialchars($book['publisher_name'] ?: 'N/A') . "</p>";
+                        echo "<p>Year: " . htmlspecialchars($book['pub_year']) . "</p>";
+                        echo "<p>Price: " . htmlspecialchars($book['selling_price']) . "</p>";
                         echo "<div class='book-actions'>";
-                        echo "<button class='modify-btn' onclick='modifyBook(" . $book['book_id'] . ")'>Modify</button>";
-                        echo "<button class='remove-btn' onclick='removeBook(" . $book['book_id'] . ")'>Remove</button>";
+                        echo "<button class='modify-btn' onclick='window.location.href=\"../admin-manage-book/manageBook.php?book_isbn=" . $book['book_isbn'] . "\"'>Modify</button>";
                         echo "</div></div>";
                     }
                 } else {
@@ -86,7 +97,7 @@ if (isset($_GET['search'])) {
             </div>
         </div>
     </div>
-    
+
     <div class="logout-modal" id="logout-modal">
         <div class="logout-box">
             <p>Are you sure you want to log out?</p>

@@ -62,10 +62,10 @@ if (!isset($_SESSION['user_id']) || $_SESSION['type'] !== 'Admin') {
                     <p>Add books to your store.</p>
                 </div>
             </a>
-            <a href="../admin-manage-books/manageBooks.php" class="card-link">
+            <a href="../admin-search/adminSearch.php" class="card-link">
                 <div class="card card_3" data-section="manage-books"> <i class="fa-solid fa-pen-to-square fa-2x"></i>
                     <h3>Modify Books</h3>
-                    <p>Edit or remove existing books.</p>
+                    <p>Edit existing books.</p>
                 </div>
             </a>
             <a href="../admin-search/search.php" class="card-link">
