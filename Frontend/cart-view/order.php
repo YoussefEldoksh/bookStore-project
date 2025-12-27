@@ -30,7 +30,34 @@ header('Content-Type: application/json');
 //     $stmt->bind_param("is", $user_id, $isbn);
 //     $stmt->execute();
 // }
+// ---------- FETCH USER ID ----------
+if (!isset($_POST['userId'])) {
+    echo json_encode(['status' => 'fail', 'message' => 'User ID not provided']);
+    exit;
+}
+$user_id = intval($_POST['userId']);
 
+// ---------- FETCH USER ADDRESS ----------
+$userStmt = $conn->prepare("
+    SELECT apartment, street, city 
+    FROM user 
+    WHERE user_id = ?
+");
+$userStmt->bind_param("i", $user_id);
+$userStmt->execute();
+$userResult = $userStmt->get_result();
+$user = $userResult->fetch_assoc();
+$userStmt->close();
+
+if (!$user) {
+    echo json_encode(['status' => 'fail', 'message' => 'User not found']);
+    exit;
+}
+
+$_useraprt   = $user['apartment'];
+$_userstreet = $user['street'];
+$_usercity   = $user['city'];
+    
 // ---------- CHECKOUT ----------
 $checkout_success = null;
 if (isset($_POST['cardNumber'], $_POST['expiryDate'])) {
@@ -39,9 +66,10 @@ if (isset($_POST['cardNumber'], $_POST['expiryDate'])) {
     $expiry = trim($_POST['expiryDate']);
     $user_id = $_POST['userId'];
     $total_price = ((float) $_POST['totalAmount']) - 10;
-    $_useraprt = $_POST['apartment'];
-    $_userstreet = $_POST['street'];
-    $_usercity = $_POST['city'];
+    // Store values in variables
+    $_useraprt   = $user['apartment'];
+    $_userstreet = $user['street'];
+    $_usercity   = $user['city'];
     $cart_items = json_decode($_POST['cartArray'], true);
 
     // Simple validation
@@ -60,6 +88,8 @@ if (isset($_POST['cardNumber'], $_POST['expiryDate'])) {
         // $result = $stmt->get_result()->fetch_assoc();
         // $total_price = $result['total_price'];
         // $stmt->close();
+
+    
 
         //Insert into customer_order
         $stmt = $conn->prepare("
