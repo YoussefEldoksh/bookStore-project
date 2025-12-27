@@ -89,6 +89,29 @@
     margin-bottom: 20px;
 }
 
+/* Add some margin between the fields */
+form label, form input, form select {
+    margin-bottom: 10px;
+}
+
+/* Style for the success and error message tabs */
+.message {
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+}
+
+.message.success {
+    background-color: green;
+    color: white;
+}
+
+.message.error {
+    background-color: red;
+    color: white;
+}
+
+
 /* Form Elements */
 label {
     display: block;

@@ -1,13 +1,9 @@
 <?php
+session_start(); // Start session
+
 require "../../Backend/bookdb.php";
-session_start();
 
-// Redirect to login page if not logged in or not an Admin
-if (!isset($_SESSION['user_id']) || $_SESSION['type'] !== 'Admin') {
-    header("Location: ../admin-login-view/login.php");
-    exit;
-}
-
+if (!isset($_SESSION['user_id']) || $_SESSION['type'] !== 'Admin') { header("Location: ../admin-login-view/login.php"); exit; }
 // Fetch book details from the database using the ISBN
 if (isset($_GET['book_isbn'])) {
     $book_isbn = $_GET['book_isbn'];
@@ -19,7 +15,6 @@ if (isset($_GET['book_isbn'])) {
     $stmt->bind_result($book_isbn, $title, $pub_year, $selling_price, $category_id, $quantity_in_stock);  // Bind all the result variables
 
     if ($stmt->fetch()) {  // Fetch the data into the variables
-        // Now the $book variable should be populated
         $book = [
             'book_isbn' => $book_isbn,
             'title' => $title,
@@ -38,10 +33,8 @@ if (isset($_GET['book_isbn'])) {
 }
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -49,7 +42,6 @@ if (isset($_GET['book_isbn'])) {
     <script type="module" src="./manageBook-script.js" defer></script>
     <title>Admin Manage Books</title>
 </head>
-
 <body>
     <div class="sidebar">
         <div class="sidebar-header">
@@ -72,8 +64,20 @@ if (isset($_GET['book_isbn'])) {
         <div class="form-card">
             <h2 class="right-div-title">Manage Book</h2>
 
+            <!-- Display success or error message -->
+            <?php if (isset($_SESSION['message'])): ?>
+                <div class="message <?= htmlspecialchars($_SESSION['message_type']); ?>">
+                    <?= htmlspecialchars($_SESSION['message']); ?>
+                </div>
+                <?php 
+                    // Clear the session message after displaying
+                    unset($_SESSION['message']);
+                    unset($_SESSION['message_type']);
+                ?>
+            <?php endif; ?>
+
             <!-- Form for managing book -->
-            <form method="POST">
+            <form method="POST" action="../../Backend/modifybook.php">
                 <label for="isbn">ISBN:</label>
                 <input type="text" name="book_isbn" value="<?= htmlspecialchars($book['book_isbn']) ?>" readonly required />
 
@@ -86,25 +90,26 @@ if (isset($_GET['book_isbn'])) {
                 <label for="price">Selling Price:</label>
                 <input type="number" name="price" value="<?= htmlspecialchars($book['selling_price']) ?>" required />
 
-                <label for="category-select">Choose a Category:</label>
-                <select name="category_id" required>
-                    <option value="1" <?= $book['category_id'] == 1 ? 'selected' : '' ?>>Science</option>
-                    <option value="2" <?= $book['category_id'] == 2 ? 'selected' : '' ?>>Art</option>
-                    <option value="3" <?= $book['category_id'] == 3 ? 'selected' : '' ?>>Religion</option>
-                    <option value="4" <?= $book['category_id'] == 4 ? 'selected' : '' ?>>History</option>
-                    <option value="5" <?= $book['category_id'] == 5 ? 'selected' : '' ?>>Geography</option>
-                </select>
+                <div style="margin-bottom: 15px;">
+                    <label for="category-select">Choose a Category:</label>
+                    <select name="category_id" required>
+                        <option value="1" <?= $book['category_id'] == 1 ? 'selected' : '' ?>>Science</option>
+                        <option value="2" <?= $book['category_id'] == 2 ? 'selected' : '' ?>>Art</option>
+                        <option value="3" <?= $book['category_id'] == 3 ? 'selected' : '' ?>>Religion</option>
+                        <option value="4" <?= $book['category_id'] == 4 ? 'selected' : '' ?>>History</option>
+                        <option value="5" <?= $book['category_id'] == 5 ? 'selected' : '' ?>>Geography</option>
+                    </select>
+                </div>
 
-                <p>Available Quantity in Stock: <?= htmlspecialchars($book['quantity_in_stock']) ?></p>
+                <div style="margin-bottom: 15px;">
+                    <p>Available Quantity in Stock: <?= htmlspecialchars($book['quantity_in_stock']) ?></p>
+                </div>
 
                 <label for="sold_qty">Enter Sold Quantity (Stock to Reduce):</label>
-                <input type="number" name="sold_qty" min="0" required />
-
+                <input type="number" name="sold_qty" min="0" max="<?= htmlspecialchars($book['quantity_in_stock']) ?>" required />
                 <button type="submit">Update Book</button>
             </form>
         </div>
     </div>
 </body>
-
 </html>
-
