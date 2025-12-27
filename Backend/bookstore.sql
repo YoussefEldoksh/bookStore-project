@@ -72,6 +72,9 @@
         FOREIGN KEY (category_id) REFERENCES category(category_id)
 
     );
+    ALTER TABLE book
+ADD CONSTRAINT chk_quantity_non_negative
+CHECK (quantity_in_stock >= 0);
 
     DELIMITER $$
 
@@ -110,6 +113,7 @@ DELIMITER ;
     -- =====================================================
     -- 6. PUBLISHER_ORDER TABLE (Replenishment orders from publishers)
     -- =====================================================
+<<<<<<< HEAD
     CREATE TABLE publisher_order_item (
     order_id INT NOT NULL AUTO_INCREMENT,
     pub_id INT NOT NULL,
@@ -125,6 +129,29 @@ DELIMITER ;
         ON DELETE RESTRICT ON UPDATE CASCADE,
     FOREIGN KEY (confirmed_by) REFERENCES user(user_id)
         ON DELETE SET NULL ON UPDATE CASCADE
+=======
+    CREATE TABLE publisher_order (
+    order_id INT NOT NULL AUTO_INCREMENT,
+    pub_id INT NOT NULL,
+    order_date DATE NOT NULL DEFAULT CURDATE(),
+    expected_delivery_date DATE,
+    actual_delivery_date DATE,
+    total_amount DECIMAL(12, 2),
+    status ENUM('Pending', 'Confirmed') DEFAULT 'Pending',
+    created_by INT,
+
+    PRIMARY KEY (order_id),
+
+    FOREIGN KEY (pub_id)
+        REFERENCES publisher(pub_id)
+        ON DELETE RESTRICT
+        ON UPDATE CASCADE,
+
+    FOREIGN KEY (created_by)
+        REFERENCES user(user_id)
+        ON DELETE SET NULL
+        ON UPDATE CASCADE
+>>>>>>> b24c0f1b267ae706ac7725c85af8b1b942f92edc
 );
 
     -- =====================================================
