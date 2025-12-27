@@ -4,7 +4,7 @@ function createSearchBar() {
   let nav_bar = `
 <div class="home-page">
     <div class="input-container">
-        <a href = "./index.html"><i class="fa-solid fa-magnifying-glass"></i></a>
+        <i class="fa-solid fa-magnifying-glass" id="search-icon"></i>
           <input
             class="input"
             name="text"
@@ -443,7 +443,19 @@ async function fetchData(genre) {
     const booksList = document.getElementById("books-list");
     if (booksList) {
       booksList.innerHTML =
-        '<p style="padding: 20px; text-align: center;">Error loading books. Please try again.</p>';
+        `        
+        <div class="fall-back-container">
+          <div class="fall-back-img-container">
+            <img class="fall-back-img" src="../assets/peep-2.png" alt="">
+            <div class="error-container">
+                  <h1> 404</h1>
+                  <p style="font-size: 20px; text-align: left"> This category is not available currently</p>
+            </div>    
+            </div>
+            <div>
+
+            </div>
+        </div>`;
     }
   }
 }
@@ -466,6 +478,52 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   }
+
+  const searchIcon = document.getElementById("search-icon");
+  const searchInput = document.querySelector(".input");
+  if (searchIcon && searchInput) {
+    searchIcon.addEventListener("click", async function () {
+      const query = searchInput.value.trim();
+      const booksList = document.getElementById("books-list");            
+      booksList.innerHTML = getLoaderHTML();
+      
+      try {
+        const response = await fetch('../../Backend/searchbook.php?search=' + encodeURIComponent(query));
+        
+        if(!response.ok){
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const data = await response.json();
+
+        if (booksList) {
+          if (data.data && data.data.length > 0) {
+            booksList.innerHTML = await printBooks(data.data);
+          } else {
+            booksList.innerHTML = await printBooks(null);
+          }      
+          colorEachCategory();
+          colorEachCardButton();
+        }
+      } catch (error) {
+        
+        console.error("Fetch error:", error.message);
+
+        if (booksList) {
+          booksList.innerHTML = `
+        <div class="fall-back-container">
+          <div class="fall-back-img-container">
+            <img class="fall-back-img" src="../assets/peep-2.png" alt="">
+            <div class="error-container">
+                  <h1> 404</h1>
+                  <p style="font-size: 20px; text-align: left"> This category is not available currently</p>
+            </div>    
+            </div>
+            <div>
+            </div>
+        </div>`;
+        }
+      }
+    })};
 
   // Load default fantasy books on page load
   fetchData("");

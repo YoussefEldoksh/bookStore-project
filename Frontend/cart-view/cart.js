@@ -107,6 +107,38 @@ function updateLocalStorageQuantities() {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
+
+
+
+  
+  const searchIcon = document.getElementById("search-icon");
+  const searchInput = document.querySelector(".input");
+  if (searchIcon && searchInput) {
+    searchIcon.addEventListener("click", async function () {
+      const query = searchInput.value.trim();
+      const booksList = document.getElementById("books-list");            
+      booksList.innerHTML = getLoaderHTML();
+      
+      try {
+        const response = await fetch('../../Backend/searchbook.php?search=' + encodeURIComponent(query));
+        
+        if(!response.ok){
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const data = await response.json();
+
+        if (booksList) {
+          if (data.data && data.data.length > 0) {
+            booksList.innerHTML = await printBooks(data.data);
+          } else {
+            booksList.innerHTML = await printBooks(null);
+          }      colorEachCategory();
+          colorEachCardButton();
+        }
+      } catch (error) {
+        console.error("Fetch error:", error.message);
+      }
+    })};
   let right_div = document.querySelector(".right-div");
   right_div.innerHTML += createCards();
 
@@ -291,4 +323,22 @@ document.addEventListener("DOMContentLoaded", function () {
     const expiryDate = new Date(2000 + parseInt(year), parseInt(month), 0);
     return expiryDate < new Date();
   }
+
+    const login_btn = document.querySelector(".login-btn");
+
+  login_btn.addEventListener("click", (e) => {
+    const token = localStorage.getItem("authToken");
+    if (!token) {
+      console.log("No token, redirecting to login...");
+      e.preventDefault();
+      e.stopPropagation(); // Stop bubbling just in case
+      const currentPage = window.location.pathname;
+      window.location.href = `../login-view/login.html?redirect=${encodeURIComponent(
+        currentPage
+      )}`;
+    } else {
+      localStorage.clear();
+      window.location.href = `../login-view/login.html`;
+    }
+  });
 });

@@ -1,11 +1,11 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+// error_reporting(E_ALL);
+// ini_set('display_errors', 1);
 
 header('Content-Type: application/json');
 
 // Log what we're receiving
-file_put_contents('debug.log', "POST data: " . print_r($_POST, true) . "\n", FILE_APPEND);
+// file_put_contents('debug.log', "POST data: " . print_r($_POST, true) . "\n", FILE_APPEND);
 
 require "../../Backend/bookdb.php";
 mysqli_set_charset($conn, "utf8mb4");
@@ -83,16 +83,7 @@ if (isset($_POST['submit'])) {
     $books = [];
     $rowCount = 0;
 
-    while ($row = $result->fetch_assoc()) {
-        $books[] = $row;
-        $rowCount++;
-    }
-
-    
-    // Debug: Log how many rows were fetched
-    
-    file_put_contents('debug.log', "Rows fetched: $rowCount\n", FILE_APPEND);
-file_put_contents('debug.log', "Data fetched: " . json_encode($books, JSON_PRETTY_PRINT) . "\n", FILE_APPEND);    echo json_encode(["success" => true, "data" => $books]);
+echo json_encode(["success" => true, "data" => $result->fetch_all(MYSQLI_ASSOC)]);
     $stmt->close();
 } else {
     echo json_encode(["success" => false, "message" => "submit parameter not set. Received POST: " . json_encode($_POST)]);

@@ -89,6 +89,8 @@
     margin-bottom: 20px;
 }
 
+<<<<<<< HEAD
+=======
 /* Add some margin between the fields */
 form label, form input, form select {
     margin-bottom: 10px;
@@ -112,6 +114,7 @@ form label, form input, form select {
 }
 
 
+>>>>>>> e0ee7c46e097b88d389568bb9f3a27cfda2d98f2
 /* Form Elements */
 label {
     display: block;

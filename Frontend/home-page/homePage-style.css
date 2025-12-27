@@ -79,8 +79,12 @@ i:hover {
   padding: 1%;
   width: 70%;
   height: fit-content;
-  overflow: hidden;
+  overflow-x: hidden;
   gap: 2%;
+}
+
+.categories-list::-webkit-scrollbar {
+  height: 8px;
 }
 
 .category-btn {

@@ -83,6 +83,10 @@ img{
 
 h2{
     font-family: pally;
+<<<<<<< HEAD
+    text-align: center;
+=======
+>>>>>>> e0ee7c46e097b88d389568bb9f3a27cfda2d98f2
 }
 
 .statement{
@@ -159,11 +163,17 @@ i{
 .login-form {
   width: 100%;
   margin: 0 auto;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .login-form form {
   display: flex;
   flex-direction: column;
+
   gap: 15px;
 }
 
