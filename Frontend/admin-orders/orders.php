@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_order_item'])
     // Check if the update was successful
     if ($stmt->affected_rows > 0) {
         // Update book stock by adding 10
-        $stmt_stock = $conn->prepare("UPDATE book SET quantity_in_stock = quantity_in_stock + 100
+        $stmt_stock = $conn->prepare("UPDATE book SET quantity_in_stock = quantity_in_stock + 10
                                      WHERE book_isbn IN (SELECT book_isbn FROM publisher_order_item WHERE order_id = ?)");
         $stmt_stock->bind_param("i", $order_item_id);
         $stmt_stock->execute();
