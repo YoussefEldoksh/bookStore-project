@@ -1,4 +1,27 @@
 document.addEventListener("DOMContentLoaded", async (e) => {
+
+    // --- LOGOUT HANDLING ---
+  const logoutLink = document.getElementById("logout-link");
+  const logoutModal = document.getElementById("logout-modal");
+  const logoutYes = document.getElementById("logout-yes");
+  const logoutNo = document.getElementById("logout-no");
+  
+  // Show logout confirmation modal
+  logoutLink.addEventListener("click", (e) => {
+    e.preventDefault();  // Prevent the default logout behavior (redirect)
+    logoutModal.style.display = "flex";  // Show the modal
+  });
+
+  // Hide logout modal if "No" is clicked
+  logoutNo.addEventListener("click", () => {
+    logoutModal.style.display = "none";  // Close the modal
+  });
+
+  // Proceed to logout if "Yes" is clicked
+  logoutYes.addEventListener("click", () => {
+    window.location.href = "../admin-login-view/login.php";  // Redirect to login page
+  });
+  
   const ctx = document.getElementById("myChart").getContext("2d");
   const dataset = await fetchOrdersData();
   const ordersContainer = document.getElementById("ordersContainer");
@@ -10,7 +33,7 @@ document.addEventListener("DOMContentLoaded", async (e) => {
   const dateNeeded = document.getElementById("exampleDateInput");
   const top5div = document.getElementById("tableDataTopCx");
   const top10div = document.getElementById("tableDataTopBooks");
-
+  const replenishmentOrders = document.getElementById("ReplenishmentOrders");
 
   dateNeeded.addEventListener("change", async function () {
     console.log(dateNeeded.textContent);
@@ -134,6 +157,27 @@ document.addEventListener("DOMContentLoaded", async (e) => {
     
   `;
   }
+  const replenishmentGet = await ReplenishmentOrders();
+  const replenishmentArray = replenishmentGet.data;
+  for (const order of replenishmentArray) {
+    replenishmentOrders.innerHTML += `
+                                <tr class="hover:bg-gray-50 transition-colors">
+                                <td class="py-4">
+                                    <div class="flex items-center gap-3">
+                                        <div
+                                            class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-xs font-medium text-gray-600 border border-gray-200">
+                                            </div>
+                                        <div>
+                                            <div class="text-sm font-medium text-gray-900">${order.title}</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="py-4 text-sm text-gray-500">${order.book_isbn}</td>
+                                <td class="py-4 text-sm font-medium text-gray-900 text-right">${order.times_ordered}</td>
+                            </tr>
+    
+  `;
+  }
 
   // Debug: Log the fetched data
   console.log("Fetched dataset:", dataset);
@@ -212,6 +256,8 @@ document.addEventListener("DOMContentLoaded", async (e) => {
       },
     },
   });
+
+
 });
 
 async function fetchOrdersData() {

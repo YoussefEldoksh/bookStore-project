@@ -174,19 +174,13 @@ if (isset($_GET["Top10Books"])) {
     mysqli_stmt_close($stmt);
     echo json_encode(["success" => true, "data" => $result->fetch_all(MYSQLI_ASSOC)]);
 }
-if (isset($_GET["(Replenishment"])) {
+if (isset($_GET["Replenishment"])) {
 
-    $sql = "SELECT coi.book_isbn, b.title, p.name ,SUM(coi.quantity) AS total_bought
-            FROM customer_order_item coi
-            JOIN book b ON coi.book_isbn = b.book_isbn
-            JOIN publisher as p ON b.pub_id = p.pub_id
-            JOIN customer_order co ON coi.order_id = co.order_id
-              AND co.order_date >= (NOW() - INTERVAL 3 MONTH)
-              AND co.order_date < (NOW())
-            GROUP BY coi.book_isbn, b.title
-            ORDER BY total_bought DESC
-            LIMIT 10
-            
+    $sql = "SELECT poi.book_isbn, b.title, COUNT(DISTINCT poi.order_id) AS times_ordered
+            FROM publisher_order_item poi
+            JOIN publisher_order po ON poi.order_id = po.order_id
+            JOIN book b ON poi.book_isbn = b.book_isbn
+            GROUP BY poi.book_isbn, b.title
             ";
 
     $stmt = mysqli_prepare($conn, $sql);

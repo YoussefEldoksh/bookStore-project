@@ -1,5 +1,4 @@
 <?php
-<<<<<<< HEAD
 require "../../Backend/bookdb.php";
 session_start();
 
@@ -9,13 +8,6 @@ if (!isset($_SESSION['user_id']) || $_SESSION['type'] !== 'Admin') {
     exit;
 }
 
-=======
-session_start(); // Start session
-
-require "../../Backend/bookdb.php";
-
-if (!isset($_SESSION['user_id']) || $_SESSION['type'] !== 'Admin') { header("Location: ../admin-login-view/login.php"); exit; }
->>>>>>> e0ee7c46e097b88d389568bb9f3a27cfda2d98f2
 // Fetch book details from the database using the ISBN
 if (isset($_GET['book_isbn'])) {
     $book_isbn = $_GET['book_isbn'];
@@ -27,10 +19,7 @@ if (isset($_GET['book_isbn'])) {
     $stmt->bind_result($book_isbn, $title, $pub_year, $selling_price, $category_id, $quantity_in_stock);  // Bind all the result variables
 
     if ($stmt->fetch()) {  // Fetch the data into the variables
-<<<<<<< HEAD
         // Now the $book variable should be populated
-=======
->>>>>>> e0ee7c46e097b88d389568bb9f3a27cfda2d98f2
         $book = [
             'book_isbn' => $book_isbn,
             'title' => $title,
@@ -49,15 +38,8 @@ if (isset($_GET['book_isbn'])) {
 }
 ?>
 
-<<<<<<< HEAD
-
 <!DOCTYPE html>
 <html lang="en">
-
-=======
-<!DOCTYPE html>
-<html lang="en">
->>>>>>> e0ee7c46e097b88d389568bb9f3a27cfda2d98f2
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -65,10 +47,6 @@ if (isset($_GET['book_isbn'])) {
     <script type="module" src="./manageBook-script.js" defer></script>
     <title>Admin Manage Books</title>
 </head>
-<<<<<<< HEAD
-
-=======
->>>>>>> e0ee7c46e097b88d389568bb9f3a27cfda2d98f2
 <body>
     <div class="sidebar">
         <div class="sidebar-header">
@@ -77,11 +55,7 @@ if (isset($_GET['book_isbn'])) {
         <ul class="sidebar-menu">
             <li><a href="../admin-page/adminPage.php" id="home-link">Home</a></li>
             <li><a href="../admin-profile/adminProfile.php" id="profile-link">Profile</a></li>
-<<<<<<< HEAD
-            <li><a href="./adminSearch.php" id="search-link">Search</a></li>
-=======
             <li><a href="../admin-search/adminSearch.php" id="search-link">Search</a></li>
->>>>>>> e0ee7c46e097b88d389568bb9f3a27cfda2d98f2
             <li>
                 <a href="#" id="logout-link">
                     <i class="fa fa-sign-out-alt"></i> Logout
@@ -95,10 +69,6 @@ if (isset($_GET['book_isbn'])) {
         <div class="form-card">
             <h2 class="right-div-title">Manage Book</h2>
 
-<<<<<<< HEAD
-            <!-- Form for managing book -->
-            <form method="POST">
-=======
             <!-- Display success or error message -->
             <?php if (isset($_SESSION['message'])): ?>
                 <div class="message <?= htmlspecialchars($_SESSION['message_type']); ?>">
@@ -113,7 +83,6 @@ if (isset($_GET['book_isbn'])) {
 
             <!-- Form for managing book -->
             <form method="POST" action="../../Backend/modifybook.php">
->>>>>>> e0ee7c46e097b88d389568bb9f3a27cfda2d98f2
                 <label for="isbn">ISBN:</label>
                 <input type="text" name="book_isbn" value="<?= htmlspecialchars($book['book_isbn']) ?>" readonly required />
 
@@ -126,22 +95,6 @@ if (isset($_GET['book_isbn'])) {
                 <label for="price">Selling Price:</label>
                 <input type="number" name="price" value="<?= htmlspecialchars($book['selling_price']) ?>" required />
 
-<<<<<<< HEAD
-                <label for="category-select">Choose a Category:</label>
-                <select name="category_id" required>
-                    <option value="1" <?= $book['category_id'] == 1 ? 'selected' : '' ?>>Science</option>
-                    <option value="2" <?= $book['category_id'] == 2 ? 'selected' : '' ?>>Art</option>
-                    <option value="3" <?= $book['category_id'] == 3 ? 'selected' : '' ?>>Religion</option>
-                    <option value="4" <?= $book['category_id'] == 4 ? 'selected' : '' ?>>History</option>
-                    <option value="5" <?= $book['category_id'] == 5 ? 'selected' : '' ?>>Geography</option>
-                </select>
-
-                <p>Available Quantity in Stock: <?= htmlspecialchars($book['quantity_in_stock']) ?></p>
-
-                <label for="sold_qty">Enter Sold Quantity (Stock to Reduce):</label>
-                <input type="number" name="sold_qty" min="0" required />
-
-=======
                 <div style="margin-bottom: 15px;">
                     <label for="category-select">Choose a Category:</label>
                     <select name="category_id" required>
@@ -159,16 +112,11 @@ if (isset($_GET['book_isbn'])) {
 
                 <label for="sold_qty">Enter Sold Quantity (Stock to Reduce):</label>
                 <input type="number" name="sold_qty" min="0" max="<?= htmlspecialchars($book['quantity_in_stock']) ?>" required />
->>>>>>> e0ee7c46e097b88d389568bb9f3a27cfda2d98f2
                 <button type="submit">Update Book</button>
             </form>
         </div>
     </div>
 </body>
-<<<<<<< HEAD
 
 </html>
 
-=======
-</html>
->>>>>>> e0ee7c46e097b88d389568bb9f3a27cfda2d98f2

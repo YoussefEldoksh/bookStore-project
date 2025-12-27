@@ -224,9 +224,8 @@
   }
 }
 
-/* LOGOUT MODAL */
 .logout-modal {
-  display: none;
+  display: none;  /* Hidden initially */
   position: fixed;
   inset: 0;
   background: rgba(50, 84, 83, 0.6);

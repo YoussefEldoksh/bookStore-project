@@ -117,7 +117,7 @@ DELIMITER ;
     CREATE TABLE publisher_order (
     order_id INT NOT NULL AUTO_INCREMENT,
     pub_id INT NOT NULL,
-    order_date DATE NOT NULL DEFAULT CURDATE(),
+    order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     expected_delivery_date DATE,
     actual_delivery_date DATE,
     total_amount DECIMAL(12, 2),
@@ -136,6 +136,23 @@ DELIMITER ;
         ON DELETE SET NULL
         ON UPDATE CASCADE
 );
+
+    -- =====================================================
+    -- 7. PUBLISHER_ORDER_ITEM TABLE (Items in publisher orders)
+    -- =====================================================
+    CREATE TABLE publisher_order_item (
+        order_id INT NOT NULL,
+        book_isbn VARCHAR(13) NOT NULL,
+        quantity INT NOT NULL CHECK (quantity > 0),
+        unit_cost DECIMAL(10, 2) NOT NULL,
+        subtotal DECIMAL(12, 2) GENERATED ALWAYS AS (quantity * unit_cost) STORED,
+        
+        PRIMARY KEY (order_id, book_isbn),
+        FOREIGN KEY (order_id) REFERENCES publisher_order(order_id)
+            ON DELETE CASCADE ON UPDATE CASCADE,
+        FOREIGN KEY (book_isbn) REFERENCES book(book_isbn)
+            ON DELETE RESTRICT ON UPDATE CASCADE
+    );
 
     -- =====================================================
     -- 8. SHOPPING_CART TABLE (Customer shopping carts)
