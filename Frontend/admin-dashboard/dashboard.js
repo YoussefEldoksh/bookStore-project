@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", async (e) => {
   const logoutModal = document.getElementById("logout-modal");
   const logoutYes = document.getElementById("logout-yes");
   const logoutNo = document.getElementById("logout-no");
-  
+
   // Show logout confirmation modal
   logoutLink.addEventListener("click", (e) => {
     e.preventDefault();  // Prevent the default logout behavior (redirect)
