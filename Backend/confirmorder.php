@@ -35,14 +35,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $order = $result->fetch_assoc();
 
-        if ($order['status'] === 'Received') {
+        if ($order['status'] === 'Confirmed') {
             throw new Exception("Order already confirmed.");
         }
 
         //mark order as received
         $updateOrder = $conn->prepare("
             UPDATE publisher_order
-            SET status = 'Received', actual_delivery_date = CURDATE()
+            SET status = 'Confirmed', actual_delivery_date = CURDATE()
             WHERE order_id = ?
         ");
         $updateOrder->bind_param("i", $order_id);

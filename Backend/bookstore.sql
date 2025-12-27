@@ -72,6 +72,28 @@
         FOREIGN KEY (category_id) REFERENCES category(category_id)
 
     );
+
+    DELIMITER $$
+
+CREATE TRIGGER auto_order_when_stock_low
+AFTER UPDATE ON book
+FOR EACH ROW
+BEGIN
+    DECLARE fixed_order_qty INT DEFAULT 10;
+
+    IF NEW.quantity_in_stock < NEW.stock_threshold AND OLD.quantity_in_stock >= OLD.stock_threshold THEN
+        INSERT INTO publisher_order (pub_id, order_date, status, created_by)
+        VALUES (NEW.pub_id, CURDATE(), 'Pending', NULL);
+
+        SET @last_order_id = LAST_INSERT_ID();
+
+        INSERT INTO publisher_order_item (order_id, book_isbn, quantity, unit_cost)
+        VALUES (@last_order_id, NEW.book_isbn, fixed_order_qty, 0);
+    END IF;
+END$$
+
+DELIMITER ;
+
 -- =====================================================
     -- 5. BOOK_AUTHOR TABLE (Many-to-Many relationship)
     -- =====================================================
@@ -143,7 +165,7 @@
         user_id INT NOT NULL,
         order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         total_amount DECIMAL(12, 2) NOT NULL,
-        status ENUM('Pending', 'Processing', 'Shipped', 'Delivered', 'Cancelled') DEFAULT 'Pending',
+        status ENUM('Pending', 'Confirmed') DEFAULT 'Pending',
         apartment int NOT NULL,
         street_name VARCHAR(60) NOT NULL,
         City varchar(40) NOT NULL,
