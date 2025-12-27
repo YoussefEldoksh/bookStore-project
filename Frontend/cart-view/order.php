@@ -154,9 +154,6 @@ if (isset($_POST['cardNumber'], $_POST['expiryDate'])) {
 //     $total += $row['subtotal'];
 //     $cart_items[] = $row;
 // }
-<<<<<<< HEAD
- ?>
-=======
 
 
 function checkAndUpdateStock($conn, $book_isbn, $quantity)
@@ -239,4 +236,3 @@ function autoOrderIfStockLow($conn, $book_isbn, $quantity)
     return false; // Stock is above threshold
 }
 ?>
->>>>>>> e0ee7c46e097b88d389568bb9f3a27cfda2d98f2

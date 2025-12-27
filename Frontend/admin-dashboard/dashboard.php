@@ -131,6 +131,28 @@ WHERE DATE(customer_order.order_date) = ?
 }
 
 
+if (isset($_GET["Top5Cx"])) {
+
+    $sql = "SELECT co.user_id, u.username, u.first_name, u.last_name, u.email, u.registration_date ,SUM(co.total_amount) AS total_spent
+            FROM customer_order co
+            JOIN `user` u ON co.user_id = u.user_id
+              AND co.order_date >= NOW() - INTERVAL 3 MONTH
+              AND co.order_date < NOW()
+            GROUP BY co.user_id, u.username, u.first_name, u.last_name
+            ORDER BY total_spent DESC
+            LIMIT 5 ";
+
+    $stmt = mysqli_prepare($conn, $sql);
+    $stmt->bind_param("s", $date);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+
+
+    mysqli_stmt_close($stmt);
+    echo json_encode(["success" => true, "data" => $result->fetch_all(MYSQLI_ASSOC)]);
+}
+
+
 
 
 

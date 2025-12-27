@@ -8,12 +8,13 @@ document.addEventListener("DOMContentLoaded", async (e) => {
   const totalOnSalesMonth = document.getElementById("tableDataMonth");
   const totalOnSalesDay = document.getElementById("tableDataDay");
   const dateNeeded = document.getElementById("exampleDateInput");
+  const top5div = document.getElementById("tableDataTopCx");
 
   dateNeeded.addEventListener("change", async function () {
     console.log(dateNeeded.textContent);
     const dayData = await TotalSalesPrevOnAGivenDay(dateNeeded.value);
     const dayDataArray = dayData.data;
-    if(dayDataArray.length === 0){
+    if(dayDataArray.length === 0    ){
         totalOnSalesDay.innerHTML = ``;
     }
     for (const order of dayDataArray) {
@@ -73,6 +74,34 @@ document.addEventListener("DOMContentLoaded", async (e) => {
                                 </td>
                                 <td class="py-4 text-sm text-gray-500">${order.order_date}</td>
                                 <td class="py-4 text-sm font-medium text-gray-900 text-right">${order.total_amount}</td>
+                            </tr>
+    
+  `;
+  }
+
+
+  const top5 = await Top5Cx();
+  const top5Array = top5.data;
+  for (const order of top5Array) {
+    top5div.innerHTML += `
+                                <tr class="hover:bg-gray-50 transition-colors">
+                                <td class="py-4">
+                                    <div class="flex items-center gap-3">
+                                        <div
+                                            class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-xs font-medium text-gray-600 border border-gray-200">
+                                            </div>
+                                        <div>
+                                            <div class="text-sm font-medium text-gray-900">${order.first_name} ${order.first_name}</div>
+                                            <div class="text-xs text-gray-500">${order.email}</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="py-4">
+                                    <span
+                                        class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-gray-50 text-gray-600 border border-gray-100">${order.username}</span>
+                                </td>
+                                <td class="py-4 text-sm text-gray-500">${order.registration_date}</td>
+                                <td class="py-4 text-sm font-medium text-gray-900 text-right">${order.total_spent}</td>
                             </tr>
     
   `;
@@ -233,6 +262,22 @@ async function TotalSalesPrevOnAGivenDay(date) {
   try {
     const response = await fetch(
       `dashboard.php?TotalSalesPrevOnAGivenDay=1&date=${date}`
+    );
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    const data = await response.json();
+    console.log("Parsed data:", data); // For debugging
+    return data;
+  } catch (error) {
+    console.error("Fetch error:", error);
+    return { success: false, data: [] }; // Fallback
+  }
+}
+async function Top5Cx() {
+  try {
+    const response = await fetch(
+      `dashboard.php?Top5Cx=1`
     );
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
