@@ -157,6 +157,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_order_item'])
             </div>
         </div>
     </div>
+
+
+    <div class="logout-modal" id="logout-modal">
+        <div class="logout-box">
+            <p>Are you sure you want to log out?</p>
+            <div class="logout-actions">
+                <button id="logout-yes">Yes</button>
+                <button id="logout-no">No</button>
+            </div>
+        </div>
+    </div>
+
 </body>
 
 </html>
