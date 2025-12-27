@@ -131,40 +131,69 @@ WHERE DATE(customer_order.order_date) = ?
 }
 
 
-// Fetch books ordered by publisher and the total quantity ordered
+if (isset($_GET["Top5Cx"])) {
 
-$porders_query = "
-    SELECT 
-        oi.book_isbn, 
-        b.title, 
-        SUM(oi.quantity) AS total_orders
-    FROM 
-        publisher_order_item oi
-    JOIN 
-        book b ON oi.book_isbn = b.book_isbn
-    WHERE 
-        oi.status = 'Confirmed'
-    GROUP BY 
-        oi.book_isbn
-    ORDER BY 
-        total_orders DESC;
-";
+    $sql = "SELECT co.user_id, u.username, u.first_name, u.last_name, u.email, u.registration_date ,SUM(co.total_amount) AS total_spent
+            FROM customer_order co
+            JOIN `user` u ON co.user_id = u.user_id
+              AND co.order_date >= NOW() - INTERVAL 3 MONTH
+              AND co.order_date < NOW()
+            GROUP BY co.user_id, u.username, u.first_name, u.last_name
+            ORDER BY total_spent DESC
+            LIMIT 5 ";
 
-$porders_result = $conn->query($porders_query);
+    $stmt = mysqli_prepare($conn, $sql);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
 
-// Initialize an array to hold the data
-$book_orders = [];
 
-if ($porders_result) {
-    while ($row = $porders_result->fetch_assoc()) {
-        $book_orders[] = $row; // Add each book's info to the array
-    }
-} else {
-    echo json_encode(['status' => 'fail', 'message' => 'Failed to fetch book order data']);
-    exit;
+    mysqli_stmt_close($stmt);
+    echo json_encode(["success" => true, "data" => $result->fetch_all(MYSQLI_ASSOC)]);
 }
 
-// Send the data as JSON to the front-end
-echo json_encode(['status' => 'success', 'data' => $book_orders]);
+if (isset($_GET["Top10Books"])) {
+
+    $sql = "SELECT coi.book_isbn, b.title, p.name ,SUM(coi.quantity) AS total_bought
+            FROM customer_order_item coi
+            JOIN book b ON coi.book_isbn = b.book_isbn
+            JOIN publisher as p ON b.pub_id = p.pub_id
+            JOIN customer_order co ON coi.order_id = co.order_id
+              AND co.order_date >= (NOW() - INTERVAL 3 MONTH)
+              AND co.order_date < (NOW())
+            GROUP BY coi.book_isbn, b.title
+            ORDER BY total_bought DESC
+            LIMIT 10
+            
+            ";
+
+    $stmt = mysqli_prepare($conn, $sql);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+
+
+    mysqli_stmt_close($stmt);
+    echo json_encode(["success" => true, "data" => $result->fetch_all(MYSQLI_ASSOC)]);
+}
+if (isset($_GET["Replenishment"])) {
+
+    $sql = "SELECT poi.book_isbn, b.title, COUNT(DISTINCT poi.order_id) AS times_ordered
+            FROM publisher_order_item poi
+            JOIN publisher_order po ON poi.order_id = po.order_id
+            JOIN book b ON poi.book_isbn = b.book_isbn
+            GROUP BY poi.book_isbn, b.title
+            ";
+
+    $stmt = mysqli_prepare($conn, $sql);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+
+
+    mysqli_stmt_close($stmt);
+    echo json_encode(["success" => true, "data" => $result->fetch_all(MYSQLI_ASSOC)]);
+}
+
+
+
+
 
 ?>
