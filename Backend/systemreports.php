@@ -57,13 +57,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     } elseif ($report_type == 'Top_books') {
         $stmt = $conn->prepare("
-            SELECT coi.book_isbn, b.title, SUM(coi.quantity) AS total_bought
+            SELECT coi.book_isbn, b.title, p.name ,SUM(coi.quantity) AS total_bought
             FROM customer_order_item coi
             JOIN book b ON coi.book_isbn = b.book_isbn
+            JOIN publisher as p ON b.pub_id = p.pub_id
             JOIN customer_order co ON coi.order_id = co.order_id
-            WHERE co.status='Delivered'
-              AND co.order_date >= DATE_FORMAT(NOW() - INTERVAL 3 MONTH, '%Y-%m-01 00:00:00')
-              AND co.order_date < DATE_FORMAT(NOW(), '%Y-%m-01 00:00:00')
+              AND co.order_date >= (NOW() - INTERVAL 3 MONTH)
+              AND co.order_date < (NOW())
             GROUP BY coi.book_isbn, b.title
             ORDER BY total_bought DESC
             LIMIT 10

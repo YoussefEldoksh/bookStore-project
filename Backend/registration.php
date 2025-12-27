@@ -43,19 +43,12 @@ if (isset($_POST["usermail"])) {
   $stmt = $conn->prepare(
     "INSERT INTO user (email, username, password, first_name, last_name, type, city, street, apartment) 
      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"
-<<<<<<< HEAD
-);
 
-$type = isset($_POST['type']) ? $_POST['type'] : 'Customer';
-
-$stmt->bind_param(
-=======
   );
 
   $type = isset($_POST['type']) ? $_POST['type'] : 'Customer';
 
   $stmt->bind_param(
->>>>>>> e0ee7c46e097b88d389568bb9f3a27cfda2d98f2
     "sssssssss",
     $email,
     $username,
@@ -66,11 +59,8 @@ $stmt->bind_param(
     $city,
     $street,
     $apt
-<<<<<<< HEAD
-);
-=======
+
   );
->>>>>>> e0ee7c46e097b88d389568bb9f3a27cfda2d98f2
 
   if ($stmt->execute()) {
     echo "<p style='color:green;'>Registration successful!</p>";

@@ -160,7 +160,7 @@
                                 <th class="pb-4 font-semibold text-gray-600 text-sm">User</th>
 
                                 <th class="pb-4 font-semibold text-gray-600 text-sm">Status</th>
-                                <th class="pb-4 font-semibold text-gray-600 text-sm text-right">Date</th>
+                                <th class="pb-4 font-semibold text-gray-600 text-sm ">Date</th>
                                 <th class="pb-4 font-semibold text-gray-600 text-sm text-right">Total</th>
                             </tr>
                         </thead>
@@ -185,7 +185,7 @@
                             <tr class="border-b border-gray-100">
                                 <th class="pb-4 font-semibold text-gray-600 text-sm">User</th>
                                 <th class="pb-4 font-semibold text-gray-600 text-sm">Status</th>
-                                <th class="pb-4 font-semibold text-gray-600 text-sm text-right">Date</th>
+                                <th class="pb-4 font-semibold text-gray-600 text-sm">Date</th>
                                 <th class="pb-4 font-semibold text-gray-600 text-sm text-right">Total</th>
                             </tr>
                         </thead>
@@ -209,7 +209,7 @@
                             <tr class="border-b border-gray-100">
                                 <th class="pb-4 font-semibold text-gray-600 text-sm">User</th>
                                 <th class="pb-4 font-semibold text-gray-600 text-sm">Username</th>
-                                <th class="pb-4 font-semibold text-gray-600 text-sm text-right">Registration Date</th>
+                                <th class="pb-4 font-semibold text-gray-600 text-sm">Reg Date</th>
                                 <th class="pb-4 font-semibold text-gray-600 text-sm text-right">Total Paid</th>
                             </tr>
                         </thead>
@@ -233,11 +233,36 @@
                             <tr class="border-b border-gray-100">
                                 <th class="pb-4 font-semibold text-gray-600 text-sm">Title</th>
                                 <th class="pb-4 font-semibold text-gray-600 text-sm">ISBN</th>
-                                <th class="pb-4 font-semibold text-gray-600 text-sm text-right">Publisher</th>
+                                <th class="pb-4 font-semibold text-gray-600 text-sm ">Publisher</th>
                                 <th class="pb-4 font-semibold text-gray-600 text-sm text-right">Total Sales</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-gray-50" id="tableDataTopBooks">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="grid grid-cols-1 gap-6  ">
+            <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm font-sans max-h-96 overflow-y-auto">
+                <div class="mb-6">
+                    <h2 class="text-xl font-bold text-gray-900">Replenishment Orders</h2>
+                    <p class="text-sm text-gray-500 mt-1">Detailed list of users Orders per specific day</p>
+                </div>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="border-b border-gray-100">
+                                <th class="pb-4 font-semibold text-gray-600 text-sm">User</th>
+
+                                <th class="pb-4 font-semibold text-gray-600 text-sm">Status</th>
+                                <th class="pb-4 font-semibold text-gray-600 text-sm ">Date</th>
+                                <th class="pb-4 font-semibold text-gray-600 text-sm text-right">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-50 overflow-auto" id="tableDataMonth">
                         </tbody>
                     </table>
                 </div>

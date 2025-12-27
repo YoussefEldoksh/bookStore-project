@@ -143,7 +143,53 @@ if (isset($_GET["Top5Cx"])) {
             LIMIT 5 ";
 
     $stmt = mysqli_prepare($conn, $sql);
-    $stmt->bind_param("s", $date);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+
+
+    mysqli_stmt_close($stmt);
+    echo json_encode(["success" => true, "data" => $result->fetch_all(MYSQLI_ASSOC)]);
+}
+
+if (isset($_GET["Top10Books"])) {
+
+    $sql = "SELECT coi.book_isbn, b.title, p.name ,SUM(coi.quantity) AS total_bought
+            FROM customer_order_item coi
+            JOIN book b ON coi.book_isbn = b.book_isbn
+            JOIN publisher as p ON b.pub_id = p.pub_id
+            JOIN customer_order co ON coi.order_id = co.order_id
+              AND co.order_date >= (NOW() - INTERVAL 3 MONTH)
+              AND co.order_date < (NOW())
+            GROUP BY coi.book_isbn, b.title
+            ORDER BY total_bought DESC
+            LIMIT 10
+            
+            ";
+
+    $stmt = mysqli_prepare($conn, $sql);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+
+
+    mysqli_stmt_close($stmt);
+    echo json_encode(["success" => true, "data" => $result->fetch_all(MYSQLI_ASSOC)]);
+}
+if (isset($_GET["(Replenishment"])) {
+
+    $sql = "SELECT coi.book_isbn, b.title, p.name ,SUM(coi.quantity) AS total_bought
+            FROM customer_order_item coi
+            JOIN book b ON coi.book_isbn = b.book_isbn
+            JOIN publisher as p ON b.pub_id = p.pub_id
+            JOIN customer_order co ON coi.order_id = co.order_id
+              AND co.order_date >= (NOW() - INTERVAL 3 MONTH)
+              AND co.order_date < (NOW())
+            GROUP BY coi.book_isbn, b.title
+            ORDER BY total_bought DESC
+            LIMIT 10
+            
+            ";
+
+    $stmt = mysqli_prepare($conn, $sql);
     mysqli_stmt_execute($stmt);
     $result = mysqli_stmt_get_result($stmt);
 
