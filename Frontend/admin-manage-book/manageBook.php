@@ -50,7 +50,7 @@ if (isset($_GET['book_isbn'])) {
         <ul class="sidebar-menu">
             <li><a href="../admin-page/adminPage.php" id="home-link">Home</a></li>
             <li><a href="../admin-profile/adminProfile.php" id="profile-link">Profile</a></li>
-            <li><a href="./adminSearch.php" id="search-link">Search</a></li>
+            <li><a href="../admin-search/adminSearch.php" id="search-link">Search</a></li>
             <li>
                 <a href="#" id="logout-link">
                     <i class="fa fa-sign-out-alt"></i> Logout

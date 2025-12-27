@@ -68,7 +68,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['type'] !== 'Admin') {
                     <p>Edit existing books.</p>
                 </div>
             </a>
-            <a href="../admin-search/search.php" class="card-link">
+            <a href="../admin-orders/orders.php" class="card-link">
                 <div class="card card_4" data-section="orders"> <i class="fa-solid fa-dolly fa-2x"></i>
                     <h3>Orders</h3>
                     <p>Check and manage orders.</p>

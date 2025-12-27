@@ -110,37 +110,22 @@ DELIMITER ;
     -- =====================================================
     -- 6. PUBLISHER_ORDER TABLE (Replenishment orders from publishers)
     -- =====================================================
-    CREATE TABLE publisher_order (
-        order_id INT NOT NULL AUTO_INCREMENT,
-        pub_id INT NOT NULL,
-        order_date DATE NOT NULL DEFAULT CURDATE(),
-        expected_delivery_date DATE,
-        actual_delivery_date DATE,
-        total_amount DECIMAL(12, 2),
-        status ENUM('Pending', 'Shipped', 'Received', 'Cancelled') DEFAULT 'Pending',
-        created_by INT,
-        PRIMARY KEY (order_id),
-        FOREIGN KEY (pub_id) REFERENCES publisher(pub_id)
-            ON DELETE RESTRICT ON UPDATE CASCADE,
-        FOREIGN KEY (created_by) REFERENCES user(user_id)
-            ON DELETE SET NULL ON UPDATE CASCADE,
-    );
-
-    -- =====================================================
-    -- 7. PUBLISHER_ORDER_ITEM TABLE (Items in publisher orders)
-    -- =====================================================
     CREATE TABLE publisher_order_item (
-        order_id INT NOT NULL,
-        book_isbn VARCHAR(13) NOT NULL,
-        quantity INT NOT NULL CHECK (quantity > 0),
-        unit_cost DECIMAL(10, 2) NOT NULL,
-        subtotal DECIMAL(12, 2) GENERATED ALWAYS AS (quantity * unit_cost) STORED,
-        PRIMARY KEY (order_id, book_isbn),
-        FOREIGN KEY (order_id) REFERENCES publisher_order(order_id)
-            ON DELETE CASCADE ON UPDATE CASCADE,
-        FOREIGN KEY (book_isbn) REFERENCES book(book_isbn)
-            ON DELETE RESTRICT ON UPDATE CASCADE
-    );
+    order_id INT NOT NULL AUTO_INCREMENT,
+    pub_id INT NOT NULL,
+    book_isbn VARCHAR(13) NOT NULL,
+    order_date DATE NOT NULL,  -- Remove DEFAULT CURDATE()
+    delivery_date DATE,
+    status ENUM('Pending', 'Confirmed') DEFAULT 'Pending',
+    confirmed_by INT,
+    PRIMARY KEY (order_id),
+    FOREIGN KEY (pub_id) REFERENCES publisher(pub_id)
+        ON DELETE RESTRICT ON UPDATE CASCADE,
+    FOREIGN KEY (book_isbn) REFERENCES book(book_isbn)
+        ON DELETE RESTRICT ON UPDATE CASCADE,
+    FOREIGN KEY (confirmed_by) REFERENCES user(user_id)
+        ON DELETE SET NULL ON UPDATE CASCADE
+);
 
     -- =====================================================
     -- 8. SHOPPING_CART TABLE (Customer shopping carts)

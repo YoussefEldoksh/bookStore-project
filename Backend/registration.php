@@ -43,11 +43,11 @@ if (isset($_POST["usermail"])) {
   $stmt = $conn->prepare(
     "INSERT INTO user (email, username, password, first_name, last_name, type, city, street, apartment) 
      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"
-);
+  );
 
-$type = isset($_POST['type']) ? $_POST['type'] : 'Customer';
+  $type = isset($_POST['type']) ? $_POST['type'] : 'Customer';
 
-$stmt->bind_param(
+  $stmt->bind_param(
     "sssssssss",
     $email,
     $username,
@@ -58,7 +58,7 @@ $stmt->bind_param(
     $city,
     $street,
     $apt
-);
+  );
 
   if ($stmt->execute()) {
     echo "<p style='color:green;'>Registration successful!</p>";
@@ -71,4 +71,3 @@ $stmt->bind_param(
   $conn->close();
 }
 ?>
-
