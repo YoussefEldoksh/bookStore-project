@@ -131,7 +131,40 @@ WHERE DATE(customer_order.order_date) = ?
 }
 
 
+// Fetch books ordered by publisher and the total quantity ordered
 
+$porders_query = "
+    SELECT 
+        oi.book_isbn, 
+        b.title, 
+        SUM(oi.quantity) AS total_orders
+    FROM 
+        publisher_order_item oi
+    JOIN 
+        book b ON oi.book_isbn = b.book_isbn
+    WHERE 
+        oi.status = 'Confirmed'
+    GROUP BY 
+        oi.book_isbn
+    ORDER BY 
+        total_orders DESC;
+";
 
+$porders_result = $conn->query($porders_query);
+
+// Initialize an array to hold the data
+$book_orders = [];
+
+if ($porders_result) {
+    while ($row = $porders_result->fetch_assoc()) {
+        $book_orders[] = $row; // Add each book's info to the array
+    }
+} else {
+    echo json_encode(['status' => 'fail', 'message' => 'Failed to fetch book order data']);
+    exit;
+}
+
+// Send the data as JSON to the front-end
+echo json_encode(['status' => 'success', 'data' => $book_orders]);
 
 ?>

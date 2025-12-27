@@ -50,11 +50,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['type'] !== 'Admin') {
             <img src="../assets/adminbook.jpg" alt="Books Image" class="books-image">
         </div>
         <div class="dashboard-cards">
-<<<<<<< HEAD
             <a href="../admin-dashboard/dashboard.html" class="card-link">
-=======
-            <a href="../admin-dashboard/dashboard.php" class="card-link">
->>>>>>> e0ee7c46e097b88d389568bb9f3a27cfda2d98f2
                 <div class="card card_1" data-section="dashboard"> <i class="fa-solid fa-chart-bar fa-2x"></i>
                     <h3>Dashboard</h3>
                     <p>View statistics and overview.</p>
@@ -72,11 +68,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['type'] !== 'Admin') {
                     <p>Edit existing books.</p>
                 </div>
             </a>
-<<<<<<< HEAD
             <a href="../admin-search/search.php" class="card-link">
-=======
-            <a href="../admin-orders/orders.php" class="card-link">
->>>>>>> e0ee7c46e097b88d389568bb9f3a27cfda2d98f2
                 <div class="card card_4" data-section="orders"> <i class="fa-solid fa-dolly fa-2x"></i>
                     <h3>Orders</h3>
                     <p>Check and manage orders.</p>

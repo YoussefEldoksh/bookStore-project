@@ -1,4 +1,27 @@
 document.addEventListener("DOMContentLoaded", async (e) => {
+
+    // --- LOGOUT HANDLING ---
+  const logoutLink = document.getElementById("logout-link");
+  const logoutModal = document.getElementById("logout-modal");
+  const logoutYes = document.getElementById("logout-yes");
+  const logoutNo = document.getElementById("logout-no");
+
+  // Show logout confirmation modal
+  logoutLink.addEventListener("click", (e) => {
+    e.preventDefault();  // Prevent the default logout behavior (redirect)
+    logoutModal.style.display = "flex";  // Show the modal
+  });
+
+  // Hide logout modal if "No" is clicked
+  logoutNo.addEventListener("click", () => {
+    logoutModal.style.display = "none";  // Close the modal
+  });
+
+  // Proceed to logout if "Yes" is clicked
+  logoutYes.addEventListener("click", () => {
+    window.location.href = "../admin-login-view/login.php";  // Redirect to login page
+  });
+  
   const ctx = document.getElementById("myChart").getContext("2d");
   const dataset = await fetchOrdersData();
   const ordersContainer = document.getElementById("ordersContainer");
@@ -155,6 +178,8 @@ document.addEventListener("DOMContentLoaded", async (e) => {
       },
     },
   });
+
+
 });
 
 async function fetchOrdersData() {
