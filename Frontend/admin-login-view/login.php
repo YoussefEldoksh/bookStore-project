@@ -73,7 +73,11 @@ require_once "../../Backend/bookdb.php";
               </div>
 
               <a href="#" class="recovery-link">Recovery Password</a>
+<<<<<<< HEAD
               <a href="../admin-signup-view/signup.php" class="recovery-link">Don't have an account ?</a>
+=======
+              <a href="../admin-signup-view/signup.html" class="recovery-link">Don't have an account ?</a>
+>>>>>>> e0ee7c46e097b88d389568bb9f3a27cfda2d98f2
 
               <button type="submit" name="submit" value="1" class="continue-btn" name="submit">Continue</button>
             </form>

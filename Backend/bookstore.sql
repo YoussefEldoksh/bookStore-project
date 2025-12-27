@@ -72,6 +72,31 @@
         FOREIGN KEY (category_id) REFERENCES category(category_id)
 
     );
+    ALTER TABLE book
+ADD CONSTRAINT chk_quantity_non_negative
+CHECK (quantity_in_stock >= 0);
+
+    DELIMITER $$
+
+CREATE TRIGGER auto_order_when_stock_low
+AFTER UPDATE ON book
+FOR EACH ROW
+BEGIN
+    DECLARE fixed_order_qty INT DEFAULT 10;
+
+    IF NEW.quantity_in_stock < NEW.stock_threshold AND OLD.quantity_in_stock >= OLD.stock_threshold THEN
+        INSERT INTO publisher_order (pub_id, order_date, status, created_by)
+        VALUES (NEW.pub_id, CURDATE(), 'Pending', NULL);
+
+        SET @last_order_id = LAST_INSERT_ID();
+
+        INSERT INTO publisher_order_item (order_id, book_isbn, quantity, unit_cost)
+        VALUES (@last_order_id, NEW.book_isbn, fixed_order_qty, 0);
+    END IF;
+END$$
+
+DELIMITER ;
+
 -- =====================================================
     -- 5. BOOK_AUTHOR TABLE (Many-to-Many relationship)
     -- =====================================================
@@ -88,37 +113,46 @@
     -- =====================================================
     -- 6. PUBLISHER_ORDER TABLE (Replenishment orders from publishers)
     -- =====================================================
-    CREATE TABLE publisher_order (
-        order_id INT NOT NULL AUTO_INCREMENT,
-        pub_id INT NOT NULL,
-        order_date DATE NOT NULL DEFAULT CURDATE(),
-        expected_delivery_date DATE,
-        actual_delivery_date DATE,
-        total_amount DECIMAL(12, 2),
-        status ENUM('Pending', 'Shipped', 'Received', 'Cancelled') DEFAULT 'Pending',
-        created_by INT,
-        PRIMARY KEY (order_id),
-        FOREIGN KEY (pub_id) REFERENCES publisher(pub_id)
-            ON DELETE RESTRICT ON UPDATE CASCADE,
-        FOREIGN KEY (created_by) REFERENCES user(user_id)
-            ON DELETE SET NULL ON UPDATE CASCADE,
-    );
-
-    -- =====================================================
-    -- 7. PUBLISHER_ORDER_ITEM TABLE (Items in publisher orders)
-    -- =====================================================
+<<<<<<< HEAD
     CREATE TABLE publisher_order_item (
-        order_id INT NOT NULL,
-        book_isbn VARCHAR(13) NOT NULL,
-        quantity INT NOT NULL CHECK (quantity > 0),
-        unit_cost DECIMAL(10, 2) NOT NULL,
-        subtotal DECIMAL(12, 2) GENERATED ALWAYS AS (quantity * unit_cost) STORED,
-        PRIMARY KEY (order_id, book_isbn),
-        FOREIGN KEY (order_id) REFERENCES publisher_order(order_id)
-            ON DELETE CASCADE ON UPDATE CASCADE,
-        FOREIGN KEY (book_isbn) REFERENCES book(book_isbn)
-            ON DELETE RESTRICT ON UPDATE CASCADE
-    );
+    order_id INT NOT NULL AUTO_INCREMENT,
+    pub_id INT NOT NULL,
+    book_isbn VARCHAR(13) NOT NULL,
+    order_date DATE NOT NULL,  -- Remove DEFAULT CURDATE()
+    delivery_date DATE,
+    status ENUM('Pending', 'Confirmed') DEFAULT 'Pending',
+    confirmed_by INT,
+    PRIMARY KEY (order_id),
+    FOREIGN KEY (pub_id) REFERENCES publisher(pub_id)
+        ON DELETE RESTRICT ON UPDATE CASCADE,
+    FOREIGN KEY (book_isbn) REFERENCES book(book_isbn)
+        ON DELETE RESTRICT ON UPDATE CASCADE,
+    FOREIGN KEY (confirmed_by) REFERENCES user(user_id)
+        ON DELETE SET NULL ON UPDATE CASCADE
+=======
+    CREATE TABLE publisher_order (
+    order_id INT NOT NULL AUTO_INCREMENT,
+    pub_id INT NOT NULL,
+    order_date DATE NOT NULL DEFAULT CURDATE(),
+    expected_delivery_date DATE,
+    actual_delivery_date DATE,
+    total_amount DECIMAL(12, 2),
+    status ENUM('Pending', 'Confirmed') DEFAULT 'Pending',
+    created_by INT,
+
+    PRIMARY KEY (order_id),
+
+    FOREIGN KEY (pub_id)
+        REFERENCES publisher(pub_id)
+        ON DELETE RESTRICT
+        ON UPDATE CASCADE,
+
+    FOREIGN KEY (created_by)
+        REFERENCES user(user_id)
+        ON DELETE SET NULL
+        ON UPDATE CASCADE
+>>>>>>> b24c0f1b267ae706ac7725c85af8b1b942f92edc
+);
 
     -- =====================================================
     -- 8. SHOPPING_CART TABLE (Customer shopping carts)
@@ -143,7 +177,7 @@
         user_id INT NOT NULL,
         order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         total_amount DECIMAL(12, 2) NOT NULL,
-        status ENUM('Pending', 'Processing', 'Shipped', 'Delivered', 'Cancelled') DEFAULT 'Pending',
+        status ENUM('Pending', 'Confirmed') DEFAULT 'Pending',
         apartment int NOT NULL,
         street_name VARCHAR(60) NOT NULL,
         City varchar(40) NOT NULL,

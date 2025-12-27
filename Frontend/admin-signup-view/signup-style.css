@@ -9,7 +9,7 @@
 }
 
 body {
-  background-color: rgb(255, 239, 217);
+  background-color: rgb(147, 183, 245);
   outline: 1px solid #000000;
   height: 100vh;
   width: 100%;
@@ -21,7 +21,7 @@ body {
 }
 
 #root {
-  background-color: rgb(255, 239, 217);
+  background-color: rgb(147, 183, 245);
   outline: 2px solid #000000;
   height: 95vh;
   width: 98%;
@@ -83,7 +83,10 @@ img{
 
 h2{
     font-family: pally;
+<<<<<<< HEAD
     text-align: center;
+=======
+>>>>>>> e0ee7c46e097b88d389568bb9f3a27cfda2d98f2
 }
 
 .statement{

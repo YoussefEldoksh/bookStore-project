@@ -1,0 +1,211 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+}
+
+/* SIDEBAR */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 200px;
+  height: 100vh;
+  background-color: #325453; /* muted dark teal */
+  color: #dcbe87; /* gold text */
+  padding: 20px 0;
+  z-index: 1000;
+}
+
+.sidebar-header h2 {
+  font-size: 1.2rem;
+  margin: 0 20px 20px;
+  color: #ef5d58; /* red accent */
+}
+
+.sidebar-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-menu li {
+  margin: 10px 0;
+}
+
+.sidebar-menu a {
+  display: block;
+  padding: 10px 20px;
+  color: #dcbe87; /* gold text */
+  text-decoration: none;
+  font-weight: 500;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.sidebar-menu a:hover {
+  background-color: #ad6a34; /* red accent on hover */
+  color: #ffffff;
+}
+
+/* Mobile toggle */
+.sidebar-toggle {
+  display: none;
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  background: #ef5d58; /* red accent */
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%);
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+  }
+
+  .sidebar-toggle {
+    display: block;
+  }
+}
+/* =========================
+   LOGOUT BUTTON
+========================= */
+.logout-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(50, 84, 83, 0.6);
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.logout-box {
+  background: #f1ded5; /* dark brown */
+  padding: 20px 25px;
+  border-radius: 8px;
+  width: 280px;
+  text-align: center;
+  box-shadow: 0 6px 15px rgba(50, 84, 83, 0.4);
+}
+
+.logout-box p {
+  margin-bottom: 15px;
+  font-size: 16px;
+  color: #ad6a34; /* gold text */
+}
+
+.logout-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.logout-actions button {
+  flex: 1;
+  padding: 8px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#logout-yes {
+  background-color: #ef5d58; /* red accent */
+  color: white;
+}
+
+#logout-no {
+  background-color: #517174; /* lighter teal */
+  color: white;
+}
+
+
+/* Main Content */
+.main-content {
+    margin-left: 220px; /* Adjust this based on the width of your sidebar */
+    padding: 20px;
+}
+
+/* Container for the two tables */
+.order-tables-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+/* Table Container Styling */
+.table-container {
+    width: 48%; /* Each table takes 48% width */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid #e0e0e0;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #ef5d58; /* red accent for header */
+    color: #fff;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9; /* Slightly darker background for even rows */
+}
+
+button {
+    padding: 6px 12px;
+    background-color: #325453; /* muted dark teal */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #ad6a34; /* red accent on hover */
+}
+
+/* Mobile Responsiveness for Tables */
+@media (max-width: 768px) {
+    .table-container {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+}
+
+.pending-orders-title {
+    color: #ef5d58; /* Red color (use your preferred color) */
+    margin-bottom: 20px; /* Adjust the margin as needed */
+}
+
+.confirmed-orders-title {
+    color: #325453; /* Red color (use your preferred color) */
+    margin-bottom: 20px; /* Adjust the margin as needed */
+}

@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt = $conn->prepare("
             SELECT SUM(total_amount) AS total_sales_month
             FROM customer_order
-            WHERE status='Delivered'
+            WHERE status='Confirmed'
               AND order_date >= DATE_FORMAT(NOW() - INTERVAL 1 MONTH, '%Y-%m-01 00:00:00')
               AND order_date < DATE_FORMAT(NOW(), '%Y-%m-01 00:00:00')
         ");
@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt = $conn->prepare("
             SELECT SUM(total_amount) AS total_sales_day
             FROM customer_order
-            WHERE status='Delivered'
+            WHERE status='Confirmed'
               AND order_date >= CURDATE()
               AND order_date < CURDATE() + INTERVAL 1 DAY
         ");
@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             SELECT co.user_id, u.username, u.first_name, u.last_name, SUM(co.total_amount) AS total_spent
             FROM customer_order co
             JOIN `user` u ON co.user_id = u.user_id
-            WHERE co.status = 'Delivered'
+            WHERE co.status = 'Confirmed'
               AND co.order_date >= DATE_FORMAT(NOW() - INTERVAL 3 MONTH, '%Y-%m-01 00:00:00')
               AND co.order_date < DATE_FORMAT(NOW(), '%Y-%m-01 00:00:00')
             GROUP BY co.user_id, u.username, u.first_name, u.last_name
@@ -81,7 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             JOIN publisher_order po ON poi.order_id = po.order_id
             JOIN book b ON poi.book_isbn = b.book_isbn
             WHERE poi.book_isbn = ?
-              AND po.status = 'Received'
+              AND po.status = 'Confirmed'
             GROUP BY poi.book_isbn, b.title
         ");
         $stmt->bind_param("s", $book_isbn);
