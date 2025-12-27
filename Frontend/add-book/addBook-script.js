@@ -1,14 +1,14 @@
-// Highlight empty required fields before submission
 const form = document.getElementById("addBookForm");
+const sidebarLinks = document.querySelectorAll(".menu a");
 
 form.addEventListener("submit", function (e) {
     const isbn = document.getElementById("isbn");
     const title = document.getElementById("title");
-    const publisher = document.getElementById("publisher");
+    const publisher = document.getElementById("pub_id");
     const pubYear = document.getElementById("pub_year");
-    const price = document.getElementById("selling_price");
+    const price = document.getElementById("price");
     const quantity = document.getElementById("quantity");
-    const threshold = document.getElementById("stock_threshold");
+    const threshold = document.getElementById("threshold");
     const category = document.getElementById("category");
 
     let valid = true;
@@ -65,5 +65,36 @@ form.addEventListener("submit", function (e) {
         threshold.style.borderColor = "red";
         return;
     }
+
+    const authorInputs = document.querySelectorAll('input[name="authors[]"]');
+    for (const author of authorInputs) {
+        if (!author.value.trim()) {
+            alert("Please fill in all author names.");
+            author.style.borderColor = "red";
+            e.preventDefault();
+            return;
+        } else {
+            author.style.borderColor = "#ccc";
+        }
+    }
 });
 
+document.addEventListener("DOMContentLoaded", () => {
+    const logoutLink = document.getElementById("logout-link");
+    const logoutModal = document.getElementById("logout-modal");
+    const logoutYes = document.getElementById("logout-yes");
+    const logoutNo = document.getElementById("logout-no");
+
+    logoutLink.addEventListener("click", (e) => {
+        e.preventDefault();
+        logoutModal.style.display = "flex";
+    });
+
+    logoutNo.addEventListener("click", () => {
+        logoutModal.style.display = "none";
+    });
+
+    logoutYes.addEventListener("click", () => {
+        window.location.href = "../admin-login-view/login.php";
+    });
+});

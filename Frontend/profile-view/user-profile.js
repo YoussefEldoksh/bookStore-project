@@ -1,25 +1,37 @@
 document.addEventListener("DOMContentLoaded", (e) => {
+  const login_btn = document.querySelector(".login-btn");
+
+  login_btn.addEventListener("click", (e) => {
+    const token = localStorage.getItem("authToken");
+    if (!token) {
+      console.log("No token, redirecting to login...");
+      e.preventDefault();
+      e.stopPropagation(); // Stop bubbling just in case
+      const currentPage = window.location.pathname;
+      window.location.href = `../login-view/login.html?redirect=${encodeURIComponent(
+        currentPage
+      )}`;
+    } else {
+      localStorage.clear();
+      window.location.href = `../login-view/login.html`;
+    }
+  });
 
   const discardBtn = document.querySelector(".discard-btn");
-  discardBtn.addEventListener("click", (e)=>{
+  discardBtn.addEventListener("click", (e) => {
     e.preventDefault();
-     window.location.href = `../home-page/index.html`;
+    window.location.href = `../home-page/index.html`;
   });
   const logoutbtn = document.querySelector(".logout-option");
-  logoutbtn.addEventListener("click", (e)=>{
+  logoutbtn.addEventListener("click", (e) => {
     e.preventDefault();
     localStorage.clear();
-     window.location.href = `../login-view/login.html`;
+    window.location.href = `../login-view/login.html`;
   });
 
   const leftDivUsername = document.querySelector(".username-p");
 
-
   leftDivUsername.textContent = localStorage.getItem("username");
-
-
-
-
 
   const firstName = document.querySelector('input[name="firstname"]');
   const lastName = document.querySelector('input[name="lastname"]');
@@ -29,7 +41,6 @@ document.addEventListener("DOMContentLoaded", (e) => {
   const city = document.querySelector('input[name="useraddress-city"]');
   const street = document.querySelector('input[name="useraddress-street"]');
   const apartment = document.querySelector('input[name="useraddress-apt"]');
-
 
   firstName.value = localStorage.getItem("firstname");
   lastName.value = localStorage.getItem("lastname");
@@ -87,36 +98,47 @@ document.addEventListener("DOMContentLoaded", (e) => {
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
         },
-        body: `firstname=${encodeURIComponent(firstName)}&lastname=${encodeURIComponent(lastName)}&usermail=${encodeURIComponent(email)}&username=${encodeURIComponent(username)}&userpass=${encodeURIComponent(password)}&useraddress-city=${encodeURIComponent(city)}&useraddress-street=${encodeURIComponent(street)}&useraddress-apt=${encodeURIComponent(apartment)}&submit=1`,
+        body: `firstname=${encodeURIComponent(
+          firstName
+        )}&lastname=${encodeURIComponent(
+          lastName
+        )}&usermail=${encodeURIComponent(email)}&username=${encodeURIComponent(
+          username
+        )}&userpass=${encodeURIComponent(
+          password
+        )}&useraddress-city=${encodeURIComponent(
+          city
+        )}&useraddress-street=${encodeURIComponent(
+          street
+        )}&useraddress-apt=${encodeURIComponent(apartment)}&submit=1`,
       });
 
-        console.log("Response status:", response.status);
-      
-      
+      console.log("Response status:", response.status);
+
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
-      const text = await response.text();   
+      const text = await response.text();
       console.log("Raw response:", text);
 
       if (!text || text.length === 0) {
         alert("Server returned empty response. Check PHP file.");
         return;
       }
-        localStorage.setItem('username', username);
-        localStorage.setItem('firstname', firstName);
-        localStorage.setItem('lastname', lastName);
-        localStorage.setItem('email', email);
-        localStorage.setItem('city', city);
-        localStorage.setItem('street', street);
-        localStorage.setItem('apartment', apartment);
+      localStorage.setItem("username", username);
+      localStorage.setItem("firstname", firstName);
+      localStorage.setItem("lastname", lastName);
+      localStorage.setItem("email", email);
+      localStorage.setItem("city", city);
+      localStorage.setItem("street", street);
+      localStorage.setItem("apartment", apartment);
 
-        alert("Info updates successfully!!")
+      alert("Info updates successfully!!");
     } catch (error) {
-        console.error("JSON parse error:", error);
-        alert("Invalid server response. Check browser console.");
-        return;
+      console.error("JSON parse error:", error);
+      alert("Invalid server response. Check browser console.");
+      return;
     }
   });
 });

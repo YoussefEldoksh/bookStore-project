@@ -323,4 +323,22 @@ document.addEventListener("DOMContentLoaded", function () {
     const expiryDate = new Date(2000 + parseInt(year), parseInt(month), 0);
     return expiryDate < new Date();
   }
+
+    const login_btn = document.querySelector(".login-btn");
+
+  login_btn.addEventListener("click", (e) => {
+    const token = localStorage.getItem("authToken");
+    if (!token) {
+      console.log("No token, redirecting to login...");
+      e.preventDefault();
+      e.stopPropagation(); // Stop bubbling just in case
+      const currentPage = window.location.pathname;
+      window.location.href = `../login-view/login.html?redirect=${encodeURIComponent(
+        currentPage
+      )}`;
+    } else {
+      localStorage.clear();
+      window.location.href = `../login-view/login.html`;
+    }
+  });
 });

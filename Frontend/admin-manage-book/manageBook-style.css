@@ -1,0 +1,190 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+}
+
+/* Sidebar */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 200px;
+    height: 100vh;
+    background-color: #325453; /* Muted dark teal */
+    color: #dcbe87; /* Gold text */
+    padding: 20px 0;
+    z-index: 1000;
+}
+
+.sidebar-header h2 {
+    font-size: 1.2rem;
+    margin: 0 20px 20px;
+    color: #ef5d58; /* Red accent for header */
+}
+
+.sidebar-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-menu li {
+    margin: 10px 0;
+}
+
+.sidebar-menu a {
+    display: block;
+    padding: 10px 20px;
+    color: #dcbe87;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.sidebar-menu a:hover {
+    background-color: #ad6a34;
+    color: #ffffff;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .sidebar {
+        transform: translateX(-100%);
+    }
+
+    .sidebar.open {
+        transform: translateX(0);
+    }
+
+    .sidebar-toggle {
+        display: block;
+    }
+}
+
+/* Main content */
+.main-content {
+    margin-left: 220px;
+    padding: 40px 20px;
+    background-color: #f9f9f9;
+    min-height: 100vh;
+}
+
+.form-card {
+    max-width: 700px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.right-div-title {
+    text-align: center;
+    color: #ef5d58;
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+/* Form Elements */
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #333;
+}
+
+input, select {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0 20px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield; /* Hide number input spinbox in Firefox */
+}
+
+button[type="submit"] {
+    background-color: #ef5d58; /* Red accent */
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button[type="submit"]:hover {
+    background-color: #ad6a34;
+}
+
+/* Sidebar toggle button */
+.sidebar-toggle {
+    display: none;
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    background: #ef5d58;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+/* Modal for Logout */
+.logout-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(50, 84, 83, 0.6);
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.logout-box {
+    background: #f1ded5;
+    padding: 20px 25px;
+    border-radius: 8px;
+    width: 280px;
+    text-align: center;
+    box-shadow: 0 6px 15px rgba(50, 84, 83, 0.4);
+}
+
+.logout-box p {
+    margin-bottom: 15px;
+    font-size: 16px;
+    color: #ad6a34;
+}
+
+.logout-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.logout-actions button {
+    flex: 1;
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#logout-yes {
+    background-color: #ef5d58;
+    color: white;
+}
+
+#logout-no {
+    background-color: #517174;
+    color: white;
+}

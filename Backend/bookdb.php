@@ -9,7 +9,5 @@ $dbPort = "3306";
 
 $conn = mysqli_connect($hostName, $dbUser, $dbPassword, $dbName, $dbPort);
 if(!$conn){
-if(!$conn){
     die("Something went wrong!");
-}
 }

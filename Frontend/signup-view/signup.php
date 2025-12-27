@@ -41,7 +41,7 @@ if(isset($_POST["submit"])){
         
         mysqli_stmt_bind_param($stmt, "ss", $_usermail, $_username);
         mysqli_stmt_execute($stmt);
-        $result = mysqli_stmt_get_result($stmt);
+            $result = mysqli_stmt_get_result($stmt);
         
         if(mysqli_num_rows($result) > 0){
             echo json_encode(["success" => false, "message" => "Email or username already exists!"]);

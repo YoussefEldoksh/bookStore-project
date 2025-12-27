@@ -273,3 +273,9 @@
   background-color: #517174; /* lighter teal */
   color: white;
 }
+
+.card-container{
+    display: flex;
+    padding: 0% 4%;
+    gap: 20px;
+}

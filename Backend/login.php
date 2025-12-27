@@ -1,6 +1,7 @@
 <?php
 
-if (isset($_POST["submit"])) {
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     require_once "bookdb.php";
 
@@ -16,11 +17,22 @@ if (isset($_POST["submit"])) {
     }
 
     if (mysqli_num_rows($result) > 0) {
+
         $user = mysqli_fetch_assoc($result);
+
         if (password_verify($_password, $user["password"])) {
+
             session_start();
-            $_SESSION["username"] = $user["name"];
-            header("Location: form.php");
+
+            $_SESSION["user_id"] = $user["user_id"];
+            $_SESSION["username"] = $user["username"]; // or $user["name"] if that's your column
+            $_SESSION["type"] = $user["type"];         // Admin or Customer
+
+            if ($user["type"] === "Admin") {
+                header("Location: ../Frontend/admin-page/adminPage.php");
+            } else {
+                header("Location: ../Frontend/home-page/index.html");
+            }
             exit;
         } else {
             echo "<p style='color:red;'>Incorrect password</p>";
@@ -31,39 +43,3 @@ if (isset($_POST["submit"])) {
     mysqli_close($conn);
 }
 ?>
-
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Login</title>
-</head>
-<script>
-function validateForm(){
-    let usermail = document.forms["myForm"]["usermail"].value;
-    let userpass = document.forms["myForm"]["userpass"].value;
-
-    if (usermail === "" || userpass === "") {
-        alert("All fields must be filled out!");
-        return false;
-    }
-
-    if (userpass.length < 8) {
-        alert("Password must be at least 8 characters long!");
-        return false;
-    }
-
-    return true;
-}
-</script>
-<body>
-    <h1>Login</h1>
-    <form name="myForm" method="POST" onsubmit="return validateForm()">
-        <label>Email:</label><input type="email" name="usermail" placeholder="Email"><br>
-        <label>Password:</label><input type="password" name="userpass" placeholder="Password"><br>
-        <input type="submit" name="submit" value="Login">
-    </form>
-</body>
-</html>
